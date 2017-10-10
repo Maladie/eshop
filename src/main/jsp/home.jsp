@@ -4,9 +4,20 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <jsp:include page="banner.jsp"></jsp:include>
 <div class="container-fluid bg-3 text-center">
+    <h5>Last Viewed Products</h5>
+    <div class="row">
+        <c:forEach items="${viewedProductList}" var="product">
+            <div class="col-sm-3 p-5">
+                <a href="/productDescription?product=${product.id}" class="productLink">
+                    <p>${product.description}</p>
+                    <p>${product.value} ${product.currency}</p>
+                </a>
+            </div>
+        </c:forEach>
+    </div>
+    <h5>Product catalog</h5>
     <div class="row">
     <c:forEach items="${productList}" var="product">
-
         <div class="col-sm-3 p-5">
             <a href="/productDescription?product=${product.id}" class="productLink">
             <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"  class="img-responsive" alt="Image">
@@ -18,10 +29,7 @@
                 <input type="hidden" name="productId" value="${product.id}">
                 <input class="btn btn-outline-success" type = "submit" value = "Submit" />
             </form>
-
-
         </div>
-
     </c:forEach>
         </div>
 </div><br>

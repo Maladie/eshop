@@ -35,6 +35,10 @@ public class Basket {
         }
     }
 
+    public void voidBasket(){
+        productItemList.clear();
+    }
+
     public int getBasketSize(){
         return productItemList.size();
     }
