@@ -29,18 +29,14 @@
         <div class="col-sm-3 p-5">
             <div class="row">
                 <div style="width: 50px">
-                    <a><img class="w-100"
-                            src="https://image.flaticon.com/icons/svg/590/590497.svg"
-                            alt="RemoveCart">Remove products</a>
+                    <form method="post" action="/basket">
+                        <input type="image" class="w-100" src="https://image.flaticon.com/icons/svg/590/590497.svg">
+                        <a>Remove products</a>
+                    </form>
                 </div>
             </div>
         </div>
-    <div style="width: 50px">
-        <form method="post" action="/basket">
-            <button class="btn btn-danger">remove products</button>
-            <button class="btn btn-success">place order</button>
-        </form>
-
+        <div style="width: 50px">
+        </div>
     </div>
-</div>
 <jsp:include page="footer.jsp"></jsp:include>

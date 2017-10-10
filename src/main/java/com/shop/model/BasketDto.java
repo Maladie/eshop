@@ -29,6 +29,7 @@ public class BasketDto {
         basket.voidBasket();
         productDtoList.clear();
     }
+
     public BigDecimal getTotal(){
         BigDecimal sum = new BigDecimal(0);
         for (ProductDto productDto : productDtoList) {
