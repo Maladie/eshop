@@ -10,6 +10,6 @@ public class SessionShoppingBasketHandler {
         if(session.getAttribute("basket") == null) {
             session.setAttribute("basket", new Basket());
         }
-            return (Basket) session.getAttribute("basket");
+        return (Basket) session.getAttribute("basket");
     }
 }
