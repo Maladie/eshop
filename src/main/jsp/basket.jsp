@@ -5,19 +5,21 @@
 <div class="container-fluid bg-3 text-center">
     <div class="row">
         <c:forEach items="${basket}" var="product">
-            <div>
+            <div class="col-sm-2 p-3">
                 <a href="/productDescription?product=${product.getId()}" class="productLink">
                     <img height="30" width="30" src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
                          class="img-responsive" alt="Image">
-                    <p>${product.getDescription()} Amount: ${product.getQuantity()}</p>
+                    <p>${product.getDescription()}</p>
+                    <p>Amount: ${product.getQuantity()} Total: ${product.getValue()}</p>
                 </a>
             </div>
+            <br>
         </c:forEach>
-    </div>
-    <div style="width: 50px">
-        <a><img class="w-100"
-                src="https://image.flaticon.com/icons/svg/590/590497.svg"
-                alt="RemoveCart">Remove products</a>
+        <div style="width: 50px">
+            <a><img class="w-100"
+                    src="https://image.flaticon.com/icons/svg/590/590497.svg"
+                    alt="RemoveCart">Remove products</a>
+        </div>
     </div>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
