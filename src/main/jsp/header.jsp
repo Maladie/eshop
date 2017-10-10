@@ -48,9 +48,13 @@
                     </form>
                 </li>
             </ul>
-
+            <div style="width: 50px">
+                <a href="/basket"><img class="w-100"
+                     src="https://image.flaticon.com/icons/png/512/2/2772.png"
+                     alt="Cart"></a>
+            </div>
+            <ul></ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><img src="https://image.flaticon.com/icons/svg/118/118606.svg"</li>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-in</button>
             </ul>
         </div>
