@@ -1,0 +1,2 @@
+Created new Product{id=40, description='new', money=com.shop.model.factory.impl.Money@3758b1fe, fullDescription=''}
+2017-10-09T17:26:29.551 Created new Product{id=40, description='NewOne', money=com.shop.model.factory.impl.Money@4ae709cf, fullDescription=''}

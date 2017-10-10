@@ -1,0 +1,32 @@
+package com.shop.controller;
+
+import com.shop.model.factory.ProductFactory;
+import com.shop.model.factory.impl.Product;
+import com.shop.model.factory.impl.ProductFactoryImpl;
+import com.shop.repository.impl.ProductRepositoryImpl;
+import com.shop.service.ProductService;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.math.BigDecimal;
+
+@WebServlet(name = "PersistProductController", value = "/persistProduct")
+public class PersistProductController extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        httpServletRequest.getRequestDispatcher("addProductForm.jsp").forward(httpServletRequest, httpServletResponse);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProductFactory productFactory = new ProductFactoryImpl();
+        Product product = productFactory.newProduct(request);
+        ProductService.productService(ProductRepositoryImpl.aProductRepository()).persistProduct(product);
+        response.sendRedirect("/");
+    }
+}
