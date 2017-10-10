@@ -13,4 +13,8 @@ public class BasketDto {
             productDtoList.add(productDto);
         });
     }
+
+    public List<ProductDto> getProductDtoList() {
+        return productDtoList;
+    }
 }

@@ -17,4 +17,24 @@ public class ProductDto {
         this.value = productItem.getProduct().getValue();
         this.quantity = productItem.getQuantity();
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
