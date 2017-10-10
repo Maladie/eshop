@@ -14,7 +14,7 @@ public class ProductDto {
         this.id = productItem.getProduct().getId();
         this.description = productItem.getProduct().getDescription();
         this.currency = productItem.getProduct().getCurrency();
-        this.value = productItem.getProduct().getValue();
+        this.value = productItem.value();
         this.quantity = productItem.getQuantity();
     }
 
