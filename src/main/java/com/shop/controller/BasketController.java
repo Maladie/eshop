@@ -23,4 +23,12 @@ public class BasketController extends HttpServlet {
         request.setAttribute("basket", basketDto.getProductDtoList());
         request.getRequestDispatcher("basket.jsp").forward(request, response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(req.getSession());
+        BasketDto basketDto = new BasketDto(basket);
+        basketDto.voidProductDtoList();
+        resp.sendRedirect("/basket");
+    }
 }
