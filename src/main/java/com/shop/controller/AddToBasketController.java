@@ -33,5 +33,7 @@ public class AddToBasketController extends HttpServlet {
         productService.addProductToBasket(basket,productId);
 
         System.out.println("dodano do koszyka");
+
+        response.sendRedirect("/");
     }
 }
