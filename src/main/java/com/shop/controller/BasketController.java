@@ -19,6 +19,7 @@ public class BasketController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(request.getSession());
         BasketDto basketDto = new BasketDto(basket);
+        request.setAttribute("itemList", basketDto);
         request.setAttribute("basket", basketDto.getProductDtoList());
         request.getRequestDispatcher("basket.jsp").forward(request, response);
     }
