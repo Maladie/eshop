@@ -7,9 +7,9 @@
         <c:forEach items="${basket}" var="product">
             <div>
                 <a href="/productDescription?product=${product.getId()}" class="productLink">
-                    <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
+                    <img height="30" width="30" src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
                          class="img-responsive" alt="Image">
-                    <p>${product.getDescription()}</p>
+                    <p>${product.getDescription()} Amount: ${product.getQuantity()}</p>
                 </a>
             </div>
         </c:forEach>
