@@ -13,10 +13,13 @@
             <p>${product.description}</p>
             <p>${product.value} ${product.currency}</p>
             </a>
-                <form action="/addProduct" method="post">
-            <input type="hidden" name="productId" value="${product.id}">
-            <button type="button" class="btn btn-outline-success">Add to cart</button></form>
-        </form>
+
+            <form action = "/addProduct" method = "POST">
+                <input type="hidden" name="productId" value="${product.id}">
+                <input class="btn btn-outline-success" type = "submit" value = "Submit" />
+            </form>
+
+
         </div>
 
     </c:forEach>
