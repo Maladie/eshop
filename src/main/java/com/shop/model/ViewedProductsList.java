@@ -10,7 +10,7 @@ import java.util.Stack;
 
 public class ViewedProductsList {
     private List<Product> productsList;
-    private int maxStoredProducts = 5;
+    private int maxStoredProducts = 4;
 
     public ViewedProductsList(){
         productsList = new ArrayList<>();

@@ -3,6 +3,7 @@ package com.shop.controller;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
+import com.shop.service.SessionLastProductViewedHandler;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+import static com.shop.service.SessionLastProductViewedHandler.retrieveViewedProductList;
+
 @WebServlet(name = "HomeController", value = "/")
 public class HomeController extends HttpServlet{
 
@@ -23,6 +26,9 @@ public class HomeController extends HttpServlet{
         List<Product> productList = productService.getAllProductsForCustomer();
         request.setAttribute("productList", productList);
         request.getSession().setAttribute("temp", "temp");
+
+        List<Product> viewedProductList = SessionLastProductViewedHandler.retrieveViewedProductList(request.getSession()).getViewedProducts();
+        request.setAttribute("viewedProductList",viewedProductList);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
         requestDispatcher.forward(request, response);
