@@ -18,9 +18,20 @@ public class AddToBasketController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("productId"));
+        String productIdParam = request.getParameter("productId");
+        System.out.println(productIdParam);
+        int productId = Integer.parseInt(productIdParam);
+
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(request.getSession());
-        ProductService.productService(ProductRepositoryImpl.aProductRepository()).addProductToBasket(basket, productId);
-        
+        if(basket == null){
+            System.out.println("basket is null");
+        }
+        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        if(productService.getProductById(productId) == null) {
+            System.out.println("produkt o id: " + productId + " nie moze zostac pobrany z repozytornium");
+        }
+        productService.addProductToBasket(basket,productId);
+
+        System.out.println("dodano do koszyka");
     }
 }
