@@ -12,5 +12,4 @@ public class MySessionListener implements HttpSessionListener {
     public void sessionDestroyed(HttpSessionEvent event) {
         System.out.println("session is destroyed");
     }
-
 }
