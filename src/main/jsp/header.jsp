@@ -54,7 +54,7 @@
                                        alt="Cart"></a>
             </div>
             <div>
-                <p style="font-size: 30px; font-weight: bold;">${sessionScope.get("basket").getBasketSize()}</p>
+                <p style="font-size: 30px; font-weight: bold;">${sessionScope.get("basket").getBasketProductItemsAmount()}</p>
             </div>
             <ul></ul>
             <ul class="nav navbar-nav navbar-right">

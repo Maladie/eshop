@@ -54,4 +54,11 @@ public class Basket {
         return productItemList;
     }
 
+    public int getBasketProductItemsAmount() {
+        Integer productsAmount = 0;
+        for (ProductItem p: productItemList()) {
+            productsAmount += p.getQuantity();
+        }
+        return productsAmount;
+    }
 }
