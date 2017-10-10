@@ -17,26 +17,23 @@
             <br>
         </c:forEach>
     </div>
-    <div class="row">
-        <div class="col-sm-3 p-5">
-            <div style="width: 50px">
-                <a><img class="w-100" src="https://image.flaticon.com/icons/svg/547/547171.svg"
-                        alt="Total">
-                    Total Amount: ${itemList.getTotal()}
-            </div>
-            </a>
-        </div>
-        <div class="col-sm-3 p-5">
-            <div class="row">
-                <div style="width: 50px">
-                    <form method="post" action="/basket">
-                        <input type="image" class="w-100" src="https://image.flaticon.com/icons/svg/590/590497.svg">
-                        <a>Remove products</a>
-                    </form>
-                </div>
-            </div>
+    <div class="d-flex justify-content-between">
+        <div style="width: 50px">
+        <img class="w-100"
+             src="https://image.flaticon.com/icons/svg/547/547171.svg"
+             alt="Generic placeholder image">
+            Total Amount: ${itemList.getTotal()}
         </div>
         <div style="width: 50px">
+            <form method="post" action="/basket">
+                <input type="image" class="w-100" src="https://image.flaticon.com/icons/svg/590/590497.svg">
+                <a>Remove products</a>
+            </form>
+        </div>
+        <div style="width: 50px">
+            <img class="w-100"
+                 src="https://image.flaticon.com/icons/svg/411/411750.svg"
+                 alt="Generic placeholder image">
         </div>
     </div>
 <jsp:include page="footer.jsp"></jsp:include>
