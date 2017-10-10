@@ -3,8 +3,8 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="container-fluid bg-3 text-center">
-<c:forEach items="${basket}" var="product">
     <div class="row">
+<c:forEach items="${basket}" var="product">
     <div>
     <a href="/productDescription?product=${product.id}" class="productLink">
     <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"  class="img-responsive" alt="Image">
@@ -13,6 +13,11 @@
     </a>
     </div>
     </c:forEach>
+    </div>
+    <div style="width: 50px">
+        <a><img class="w-100"
+                               src="https://image.flaticon.com/icons/svg/590/590497.svg"
+                               alt="RemoveCart">Remove products</a>
     </div>
     </div>
 <jsp:include page="footer.jsp"></jsp:include>
