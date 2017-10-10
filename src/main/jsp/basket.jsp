@@ -7,7 +7,8 @@
         <c:forEach items="${basket}" var="product">
             <div class="col-sm-2 p-3">
                 <a href="/productDescription?product=${product.getId()}" class="productLink">
-                    <img height="30" width="30" src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
+                    <img height="30" width="30"
+                         src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
                          class="img-responsive" alt="Image">
                     <p>${product.getDescription()}</p>
                     <p>Amount: ${product.getQuantity()} Total: ${product.getValue()}</p>
@@ -15,10 +16,17 @@
             </div>
             <br>
         </c:forEach>
-        <div style="width: 50px">
-            <a><img class="w-100"
-                    src="https://image.flaticon.com/icons/svg/590/590497.svg"
-                    alt="RemoveCart">Remove products</a>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 p-3">
+            Total Amount: ${itemList.getTotal()}
+            </div>
+        <div class="col-sm-2 p-3">
+            <div style="width: 50px">
+                <a><img class="w-100"
+                        src="https://image.flaticon.com/icons/svg/590/590497.svg"
+                        alt="RemoveCart">Remove products</a>
+            </div>
         </div>
     </div>
 </div>
