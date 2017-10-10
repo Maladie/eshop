@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-sm-3 p-5">
             <div style="width: 50px">
-                <a><img src="https://image.flaticon.com/icons/svg/547/547171.svg"
+                <a><img class="w-100" src="https://image.flaticon.com/icons/svg/547/547171.svg"
                         alt="Total">
                     Total Amount: ${itemList.getTotal()}
             </div>
