@@ -12,23 +12,24 @@ public class ViewedProductsList {
     private List<Product> productsList;
     private int maxStoredProducts = 4;
 
-    public ViewedProductsList(){
+    public ViewedProductsList() {
         productsList = new ArrayList<>();
     }
 
-    public void addToViewedList(int id){
-        Product product = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(id);
-        addToViewedList(product);
-    }
 
-    public void addToViewedList(Product product){
-        productsList.add(0, product);
-        if(productsList.size() > maxStoredProducts){
-            productsList.remove(maxStoredProducts-1);
+    public void addToViewedList(Product product) {
+        if (!productsList.contains(product)) {
+            productsList.add(0, product);
+            if (productsList.size() > maxStoredProducts) {
+                productsList.remove(maxStoredProducts - 1);
+            }
+        } else {
+            productsList.remove(product);
+            addToViewedList(product);
         }
     }
 
-    public List<Product> getViewedProducts(){
+    public List<Product> getViewedProducts() {
         return productsList;
     }
 }
