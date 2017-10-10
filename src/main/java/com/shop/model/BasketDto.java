@@ -22,7 +22,7 @@ public class BasketDto {
     public BigDecimal getTotal(){
         BigDecimal sum = new BigDecimal(0);
         for (ProductDto productDto : productDtoList) {
-            sum.add(productDto.getValue());
+            sum = sum.add(productDto.getValue());
         }
         return sum;
     }
