@@ -35,6 +35,12 @@
                 </div>
             </div>
         </div>
+    <div style="width: 50px">
+        <form method="post" action="/basket">
+            <button class="btn btn-danger">remove products</button>
+            <button class="btn btn-success">place order</button>
+        </form>
+
     </div>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
