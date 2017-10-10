@@ -26,10 +26,11 @@
 <header class="sticky-top">
     <div class="navbar navbar-expand-lg navbar-light bg-light">
         <div style="width: 150px">
+            <a href="/">
             <img class="w-100"
                  src="https://cdn.dribbble.com/users/64815/screenshots/1518220/attachments/229248/shop_logo_big.png"
                  alt="Generic placeholder image">
-
+            </a>
         </div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
