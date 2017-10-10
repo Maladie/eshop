@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.model.Basket;
+import com.shop.model.BasketDto;
 import com.shop.service.SessionShoppingBasketHandler;
 
 
@@ -17,7 +18,8 @@ public class BasketController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(request.getSession());
-        request.setAttribute("basket", basket);
+        BasketDto basketDto = new BasketDto(basket);
+        request.setAttribute("basket", basketDto.getProductDtoList());
         request.getRequestDispatcher("basket.jsp").forward(request, response);
     }
 }
