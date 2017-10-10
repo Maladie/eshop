@@ -29,6 +29,13 @@
             </div>
             <div class="row">
                 <div class="col">
+
+                <form action="/addProduct" method="post">
+                    <input type="hidden" name="productId" value="${product.id}">
+                    <button type="button" class="btn btn-outline-success">Add to cart</button></form>
+                </form>
+                </div>
+                <div class="col">
                     <p><a href="<c:url value = "/edit?id=${product.id}"/>"><button type="button" class="btn btn-outline-success">Edit this product's description</button></a></p>
                 </div>
                 <div class="col">
