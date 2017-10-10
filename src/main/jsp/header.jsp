@@ -49,9 +49,9 @@
                 </li>
             </ul>
             <div style="width: 50px">
-                <img class="w-100"
+                <a href="/basket"><img class="w-100"
                      src="https://image.flaticon.com/icons/png/512/2/2772.png"
-                     alt="Cart">
+                     alt="Cart"></a>
             </div>
             <ul></ul>
             <ul class="nav navbar-nav navbar-right">
