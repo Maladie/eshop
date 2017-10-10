@@ -13,6 +13,8 @@ import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 
+import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
+
 public class ProductServiceTest {
 
     public static final String SAMPLE = "SAMPLE";
