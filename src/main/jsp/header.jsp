@@ -51,7 +51,10 @@
             <div style="width: 50px">
                 <a href="/basket"><img class="w-100"
                      src="https://image.flaticon.com/icons/png/512/2/2772.png"
-                     alt="Cart"></a>
+                                       alt="Cart"></a>
+            </div>
+            <div>
+                <p style="font-size: 30px; font-weight: bold;">${sessionScope.get("basket").getBasketSize()}</p>
             </div>
             <ul></ul>
             <ul class="nav navbar-nav navbar-right">
