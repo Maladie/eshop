@@ -3,6 +3,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="container-fluid bg-3 text-center">
+    <h2>Your shopping cart</h2>
     <div class="row">
         <c:forEach items="${basket}" var="product">
             <div class="col-sm-2 p-3">
