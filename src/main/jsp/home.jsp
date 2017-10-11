@@ -27,7 +27,7 @@
 
             <form action = "/addProduct" method = "POST">
                 <input type="hidden" name="productId" value="${product.id}">
-                <input class="btn btn-outline-success" type = "submit" value = "Submit" />
+                <input class="btn btn-outline-success" type = "submit" value = "Add to cart" />
             </form>
         </div>
     </c:forEach>

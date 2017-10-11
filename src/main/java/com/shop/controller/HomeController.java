@@ -25,7 +25,6 @@ public class HomeController extends HttpServlet{
         ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
         List<Product> productList = productService.getAllProductsForCustomer();
         request.setAttribute("productList", productList);
-        request.getSession().setAttribute("temp", "temp");
 
         List<Product> viewedProductList = SessionLastProductViewedHandler.retrieveViewedProductList(request.getSession()).getViewedProducts();
         request.setAttribute("viewedProductList",viewedProductList);

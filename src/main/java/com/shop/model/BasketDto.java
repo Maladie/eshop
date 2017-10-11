@@ -1,5 +1,9 @@
 package com.shop.model;
 
+import com.shop.model.factory.impl.Product;
+import com.shop.repository.impl.ProductRepositoryImpl;
+import com.shop.service.ProductService;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +40,10 @@ public class BasketDto {
             sum = sum.add(productDto.getValue());
         }
         return sum;
+    }
+
+    public void removeProductFromBasket(int productId){
+        Product product = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(productId);
+        basket.removeFromBasket(product);
     }
 }

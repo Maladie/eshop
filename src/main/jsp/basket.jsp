@@ -5,7 +5,7 @@
 <div class="container-fluid bg-3 text-center">
     <h2>Your shopping cart</h2>
     <div class="row">
-        <c:forEach items="${basket}" var="product">
+        <c:forEach items="${basket.getProductDtoList()}" var="product">
             <div class="col-sm-2 p-3">
                 <a href="/productDescription?product=${product.getId()}" class="productLink">
                     <img height="30" width="30"
@@ -13,6 +13,10 @@
                          class="img-responsive" alt="Image">
                     <p>${product.getDescription()}</p>
                     <p>Amount: ${product.getQuantity()} Total: ${product.getValue()}</p>
+                    <form action = "/removeProduct" method = "POST">
+                        <input type="hidden" name="productId" value="${product.id}">
+                        <input class="btn btn-outline-danger" type = "submit" value = "Remove from cart" />
+                    </form>
                 </a>
             </div>
             <br>
@@ -23,7 +27,7 @@
         <img class="w-100"
              src="https://image.flaticon.com/icons/svg/547/547171.svg"
              alt="Generic placeholder image">
-            Total Amount: ${itemList.getTotal()}
+            Total Amount: ${basket.getTotal()}
         </div>
         <div style="width: 50px">
             <form method="post" action="/basket">
