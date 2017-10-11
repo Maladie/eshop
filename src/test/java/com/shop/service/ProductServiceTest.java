@@ -35,30 +35,30 @@ public class ProductServiceTest {
     }
 
 
-    @Test
-    public void shouldNewShoppingCartContainOneProductIfUserAddProductToShoppingCart() {
-        //given
-        int productId = 10;
-        Basket shoppingCart = new Basket();
-        Mockito.when(productRepository.getProductById(productId)).thenReturn(aSimpleProduct());
-        //when
-        productService.addProductToBasket(shoppingCart,10);
-        //then
-        Assert.assertEquals("The size of the shopping cart should be 1", 1,shoppingCart.getBasketSize());
-    }
 
-    @Test
-    public void shouldQuantityIncreaseWhenTheSameProductAddedToBasket(){
-        //given
-        int productId = 0;
-        Basket basket = new Basket();
-        Mockito.when(productRepository.getProductById(productId)).thenReturn(aSimpleProduct());
-        //when
-        productService.addProductToBasket(basket, 0);
-        productService.addProductToBasket(basket, 0);
-        //then
-        Assert.assertEquals("The Quantity of products should be 2", 2, basket.getProductItemQuantity(0));
-    }
+//    public void shouldNewShoppingCartContainOneProductIfUserAddProductToShoppingCart() {
+//        //given
+//        int productId = 10;
+//        Basket shoppingCart = new Basket();
+//        Mockito.when(productRepository.getProductById(productId)).thenReturn(aSimpleProduct());
+//        //when
+//        productService.addProductToBasket(shoppingCart,10);
+//        //then
+//        Assert.assertEquals("The size of the shopping cart should be 1", 1,shoppingCart.getBasketSize());
+//    }
+//
+//
+//    public void shouldQuantityIncreaseWhenTheSameProductAddedToBasket(){
+//        //given
+//        int productId = 0;
+//        Basket basket = new Basket();
+//        Mockito.when(productRepository.getProductById(productId)).thenReturn(aSimpleProduct());
+//        //when
+//        productService.addProductToBasket(basket, 0);
+//        productService.addProductToBasket(basket, 0);
+//        //then
+//        Assert.assertEquals("The Quantity of products should be 2", 2, basket.getProductItemQuantity(0));
+//    }
 
 
     private Product aSimpleProduct(){

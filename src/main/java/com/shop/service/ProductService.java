@@ -1,6 +1,8 @@
 package com.shop.service;
 
 import com.shop.model.Basket;
+import com.shop.model.BasketDto;
+import com.shop.model.BasketToBasketDtoConverter;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.ProductRepository;
 import com.shop.service.log.ProductLog;
@@ -54,8 +56,9 @@ public class ProductService {
         observerList.stream().forEach(observer -> observer.update(actionDescription, product));
     }
 
-    public void addProductToBasket(Basket basket, int productId){
+    public void addProductToBasket(BasketDto basketDto, int productId){
         Product product = repository.getProductById(productId);
+        Basket basket = BasketToBasketDtoConverter.convertToBasket(basketDto);
         basket.addToBasket(product);
     }
 
