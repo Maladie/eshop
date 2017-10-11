@@ -6,14 +6,26 @@ public class Product {
 
     private int id;
     private String description;
+    private String brand;
     private Money money;
-    private String fullDescription;
+    private Weight weight;
+    private EnergyConsumptionClass EClass;
 
-    Product(int id, String description, BigDecimal value, String currency, String fullDescription) {
+    Product(int id,
+            String description,
+            String brand,
+            BigDecimal value,
+            String currency,
+            float weightValue,
+            Unit unit,
+            EnergyConsumptionClass EClass) {
         this.id = id;
         this.description = description;
+        this.brand = brand;
         this.money = new Money(value, currency);
-        this.fullDescription = fullDescription;
+        this.weight = new Weight(weightValue, unit);
+        this.EClass = EClass;
+
     }
 
     public int getId() {
@@ -32,8 +44,18 @@ public class Product {
         return money.getCurrency();
     }
 
-    public String getFullDescription() {
-        return fullDescription;
+    public String getBrand() {
+        return brand;
+    }
+
+    public float getWeightValue() {
+        return weight.getWeightValue();
+    }
+
+    public Unit getWeightUnit() { return weight.getUnit(); }
+
+    public EnergyConsumptionClass getEClass() {
+        return EClass;
     }
 
     public void setDescription(String description) {
@@ -54,10 +76,22 @@ public class Product {
         }
     }
 
-    public void setFullDescription(String fullDescription) {
-        if(!fullDescription.equals("")) {
-            this.fullDescription = fullDescription;
+    public void setBrand(String brand) {
+        if(!brand.equals("")){
+            this.brand = brand;
         }
+    }
+
+    public void setWeightValue(float weight) {
+        this.weight.setWeightValue(weight);
+    }
+
+    public void setWeightUnit(Unit unit) {
+        this.weight.setUnit(unit);
+    }
+
+    public void setEClass(EnergyConsumptionClass EClass) {
+        this.EClass = EClass;
     }
 
     @Override
@@ -66,7 +100,9 @@ public class Product {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", money=" + money +
-                ", fullDescription='" + fullDescription + '\'' +
+                ", brand='" + brand + '\'' +
+                ", weight=" + weight +
+                ", EClass=" + EClass +
                 '}';
     }
 }

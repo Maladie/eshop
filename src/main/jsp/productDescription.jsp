@@ -22,7 +22,7 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h4>Price: ${product.value} ${product.currency}</h4>
+                    <h4>Price: ${product.weightValue} ${product.currency}</h4>
                 </div>
             </div>
             <div class="row">
@@ -34,15 +34,15 @@
                 <div class="col">
 
                     <form action = "/addProduct" method = "POST">
-                        <input type="hidden" name="productId" value="${product.id}">
-                        <input class="btn btn-outline-success" type = "submit" value = "Add to cart" />
+                        <input type="hidden" name="productId" weightValue="${product.id}">
+                        <input class="btn btn-outline-success" type = "submit" weightValue = "Add to cart" />
                     </form>
                 </div>
                 <div class="col">
-                    <p><a href="<c:url value = "/edit?id=${product.id}"/>"><button type="button" class="btn btn-outline-success">Edit this product's description</button></a></p>
+                    <p><a href="<c:url weightValue = "/edit?id=${product.id}"/>"><button type="button" class="btn btn-outline-success">Edit this product's description</button></a></p>
                 </div>
                 <div class="col">
-                    <p><a href="<c:url value = "/delete?id=${product.id}"/>"><button type="button" class="btn btn-outline-danger">Delete this product (Irreversible!)</button></a></p>
+                    <p><a href="<c:url weightValue = "/delete?id=${product.id}"/>"><button type="button" class="btn btn-outline-danger">Delete this product (Irreversible!)</button></a></p>
                 </div>
             </div>
         </div>

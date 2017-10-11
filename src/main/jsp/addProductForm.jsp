@@ -9,8 +9,8 @@
             <input type="text" class="form-control" name="description" id="description" placeholder="Enter product name">
         </div>
         <div class="form-group">
-            <label for="value">Value:</label>
-            <input type="number" class="form-control" name="value" id="value" placeholder="Enter product value">
+            <label for="weightValue">Value:</label>
+            <input type="number" class="form-control" name="weightValue" id="weightValue" placeholder="Enter product weightValue">
         </div>
         <div class="form-group">
             <label for="currency">Currency:</label>

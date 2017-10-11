@@ -28,5 +28,6 @@ public class PersistProductController extends HttpServlet {
         Product product = productFactory.newProduct(request);
         ProductService.productService(ProductRepositoryImpl.aProductRepository()).persistProduct(product);
         response.sendRedirect("/");
+        
     }
 }
