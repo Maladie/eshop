@@ -17,8 +17,7 @@ public class RemoveProductFromBasketController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        int productId = Integer.parseInt(request.getParameter("productId"));
-        Basket basket = SessionShoppingBasketHandler.retrieveBasket(request.getSession());
-        BasketDto basketDto = new BasketDto(basket);
+        BasketDto basketDto = SessionShoppingBasketHandler.retrieveBasket(request.getSession());
         basketDto.removeProductFromBasket(productId);
         response.sendRedirect("/basket");
     }
