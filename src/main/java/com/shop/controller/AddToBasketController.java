@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.model.Basket;
+import com.shop.model.BasketDto;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
@@ -22,7 +23,7 @@ public class AddToBasketController extends HttpServlet {
         System.out.println(productIdParam);
         int productId = Integer.parseInt(productIdParam);
 
-        Basket basket = SessionShoppingBasketHandler.retrieveBasket(request.getSession());
+        BasketDto basket = SessionShoppingBasketHandler.retrieveBasket(request.getSession());
         if(basket == null){
             System.out.println("basket is null");
         }
