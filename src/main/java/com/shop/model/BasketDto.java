@@ -11,7 +11,7 @@ import java.util.List;
 public class BasketDto {
 
     List<ProductDto> productDtoList;
-//    private Basket basket;
+    private Basket basket;
 
     public BasketDto(Basket basket){
         productDtoList = new ArrayList<>();
