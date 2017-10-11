@@ -11,18 +11,9 @@ import java.util.List;
 public class BasketDto {
 
     List<ProductDto> productDtoList;
-//    private Basket basket;
 
-    public BasketDto(Basket basket){
+    public BasketDto(){
         productDtoList = new ArrayList<>();
-        this.basket = basket;
-        updateBasket();
-    }
-
-    private void updateBasket() {
-        basket.productItemList().forEach(p -> {ProductDto productDto = new ProductDto(p);
-            productDtoList.add(productDto);
-        });
     }
 
     public List<ProductDto> getProductDtoList() {
@@ -30,7 +21,6 @@ public class BasketDto {
     }
 
     public void voidProductDtoList() {
-        basket.voidBasket();
         productDtoList.clear();
     }
 
@@ -44,6 +34,5 @@ public class BasketDto {
 
     public void removeProductFromBasket(int productId){
         Product product = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(productId);
-        basket.removeFromBasket(product);
     }
 }
