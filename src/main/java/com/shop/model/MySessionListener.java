@@ -9,7 +9,7 @@ public class MySessionListener implements HttpSessionListener {
 
     public void sessionCreated(HttpSessionEvent event) {
         System.out.println("A new session is created");
-        Basket basket = SessionShoppingBasketHandler.retrieveBasket(event.getSession());
+        BasketDto basket = SessionShoppingBasketHandler.retrieveBasket(event.getSession());
     }
 
     public void sessionDestroyed(HttpSessionEvent event) {
