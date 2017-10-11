@@ -19,7 +19,7 @@ public class ProductFactoryImpl implements ProductFactory {
         }
         String currency = request.getParameter("currency");
         String fullDescription = request.getParameter("fullDescription");
-        return new Product(id, description, value, currency, fullDescription);
+        return null;// new Product(id, description, value, currency, fullDescription);
     }
 
     @Override
@@ -34,11 +34,11 @@ public class ProductFactoryImpl implements ProductFactory {
         }
         String currency = request.getParameter("currency");
         String fullDescription = request.getParameter("fullDescription");
-        return new Product(id, description, value, currency, fullDescription);
+        return null;
     }
 
     @Override
     public Product newProduct(String description, BigDecimal value, String currency, String fullDescription) {
-        return new Product(PRODUCTCOUNTER++, description, value, currency, fullDescription);
+        return null;
     }
 }
