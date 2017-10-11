@@ -22,7 +22,8 @@
             <br>
         </c:forEach>
     </div>
-    <div class="d-flex justify-content-between">
+    <c:if test="${basket.getProductDtoList().size() != 0}">
+    <div class="d-flex justify-content-around">
         <div style="width: 50px">
         <img class="w-100"
              src="https://image.flaticon.com/icons/svg/547/547171.svg"
@@ -41,4 +42,11 @@
                  alt="Generic placeholder image">
         </div>
     </div>
+    </c:if>
+    <c:if test="${basket.getProductDtoList().size() == 0}">
+    <br>
+    <h4>Your cart is empty!</h4>
+    <br>
+    <br>
+    </c:if>
 <jsp:include page="footer.jsp"></jsp:include>
