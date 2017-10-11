@@ -1,10 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page pageEncoding="UTF-8" language="java" contentType="text/html" %>
 <jsp:include page="header.jsp"></jsp:include>
-<jsp:include page="navBar.jsp"></jsp:include>
-
 <br>
-<div class="container text-center">
+<div class="container-fluid bg-3 text-center">
+    <div class="row">
+        <div class="col-sm-3">
+            <jsp:include page="navBar.jsp"></jsp:include>
+        </div>
+        <div class="col-sm-9">
     <div class="row m-3">
         <div class="col">
             <h1>${product.description}</h1>
@@ -42,6 +45,8 @@
                     <p><a href="<c:url weightValue = "/delete?id=${product.id}"/>"><button type="button" class="btn btn-outline-danger">Delete this product (Irreversible!)</button></a></p>
                 </div>
             </div>
+        </div>
+    </div>
         </div>
     </div>
 </div>
