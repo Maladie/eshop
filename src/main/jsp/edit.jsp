@@ -7,13 +7,13 @@
 <div class="container-fliud  d-flex justify-content-center">
     <form action="/edit" method="post" class="text-center">
         <div class="form-group">
-            <input type="hidden" name="id" value="${product.getId()}">
+            <input type="hidden" name="id" weightValue="${product.getId()}">
             <label for="description">New Name:</label>
-            <input type="text" class="form-control" name="description" id="description" value="${product.description}">
+            <input type="text" class="form-control" name="description" id="description" weightValue="${product.description}">
         </div>
         <div class="form-group">
-            <label for="value">New Value:</label>
-            <input type="number" class="form-control" name="value" id="value" value="${product.getValue()}">
+            <label for="weightValue">New Value:</label>
+            <input type="number" class="form-control" name="weightValue" id="weightValue" weightValue="${product.getValue()}">
         </div>
         <div class="form-group">
             <label for="currency">New Currency:</label>
