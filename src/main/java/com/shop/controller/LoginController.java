@@ -23,13 +23,15 @@ public class LoginController extends HttpServlet{
 
         PrintWriter out = response.getWriter();
         out.println (
+                "<html>" +
                 "<form action=\"/login\" method=\"post\">" +
                 "User name:<br>" +
                 "<input type=\"text\" name=\"username\"><br>" +
                 "User password:<br>" +
                 "<input type=\"password\" name=\"password\"><br>" +
                 "<button type=\"submit\" >Login</button>" +
-                "</form>");
+                "</form>" +
+                "</html>");
     }
 
 
