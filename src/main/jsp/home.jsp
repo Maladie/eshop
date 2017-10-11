@@ -14,11 +14,11 @@
                     <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
                          class="img-responsive" alt="Image">
                     <p>${product.description}</p>
-                    <p>${product.value} ${product.currency}</p>
+                    <p>${product.weightValue} ${product.currency}</p>
                 </a>
                 <form action="/addProduct" method="POST">
-                    <input type="hidden" name="productId" value="${product.id}">
-                    <input class="btn btn-outline-success" type="submit" value="Add to cart"/>
+                    <input type="hidden" name="productId" weightValue="${product.id}">
+                    <input class="btn btn-outline-success" type="submit" weightValue="Add to cart"/>
                 </form>
             </div>
         </c:forEach>
@@ -31,12 +31,12 @@
                     <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
                          class="img-responsive" alt="Image">
                     <p>${product.description}</p>
-                    <p>${product.value} ${product.currency}</p>
+                    <p>${product.weightValue} ${product.currency}</p>
                 </a>
 
                 <form action="/addProduct" method="POST">
-                    <input type="hidden" name="productId" value="${product.id}">
-                    <input class="btn btn-outline-success" type="submit" value="Add to cart"/>
+                    <input type="hidden" name="productId" weightValue="${product.id}">
+                    <input class="btn btn-outline-success" type="submit" weightValue="Add to cart"/>
                 </form>
             </div>
         </c:forEach>

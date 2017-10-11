@@ -14,8 +14,8 @@
                     <p>${product.getDescription()}</p>
                     <p>Quantity: ${product.getQuantity()} Total: ${product.getValue()}</p>
                     <form action = "/removeProduct" method = "POST">
-                        <input type="hidden" name="productId" value="${product.id}">
-                        <input class="btn btn-outline-danger" type = "submit" value = "Remove from cart" />
+                        <input type="hidden" name="productId" weightValue="${product.id}">
+                        <input class="btn btn-outline-danger" type = "submit" weightValue = "Remove from cart" />
                     </form>
                 </a>
             </div>

@@ -15,10 +15,10 @@
             <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=id">Newest</a>
         </div>
         <form class="form-inline my-2 my-lg-0" action="/filter" method="get">
-            <input class="form-control mr-sm-2" name="searchParam" type="hidden" value="${searchParam}" >
+            <input class="form-control mr-sm-2" name="searchParam" type="hidden" weightValue="${searchParam}" >
             <input class="form-control mr-sm-2" name="filterParam" type="number" placeholder="Maximum Price"
                    aria-label="Search">
-            <input class="form-control mr-sm-2" name="sortType" type="hidden" value="${sortType}" >
+            <input class="form-control mr-sm-2" name="sortType" type="hidden" weightValue="${sortType}" >
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
         </form>
     </nav>
@@ -33,7 +33,7 @@
             <a href="/productDescription?product=${product.id}" class="productLink">
                 <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"  class="img-responsive" alt="Image">
                 <p>${product.description}</p>
-                <p>${product.value} ${product.currency}</p>
+                <p>${product.weightValue} ${product.currency}</p>
             </a>
             <p><button type="button" class="btn btn-outline-success">Add to cart</button></p>
         </div>
