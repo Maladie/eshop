@@ -46,31 +46,28 @@
 <nav class="d-block bg-dark">
     <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Overview</a>
+            <a class="nav-link active bg-dark" href="#" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ovens</a>
             <div class="collapse" id="collapseExample">
 
-                    <a class="nav-link active bg-dark" href="#">Reports</a>
-                    <a class="nav-link active bg-dark" href="#">Analytics</a>
+                    <a class="nav-link active bg-dark" href="#">Ovens</a>
+                    <a class="nav-link active bg-dark" href="#">Microvawe ovens</a>
 
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Reports</a>
+            <a class="nav-link active bg-dark" href="#">Dishwashers</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Analytics</a>
+            <a class="nav-link active bg-dark" href="#">Freezers</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Export</a>
+            <a class="nav-link active bg-dark" href="#">Kettles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Reports</a>
+            <a class="nav-link active bg-dark" href="#">Refrigerators</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Analytics</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Export</a>
+            <a class="nav-link active bg-dark" href="#">Washing maschines</a>
         </li>
     </ul>
 </nav>
