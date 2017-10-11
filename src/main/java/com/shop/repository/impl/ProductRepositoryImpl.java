@@ -58,7 +58,6 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
         product.setValue(value);
         product.setCurrency(updatedProduct.getCurrency());
-        product.setFullDescription(updatedProduct.getFullDescription());
     }
 
     public List<Product> getProductsBySearchCritieria(String searchCriteria){
