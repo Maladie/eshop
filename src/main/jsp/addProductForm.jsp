@@ -5,8 +5,8 @@
 <div class="container-fliud  d-flex justify-content-center">
     <form action="/persistProduct" method="post" class="text-center">
         <div class="form-group">
-            <label for="description">Name:</label>
-            <input type="text" class="form-control" name="description" id="description" placeholder="Enter product name">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Enter product name">
         </div>
         <div class="form-group">
             <label for="weightValue">Value:</label>
@@ -22,7 +22,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="fullDescription">Full description:</label>
+            <label for="fullDescription">Full name:</label>
             <textarea class="form-control" id="fullDescription" rows="5" name="fullDescription"></textarea>
         </div>
         <div class="form-group">

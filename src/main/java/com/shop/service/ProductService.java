@@ -3,7 +3,6 @@ package com.shop.service;
 import com.shop.model.Basket;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.ProductRepository;
-import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
 
@@ -88,7 +87,7 @@ public class ProductService {
                 sortedList = sortedList.stream().sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue())).collect(Collectors.toList());
                 return sortedList;
             case "alp":
-                sortedList = sortedList.stream().sorted((o1, o2) -> o1.getDescription().compareTo(o2.getDescription())).collect(Collectors.toList());
+                sortedList = sortedList.stream().sorted((o1, o2) -> o1.getName().compareTo(o2.getName())).collect(Collectors.toList());
                 return sortedList;
             case "id":
                 sortedList = sortedList.stream().sorted((o1, o2) -> o2.getId() - o1.getId()).collect(Collectors.toList());

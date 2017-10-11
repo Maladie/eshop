@@ -13,7 +13,7 @@
                 <a href="/productDescription?product=${product.id}" class="productLink">
                     <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
                          class="img-responsive" alt="Image">
-                    <p>${product.description}</p>
+                    <p>${product.name}</p>
                     <p>${product.weightValue} ${product.currency}</p>
                 </a>
                 <form action="/addProduct" method="POST">
@@ -30,7 +30,7 @@
                 <a href="/productDescription?product=${product.id}" class="productLink">
                     <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
                          class="img-responsive" alt="Image">
-                    <p>${product.description}</p>
+                    <p>${product.name}</p>
                     <p>${product.weightValue} ${product.currency}</p>
                 </a>
 

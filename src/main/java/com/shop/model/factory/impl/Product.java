@@ -5,35 +5,50 @@ import java.math.BigDecimal;
 public class Product {
 
     private int id;
-    private String description;
+    private String name;
     private String brand;
     private Money money;
     private Weight weight;
     private EnergyConsumptionClass EClass;
+    private String description;
+
+    public Product() {
+        money = new Money();
+        weight = new Weight();
+    }
 
     Product(int id,
-            String description,
+            String name,
             String brand,
+            String description,
             BigDecimal value,
             String currency,
             float weightValue,
             Unit unit,
             EnergyConsumptionClass EClass) {
         this.id = id;
-        this.description = description;
+        this.name = name;
         this.brand = brand;
         this.money = new Money(value, currency);
         this.weight = new Weight(weightValue, unit);
         this.EClass = EClass;
+        this.description = description;
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     public BigDecimal getValue() {
@@ -52,32 +67,58 @@ public class Product {
         return weight.getWeightValue();
     }
 
-    public Unit getWeightUnit() { return weight.getUnit(); }
+    public Unit getWeightUnit() {
+        return weight.getUnit();
+    }
+
+    public Weight getWeight(){
+        return weight;
+    }
+
+    public String getEClassSymbol() {
+        return EClass.getSymbol();
+    }
+
+    public Money getMoney() {
+        return money;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setMoney(Money money) {
+        this.money = money;
+    }
+
+    public void setWeight(Weight weight) {
+        this.weight = weight;
+    }
 
     public EnergyConsumptionClass getEClass() {
         return EClass;
     }
 
-    public void setDescription(String description) {
-        if(!description.equals("")) {
-            this.description = description;
+    public void setName(String name) {
+        if (!name.equals("")) {
+            this.name = name;
         }
     }
 
     public void setValue(BigDecimal value) {
-        if(value != null) {
+        if (value != null) {
             this.money.setValue(value);
         }
     }
 
-    public void setCurrency(String currency){
-        if(!currency.equals("")){
+    public void setCurrency(String currency) {
+        if (!currency.equals("")) {
             this.money.setCurrency(currency);
         }
     }
 
     public void setBrand(String brand) {
-        if(!brand.equals("")){
+        if (!brand.equals("")) {
             this.brand = brand;
         }
     }
@@ -98,7 +139,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
                 ", money=" + money +
                 ", brand='" + brand + '\'' +
                 ", weight=" + weight +
