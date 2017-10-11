@@ -50,7 +50,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     public void editProduct(Product updatedProduct) {
         Product product = getProductById(updatedProduct.getId());
-        product.setDescription(updatedProduct.getDescription());
+        product.setName(updatedProduct.getName());
         BigDecimal value = product.getValue();
         BigDecimal newValue = updatedProduct.getValue();
         if(newValue != null){
@@ -58,11 +58,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
         product.setValue(value);
         product.setCurrency(updatedProduct.getCurrency());
-        product.setFullDescription(updatedProduct.getFullDescription());
     }
 
     public List<Product> getProductsBySearchCritieria(String searchCriteria){
-        return mockProductList.stream().filter(p -> p.getDescription().toLowerCase().contains(searchCriteria.toLowerCase()))
+        return mockProductList.stream().filter(p -> p.getName().toLowerCase().contains(searchCriteria.toLowerCase()))
                 .collect(Collectors.toList());
     }
 

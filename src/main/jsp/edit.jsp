@@ -8,8 +8,8 @@
     <form action="/edit" method="post" class="text-center">
         <div class="form-group">
             <input type="hidden" name="id" weightValue="${product.getId()}">
-            <label for="description">New Name:</label>
-            <input type="text" class="form-control" name="description" id="description" weightValue="${product.description}">
+            <label for="name">New Name:</label>
+            <input type="text" class="form-control" name="name" id="name" weightValue="${product.name}">
         </div>
         <div class="form-group">
             <label for="weightValue">New Value:</label>

@@ -12,7 +12,7 @@ public class ProductDto {
     private BigDecimal value;
     private int quantity;
     private String description;
-    private Map<String, String> parametersMap;
+    private Map<String, Object> parametersMap;
 
     {
         quantity = 1;
@@ -21,7 +21,7 @@ public class ProductDto {
 
     public ProductDto(ProductItem productItem) {
         this.id = productItem.getProduct().getId();
-        this.name = productItem.getProduct().getDescription();
+        this.name = productItem.getProduct().getName();
         this.currency = productItem.getProduct().getCurrency();
         this.value = productItem.value();
         this.quantity = productItem.getQuantity();
@@ -78,11 +78,11 @@ public class ProductDto {
         this.description = description;
     }
 
-    public Map<String, String> getParametersMap() {
+    public Map<String, Object> getParametersMap() {
         return parametersMap;
     }
 
-    public void setParametersMap(Map<String, String> parametersMap) {
+    public void setParametersMap(Map<String, Object> parametersMap) {
         this.parametersMap = parametersMap;
     }
 }

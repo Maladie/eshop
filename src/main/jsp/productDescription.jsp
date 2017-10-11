@@ -10,7 +10,7 @@
         <div class="col-sm-9">
     <div class="row m-3">
         <div class="col">
-            <h1>${product.description}</h1>
+            <h1>${product.name}</h1>
         </div>
     </div>
 
@@ -39,7 +39,7 @@
                     </form>
                 </div>
                 <div class="col">
-                    <p><a href="<c:url weightValue = "/edit?id=${product.id}"/>"><button type="button" class="btn btn-outline-success">Edit this product's description</button></a></p>
+                    <p><a href="<c:url weightValue = "/edit?id=${product.id}"/>"><button type="button" class="btn btn-outline-success">Edit this product's name</button></a></p>
                 </div>
                 <div class="col">
                     <p><a href="<c:url weightValue = "/delete?id=${product.id}"/>"><button type="button" class="btn btn-outline-danger">Delete this product (Irreversible!)</button></a></p>

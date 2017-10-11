@@ -1,12 +1,44 @@
 package com.shop.model;
 
+import com.shop.model.factory.impl.EnergyConsumptionClass;
 import com.shop.model.factory.impl.Product;
+import com.shop.model.factory.impl.Unit;
+
+import java.util.Map;
 
 public class ProductToProductDtoConverter {
 
-    public static ProductDto convert(Product product) {
+    public static ProductDto convertToDto(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
-        productDto.setName();
+        productDto.setName(product.getName());
+        productDto.setCurrency(product.getCurrency());
+        productDto.setValue(product.getValue());
+        productDto.setDescription(product.getDescription());
+
+        Map<String, Object> parametersMap = productDto.getParametersMap();
+        parametersMap.put("weightValue", product.getWeightValue());
+        parametersMap.put("weightUnit", product.getWeightUnit());
+        parametersMap.put("brand", product.getBrand());
+        parametersMap.put("eclass", product.getEClass());
+
+        return productDto;
+    }
+
+    public static Product convertToProduct(ProductDto productDto){
+        Product product = new Product();
+        product.setId(productDto.getId());
+        product.setName(productDto.getName());
+        product.setValue(productDto.getValue());
+        product.setDescription(productDto.getDescription());
+        product.setCurrency(productDto.getCurrency());
+
+        Map<String, Object> parametersMap = productDto.getParametersMap();
+        product.setBrand((String) parametersMap.get("brand"));
+        product.setWeightValue((Float) parametersMap.get("weightValue"));
+        product.setWeightUnit((Unit) parametersMap.get("weightUnit"));
+        product.setEClass((EnergyConsumptionClass) parametersMap.get("eclass"));
+
+        return product;
     }
 }

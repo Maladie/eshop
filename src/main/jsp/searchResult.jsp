@@ -58,7 +58,7 @@
         <div class="col-sm-3 p-5">
             <a href="/productDescription?product=${product.id}" class="productLink">
                 <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"  class="img-responsive" alt="Image">
-                <p>${product.description}</p>
+                <p>${product.name}</p>
                 <p>${product.weightValue} ${product.currency}</p>
             </a>
             <p><button type="button" class="btn btn-outline-success">Add to cart</button></p>

@@ -1,9 +1,12 @@
 package com.shop.model.factory.impl;
 
-public class Weight {
+class Weight {
 
     private float weightValue;
     private Unit unit;
+
+    public Weight() {
+    }
 
     public Weight(float value, Unit unit) {
         this.weightValue = value;
