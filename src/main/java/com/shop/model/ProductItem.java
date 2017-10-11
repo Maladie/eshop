@@ -30,4 +30,7 @@ class ProductItem {
         return product.getValue().multiply(bigDecimalQuantity);
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
