@@ -12,7 +12,7 @@
                          src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
                          class="img-responsive" alt="Image">
                     <p>${product.getDescription()}</p>
-                    <p>Amount: ${product.getQuantity()} Total: ${product.getValue()}</p>
+                    <p>Quantity: ${product.getQuantity()} Total: ${product.getValue()}</p>
                     <form action = "/removeProduct" method = "POST">
                         <input type="hidden" name="productId" value="${product.id}">
                         <input class="btn btn-outline-danger" type = "submit" value = "Remove from cart" />
