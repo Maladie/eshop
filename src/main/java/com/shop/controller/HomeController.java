@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.model.ProductDto;
+import com.shop.repository.impl.HibernateRepositoryImpl;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 import com.shop.service.SessionLastProductViewedHandler;
@@ -20,7 +21,7 @@ public class HomeController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService(HibernateRepositoryImpl.aProductRepository());
         List<ProductDto> productList = productService.getAllProductsForCustomer();
         request.setAttribute("productList", productList);
 
