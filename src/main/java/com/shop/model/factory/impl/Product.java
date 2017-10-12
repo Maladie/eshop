@@ -12,9 +12,20 @@ public class Product {
     private EnergyConsumptionClass EClass;
     private String description;
 
+    public int getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(int productAmount) {
+        this.productAmount = productAmount;
+    }
+
+    private int productAmount;
+
     public Product() {
         money = new Money();
         weight = new Weight();
+        productAmount = 10;
     }
 
     Product(int id,
