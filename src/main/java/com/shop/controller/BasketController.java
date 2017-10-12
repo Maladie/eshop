@@ -26,8 +26,8 @@ public class BasketController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        BasketDto basketDto = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getBasketDto(req.getSession());
-        basketDto.voidProductDtoList();
+        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        productService.removeAllProductsFromBasket(req.getSession());
         resp.sendRedirect("/basket");
     }
 }

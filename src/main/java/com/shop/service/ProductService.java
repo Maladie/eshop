@@ -70,6 +70,17 @@ public class ProductService {
         basket.addToBasket(product);
     }
 
+    public void removeProductFromBasket(HttpSession session, int productId){
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
+        Product product = repository.getProductById(productId);
+        basket.removeFromBasket(product);
+    }
+
+    public void removeAllProductsFromBasket(HttpSession session){
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
+        basket.voidBasket();
+    }
+
     public BasketDto getBasketDto(HttpSession session){
         return BasketToBasketDtoConverter.convertToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
