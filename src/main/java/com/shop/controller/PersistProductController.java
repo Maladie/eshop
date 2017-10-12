@@ -24,7 +24,7 @@ public class PersistProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDto productDto =  ProductDtoFactory.getProductDtoForNewProduct(request);
-        ProductService.productService(HibernateRepositoryImpl.aProductRepository()).persistProduct(productDto);
+        ProductService.productService().persistProduct(productDto);
         response.sendRedirect("/");
     }
 }

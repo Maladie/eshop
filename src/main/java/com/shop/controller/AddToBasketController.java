@@ -24,7 +24,7 @@ public class AddToBasketController extends HttpServlet {
         System.out.println(productIdParam);
         int productId = Integer.parseInt(productIdParam);
 
-        ProductService productService = ProductService.productService(HibernateRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         if(productService.getProductById(productId) == null) {
             System.out.println("produkt o id: " + productId + " nie moze zostac pobrany z repozytornium");
         }

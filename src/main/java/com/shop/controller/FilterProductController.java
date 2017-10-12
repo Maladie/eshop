@@ -22,10 +22,10 @@ public class FilterProductController extends HttpServlet {
         String searchCriteria = request.getParameter("searchParam");
         String filterCriteria = request.getParameter("filterParam");
         String sortCriteria = request.getParameter("sortType");
-        List<ProductDto> productList = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductBySearchCriteria(searchCriteria);
-        List<ProductDto> filteredList = ProductService.productService(ProductRepositoryImpl.aProductRepository()).filterProductListByPrice(productList, filterCriteria);
+        List<ProductDto> productList = ProductService.productService().getProductBySearchCriteria(searchCriteria);
+        List<ProductDto> filteredList = ProductService.productService().filterProductListByPrice(productList, filterCriteria);
         if(sortCriteria != null){
-            filteredList = ProductService.productService(ProductRepositoryImpl.aProductRepository()).sortProducts(filteredList, sortCriteria);
+            filteredList = ProductService.productService().sortProducts(filteredList, sortCriteria);
         }
         request.setAttribute("productList", filteredList);
         request.setAttribute("searchParam", searchCriteria);

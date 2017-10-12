@@ -18,6 +18,6 @@ public class PaymentController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        BasketDto basketDto = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getBasketDto(req.getSession());
+        BasketDto basketDto = ProductService.productService().getBasketDto(req.getSession());
     }
 }

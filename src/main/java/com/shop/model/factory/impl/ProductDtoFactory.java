@@ -33,7 +33,6 @@ public class ProductDtoFactory {
 
 
         ProductDto productDto = new ProductDto();
-        productDto.setId(ID++); //TODO Trzeba dopisać żeby tworzyło ID dla kolejnego produktu
         productDto.setName(name);
         productDto.setValue(value);
         productDto.setCurrency(currency);
@@ -56,8 +55,8 @@ public class ProductDtoFactory {
     }
 
     public static ProductDto getProductDtoForEditedProduct(HttpServletRequest request) {
-        ProductDto updatedDto = getProductDtoForNewProduct(request);
         int id = Integer.parseInt(request.getParameter("id"));
+        ProductDto updatedDto = getProductDtoForNewProduct(request);
         updatedDto.setId(id);
         return updatedDto;
     }

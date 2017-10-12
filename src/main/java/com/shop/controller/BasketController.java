@@ -19,14 +19,14 @@ public class BasketController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        BasketDto basketDto = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getBasketDto(request.getSession());
+        BasketDto basketDto = ProductService.productService().getBasketDto(request.getSession());
         request.setAttribute("basket", basketDto);
         request.getRequestDispatcher("basket.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         productService.removeAllProductsFromBasket(req.getSession());
         resp.sendRedirect("/basket");
     }

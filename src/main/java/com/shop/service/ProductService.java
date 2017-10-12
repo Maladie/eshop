@@ -47,10 +47,6 @@ public class ProductService {
         return repository.getProductsBySearchCritieria(searchCriteria).stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
     }
 
-//    public Product getProductById(int id){
-//        return repository.getProductById(id);
-//    }
-
     public ProductDto getProductById(int id){
         return ProductToProductDtoConverter.convertToDto(repository.getProductById(id));
     }

@@ -56,6 +56,9 @@
             <textarea class="form-control" id="fullDescription" rows="5" name="fullDescription">${product.description}</textarea>
         </div>
         <div class="form-group">
+            <input type="hidden" class="form-control" name="amount" id="amount" value="${product.productAmount}">
+        </div>
+        <div class="form-group">
             <label for="chooseFile">Choose product image:</label>
             <br>
             <label class="custom-file" id="chooseFile">

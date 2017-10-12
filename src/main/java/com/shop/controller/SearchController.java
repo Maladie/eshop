@@ -2,6 +2,7 @@ package com.shop.controller;
 
 import com.shop.model.ProductDto;
 import com.shop.model.factory.impl.Product;
+import com.shop.repository.impl.HibernateRepositoryImpl;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 
@@ -20,7 +21,7 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String searchCriteria = httpServletRequest.getParameter("searchParam");
-        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         List<ProductDto> productList = productService.getProductBySearchCriteria(searchCriteria);
         httpServletRequest.setAttribute("productList", productList);
         httpServletRequest.setAttribute("searchParam", searchCriteria);
