@@ -6,6 +6,8 @@ import com.shop.repository.ProductRepository;
 import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
 
+import javax.jms.Session;
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +41,8 @@ public class ProductService {
         return repository.getAllProducts().stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
     }
 
-    public List<Product> getProductBySearchCriteria(String searchCriteria) {
-        return repository.getProductsBySearchCritieria(searchCriteria);
+    public List<ProductDto> getProductBySearchCriteria(String searchCriteria) {
+        return repository.getProductsBySearchCritieria(searchCriteria).stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
     }
 
 //    public Product getProductById(int id){
@@ -62,10 +64,25 @@ public class ProductService {
         observerList.stream().forEach(observer -> observer.update(actionDescription, product));
     }
 
-    public void addProductToBasket(BasketDto basketDto, int productId){
+    public void addProductToBasket(HttpSession session, int productId){
         Product product = repository.getProductById(productId);
-        Basket basket = BasketToBasketDtoConverter.convertToBasket(basketDto);
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
         basket.addToBasket(product);
+    }
+
+    public void removeProductFromBasket(HttpSession session, int productId){
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
+        Product product = repository.getProductById(productId);
+        basket.removeFromBasket(product);
+    }
+
+    public void removeAllProductsFromBasket(HttpSession session){
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
+        basket.voidBasket();
+    }
+
+    public BasketDto getBasketDto(HttpSession session){
+        return BasketToBasketDtoConverter.convertToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
 
     public void deleteProductById(int id){
@@ -77,7 +94,7 @@ public class ProductService {
         repository.editProduct(updatedProduct);
     }
 
-    public List<Product> filterProductListByPrice(List<Product> productList, String filterCriteria) {
+    public List<ProductDto> filterProductListByPrice(List<ProductDto> productList, String filterCriteria) {
         try {
             BigDecimal maxPrice = BigDecimal.valueOf((Long.parseLong(filterCriteria)));
             productList = productList.stream().filter(product -> product.getValue().compareTo(maxPrice) <= 0).collect(Collectors.toList());
@@ -87,8 +104,8 @@ public class ProductService {
         return productList;
     }
 
-    public List<Product> sortProducts(List<Product> filteredList, String sortCriteria) {
-        List<Product> sortedList = filteredList;
+    public List<ProductDto> sortProducts(List<ProductDto> filteredList, String sortCriteria) {
+        List<ProductDto> sortedList = filteredList;
         switch(sortCriteria){
             case "plh":
                 sortedList = sortedList.stream().sorted((o1, o2) -> o1.getValue().compareTo(o2.getValue())).collect(Collectors.toList());

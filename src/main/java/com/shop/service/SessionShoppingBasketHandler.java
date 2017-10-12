@@ -8,10 +8,10 @@ import javax.servlet.http.HttpSession;
 
 public class SessionShoppingBasketHandler {
 
-    public static BasketDto retrieveBasket(HttpSession session){
+    public static Basket retrieveBasket(HttpSession session){
         if(session.getAttribute("basket") == null) {
             session.setAttribute("basket", new Basket());
         }
-        return BasketToBasketDtoConverter.convertToBasketDto((Basket) session.getAttribute("basket"));
+        return (Basket) session.getAttribute("basket");
     }
 }

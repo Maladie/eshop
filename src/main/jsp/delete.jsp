@@ -5,7 +5,7 @@
 <div class="container-fliud  d-flex justify-content-center">
     <form action="/delete" method="post" class="text-center">
         <div class="form-group">
-            <input type="hidden" name="id" weightValue="${product.getId()}">
+            <input type="hidden" name="id" value="${product.getId()}">
             <br>
             <label>Are you sure you want to remove item?</label>
             <button type="submit" class="btn btn-outline-danger">YES</button>

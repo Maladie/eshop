@@ -31,8 +31,4 @@ public class BasketDto {
         }
         return sum;
     }
-
-    public void removeProductFromBasket(int productId){
-        ProductDto product = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(productId);
-    }
 }
