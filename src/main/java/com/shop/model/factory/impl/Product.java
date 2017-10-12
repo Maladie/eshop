@@ -11,6 +11,7 @@ public class Product {
     private Weight weight;
     private EnergyConsumptionClass EClass;
     private String description;
+    private ProductCategory category;
 
     public Product() {
         money = new Money();
@@ -25,7 +26,8 @@ public class Product {
             String currency,
             float weightValue,
             Unit unit,
-            EnergyConsumptionClass EClass) {
+            EnergyConsumptionClass EClass,
+            ProductCategory category) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -33,6 +35,7 @@ public class Product {
         this.weight = new Weight(weightValue, unit);
         this.EClass = EClass;
         this.description = description;
+        this.category = category;
     }
 
     public String getDescription() {
@@ -99,6 +102,10 @@ public class Product {
         return EClass;
     }
 
+    public ProductCategory getCategory() {
+        return category;
+    }
+
     public void setName(String name) {
         if (!name.equals("")) {
             this.name = name;
@@ -135,15 +142,9 @@ public class Product {
         this.EClass = EClass;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", money=" + money +
-                ", brand='" + brand + '\'' +
-                ", weight=" + weight +
-                ", EClass=" + EClass +
-                '}';
+    public void setCategory(ProductCategory category) {
+        this.category = category;
     }
+
+
 }
