@@ -19,7 +19,7 @@ public class CategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category = request.getParameter("category");
-        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         List<ProductDto> productList = productService.productListByCategory(category);
         request.setAttribute("productList", productList);
         request.setAttribute("searchParam", category);
