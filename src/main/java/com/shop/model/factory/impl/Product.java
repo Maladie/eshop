@@ -12,9 +12,9 @@ public class Product {
     private String name;
     private String brand;
     //TODO TEMP
-    @Transient
+    @Embedded
     private Money money;
-    @Transient
+    @Embedded
     private Weight weight;
     private EnergyConsumptionClass EClass;
     private String description;
