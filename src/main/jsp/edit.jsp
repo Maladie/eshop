@@ -7,13 +7,13 @@
 <div class="container-fliud  d-flex justify-content-center">
     <form action="/edit" method="post" class="text-center">
         <div class="form-group">
-            <input type="hidden" name="id" weightValue="${product.getId()}">
+            <input type="hidden" name="id" value="${product.getId()}">
             <label for="name">New Name:</label>
-            <input type="text" class="form-control" name="name" id="name" weightValue="${product.name}">
+            <input type="text" class="form-control" name="name" id="name" value="${product.name}">
         </div>
         <div class="form-group">
-            <label for="weightValue">New Value:</label>
-            <input type="number" class="form-control" name="weightValue" id="weightValue" weightValue="${product.getValue()}">
+            <label for="value">New Value:</label>
+            <input type="number" class="form-control" name="weightValue" id="value" value="${product.getValue()}">
         </div>
         <div class="form-group">
             <label for="currency">New Currency:</label>
@@ -25,8 +25,35 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="brand">New Brand:</label>
+            <input type="text" class="form-control" name="brand" id="brand" value="${product.getParametersMap().get("brand")}">
+        </div>
+        <div class="form-group">
+            <label for="weight">New Weight:</label>
+            <input type="number" class="form-control" name="weight" id="weight" value="${product.getParametersMap().get("weight")}">
+        </div>
+        <div class="form-group">
+            <label for="weightunit">New Unit:</label>
+            <select class="form-control" id="weightunit" name="weightunit">
+                <option>GRAMS</option>
+                <option>KILOGRAMS</option>
+                <option>TONS</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="eclass">New Energy Consumption Class</label>
+            <select class="form-control" id="eclass" name="eclass">
+                <option>AAA</option>
+                <option>AA</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="fullDescription">New Description:</label>
-            <textarea class="form-control" id="fullDescription" rows="5" name="fullDescription">${product.fullDescription}</textarea>
+            <textarea class="form-control" id="fullDescription" rows="5" name="fullDescription">${product.description}</textarea>
         </div>
         <div class="form-group">
             <label for="chooseFile">Choose product image:</label>

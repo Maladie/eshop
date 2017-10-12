@@ -11,7 +11,7 @@ public class ProductDtoFactory {
 
     private static int ID = 100;
 
-    public static ProductDto getProductDto(HttpServletRequest request) {
+    public static ProductDto getProductDtoForNewProduct(HttpServletRequest request) {
         //
         String name = request.getParameter("name");
         BigDecimal value = new BigDecimal(0);
@@ -45,6 +45,13 @@ public class ProductDtoFactory {
         productDto.setParametersMap(parametersMap);
 
         return productDto;
+    }
+
+    public static ProductDto getProductDtoForEditedProduct(HttpServletRequest request) {
+        ProductDto updatedDto = getProductDtoForNewProduct(request);
+        int id = Integer.parseInt(request.getParameter("id"));
+        updatedDto.setId(id);
+        return updatedDto;
     }
 
     private static EnergyConsumptionClass parseEClass(String eclass) {

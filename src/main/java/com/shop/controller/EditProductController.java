@@ -27,7 +27,7 @@ public class EditProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDto updatedProduct = ProductDtoFactory.getProductDto(request);
+        ProductDto updatedProduct = ProductDtoFactory.getProductDtoForNewProduct(request);
         ProductService.productService(ProductRepositoryImpl.aProductRepository()).editProduct(updatedProduct);
         response.sendRedirect("/");
     }
