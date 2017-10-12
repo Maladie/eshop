@@ -26,16 +26,24 @@ public class SubmitBasketController extends HttpServlet{
         HttpSession currentSession = req.getSession();
         BasketDto basket = productService.getBasketDto(currentSession);
         SubmittedBasketsList submittedBasketsList = SubmittedBasketsList.getInstance();
-        submittedBasketsList.addToSubmittedBaskets(basket);
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("baskethistory.jsp");
         req.setAttribute("submittedBaskets", submittedBasketsList);
+        
         dispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        HttpSession currentSession = req.getSession();
+        BasketDto basket = productService.getBasketDto(currentSession);
+        SubmittedBasketsList submittedBasketsList = SubmittedBasketsList.getInstance();
+        submittedBasketsList.addToSubmittedBaskets(basket);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("baskethistory.jsp");
+        req.setAttribute("submittedBaskets", submittedBasketsList);
+        dispatcher.forward(req, resp);
+
         ProductService.productService(ProductRepositoryImpl.aProductRepository()).removeAllProductsFromBasket(req.getSession());
     }
 }
