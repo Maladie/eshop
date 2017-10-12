@@ -56,12 +56,6 @@ public class ProductService {
     public void persistProduct(ProductDto productDto){
         Product product = ProductToProductDtoConverter.convertToProduct(productDto);
         repository.persistProduct(product);
-        //TODO do obgadania ...
-        notifyObservers("Created new", product);
-    }
-
-    private void notifyObservers(String actionDescription, Product product) {
-        observerList.stream().forEach(observer -> observer.update(actionDescription, product));
     }
 
     public void addProductToBasket(HttpSession session, int productId){
