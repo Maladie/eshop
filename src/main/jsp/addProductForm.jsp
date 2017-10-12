@@ -53,6 +53,10 @@
             <textarea class="form-control" id="description" rows="5" name="description"></textarea>
         </div>
         <div class="form-group">
+            <label for="amount">Amount for Sale:</label>
+            <input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount">
+        </div>
+        <div class="form-group">
             <label for="chooseFile">Choose product image:</label>
             <br>
             <label class="custom-file" id="chooseFile">
