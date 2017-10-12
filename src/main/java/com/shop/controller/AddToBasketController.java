@@ -23,15 +23,11 @@ public class AddToBasketController extends HttpServlet {
         System.out.println(productIdParam);
         int productId = Integer.parseInt(productIdParam);
 
-        BasketDto basket = SessionShoppingBasketHandler.retrieveBasket(request.getSession());
-        if(basket == null){
-            System.out.println("basket is null");
-        }
         ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
         if(productService.getProductById(productId) == null) {
             System.out.println("produkt o id: " + productId + " nie moze zostac pobrany z repozytornium");
         }
-        productService.addProductToBasket(basket,productId);
+        productService.addProductToBasket(request.getSession(), productId);
 
         System.out.println("dodano do koszyka");
 

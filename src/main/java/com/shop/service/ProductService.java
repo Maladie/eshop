@@ -6,6 +6,8 @@ import com.shop.repository.ProductRepository;
 import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
 
+import javax.jms.Session;
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,10 +64,14 @@ public class ProductService {
         observerList.stream().forEach(observer -> observer.update(actionDescription, product));
     }
 
-    public void addProductToBasket(BasketDto basketDto, int productId){
+    public void addProductToBasket(HttpSession session, int productId){
         Product product = repository.getProductById(productId);
-        Basket basket = BasketToBasketDtoConverter.convertToBasket(basketDto);
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
         basket.addToBasket(product);
+    }
+
+    public BasketDto getBasketDto(HttpSession session){
+        return BasketToBasketDtoConverter.convertToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
 
     public void deleteProductById(int id){
