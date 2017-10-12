@@ -20,7 +20,7 @@ public class ProductDtoFactory {
         }
         String currency = request.getParameter("currency");
         String description = request.getParameter("description");
-        int productAmount = 10;
+        int productAmount = 0;
                 //optional values
         String brand = request.getParameter("brand");
         Float weight = 0f;

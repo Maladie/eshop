@@ -18,6 +18,7 @@ public class Product {
     private Weight weight;
     private EnergyConsumptionClass EClass;
     private String description;
+    private int productAmount;
 
     public int getProductAmount() {
         return productAmount;
@@ -27,12 +28,10 @@ public class Product {
         this.productAmount = productAmount;
     }
 
-    private int productAmount;
-
     public Product() {
         money = new Money();
         weight = new Weight();
-        productAmount = 10;
+        productAmount = 0;
     }
 
     Product(int id,
