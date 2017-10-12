@@ -49,8 +49,8 @@ public class ProductDtoFactory {
     }
 
     public static ProductDto getProductDtoForEditedProduct(HttpServletRequest request) {
-        ProductDto updatedDto = getProductDtoForNewProduct(request);
         int id = Integer.parseInt(request.getParameter("id"));
+        ProductDto updatedDto = getProductDtoForNewProduct(request);
         updatedDto.setId(id);
         return updatedDto;
     }
