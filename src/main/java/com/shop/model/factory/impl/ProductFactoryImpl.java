@@ -20,7 +20,7 @@ public class ProductFactoryImpl implements ProductFactory {
         String currency = request.getParameter("currency");
         String fullDescription = request.getParameter("fullDescription");
         //TODO temp
-        return new Product(id, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D);
+        return new Product(id, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D, ProductCategory.WASHING_MACHINE);
         // new Product(id, description, value, currency, fullDescription);
     }
 
@@ -37,12 +37,12 @@ public class ProductFactoryImpl implements ProductFactory {
         String currency = request.getParameter("currency");
         String fullDescription = request.getParameter("fullDescription");
         //TODO temp
-        return new Product(id, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D);
+        return new Product(id, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D, ProductCategory.WASHING_MACHINE);
     }
 
     @Override
     public Product newProduct(String name, BigDecimal value, String currency, String fullDescription) {
         //TODO temp
-        return new Product(PRODUCTCOUNTER++, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D);
+        return new Product(PRODUCTCOUNTER++, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D, ProductCategory.WASHING_MACHINE);
     }
 }
