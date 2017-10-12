@@ -34,8 +34,7 @@ public class HibernateRepositoryImpl implements ProductRepository {
 
     @Override
     public List<Product> getProductsBySearchCritieria(String searchCriteria) {
-        return productList.stream().filter(p -> p.getName().toLowerCase().contains(searchCriteria.toLowerCase()))
-                .collect(Collectors.toList());
+        return entityManager.createQuery("SELECT p from Product p WHERE p.name LIKE :search", Product.class).setParameter("search", searchCriteria).getResultList();
     }
 
     @Override
