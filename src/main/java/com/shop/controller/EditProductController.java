@@ -19,7 +19,7 @@ public class EditProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer id = Integer.parseInt(request.getParameter("id"));
         ProductDto product = ProductService
-                .productService(ProductRepositoryImpl.aProductRepository())
+                .productService()
                 .getProductById(id);
         request.setAttribute("product", product);
         request.getRequestDispatcher("edit.jsp").forward(request, response);
@@ -28,7 +28,7 @@ public class EditProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDto updatedProduct = ProductDtoFactory.getProductDtoForNewProduct(request);
-        ProductService.productService(ProductRepositoryImpl.aProductRepository()).editProduct(updatedProduct);
+        ProductService.productService().editProduct(updatedProduct);
         response.sendRedirect("/");
     }
 }

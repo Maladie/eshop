@@ -21,7 +21,7 @@ public class HomeController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductService productService = ProductService.productService(HibernateRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         List<ProductDto> productList = productService.getAllProductsForCustomer();
         request.setAttribute("productList", productList);
 

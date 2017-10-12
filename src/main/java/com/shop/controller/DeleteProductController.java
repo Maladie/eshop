@@ -19,7 +19,7 @@ public class DeleteProductController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        ProductDto product = productService(ProductRepositoryImpl.aProductRepository()).getProductById(id);
+        ProductDto product = productService().getProductById(id);
         request.setAttribute("product", product);
         request.getRequestDispatcher("delete.jsp").forward(request, response);
     }
@@ -28,7 +28,7 @@ public class DeleteProductController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            productService(ProductRepositoryImpl.aProductRepository()).deleteProductById(id);
+            productService().deleteProductById(id);
             response.sendRedirect("/");
         }catch (NoSuchElementException e){
             response.sendRedirect("/");
