@@ -32,7 +32,6 @@ public class ProductDtoFactory {
 
 
         ProductDto productDto = new ProductDto();
-        productDto.setId(ID++); //TODO Trzeba dopisać żeby tworzyło ID dla kolejnego produktu
         productDto.setName(name);
         productDto.setValue(value);
         productDto.setCurrency(currency);
