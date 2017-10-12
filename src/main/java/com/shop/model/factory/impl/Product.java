@@ -1,21 +1,38 @@
 package com.shop.model.factory.impl;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String brand;
+    //TODO TEMP
+    @Embedded
     private Money money;
+    @Embedded
     private Weight weight;
     private EnergyConsumptionClass EClass;
     private String description;
     private ProductCategory category;
+    private int productAmount;
+
+    public int getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(int productAmount) {
+        this.productAmount = productAmount;
+    }
 
     public Product() {
         money = new Money();
         weight = new Weight();
+        productAmount = 0;
     }
 
     Product(int id,

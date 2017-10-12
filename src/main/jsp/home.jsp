@@ -21,10 +21,17 @@
                         <p>${product.name}</p>
                         <p>${product.value} ${product.currency}</p>
                     </a>
-                    <form action="/addProduct" method="POST">
-                        <input type="hidden" name="productId" value="${product.id}">
-                        <input class="btn btn-outline-success" type="submit" value="Add to cart"/>
-                    </form>
+                    <c:choose>
+                        <c:when test="${product.productAmount == 0}">
+                            <h3>Sorry! Product anavailable!</h3>
+                    </c:when>
+                        <c:otherwise>
+                            <form action="/addProduct" method="POST">
+                                <input type="hidden" name="productId" value="${product.id}">
+                                <input class="btn btn-outline-success" type="submit" value="Add to cart"/>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </c:forEach>
         </div>

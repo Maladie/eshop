@@ -4,6 +4,7 @@ import com.shop.model.*;
 import com.shop.model.factory.impl.Product;
 import com.shop.model.factory.impl.ProductCategory;
 import com.shop.repository.ProductRepository;
+import com.shop.repository.impl.HibernateRepositoryImpl;
 import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
 
@@ -22,10 +23,10 @@ public class ProductService {
 
     private ProductRepository repository;
 
-    public static ProductService productService(ProductRepository productRepository) {
+    public static ProductService productService() {
         if(productService != null)
             return productService;
-        productService = new ProductService(productRepository);
+        productService = new ProductService(HibernateRepositoryImpl.aProductRepository());
         return productService;
     }
 
@@ -57,12 +58,6 @@ public class ProductService {
     public void persistProduct(ProductDto productDto){
         Product product = ProductToProductDtoConverter.convertToProduct(productDto);
         repository.persistProduct(product);
-        //TODO do obgadania ...
-        notifyObservers("Created new", product);
-    }
-
-    private void notifyObservers(String actionDescription, Product product) {
-        observerList.stream().forEach(observer -> observer.update(actionDescription, product));
     }
 
     public void addProductToBasket(HttpSession session, int productId){

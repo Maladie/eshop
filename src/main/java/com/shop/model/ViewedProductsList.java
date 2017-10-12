@@ -1,16 +1,13 @@
 package com.shop.model;
 
-import com.shop.model.factory.impl.Product;
-import com.shop.repository.impl.ProductRepositoryImpl;
-import com.shop.service.ProductService;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ViewedProductsList {
     private List<ProductDto> productsList;
-    private final int maxStoredProducts = 4;
+    private final int maxStoredProducts = 3;
 
     public ViewedProductsList() {
         productsList = new ArrayList<>();
@@ -18,13 +15,16 @@ public class ViewedProductsList {
 
 
     public void addToViewedList(ProductDto product) {
-        if (!productsList.contains(product)) {
+        List<Integer> idList = productsList.stream().map(productDto -> productDto.getId()).collect(Collectors.toList());
+        if (!idList.contains(product.getId())) {
             productsList.add(0, product);
             if (productsList.size() > maxStoredProducts) {
                 productsList.remove(maxStoredProducts - 1);
             }
         } else {
-            productsList.remove(product);
+            int id = product.getId();
+            ProductDto productDto = productsList.stream().filter(productDto1 -> productDto1.getId() == id).findFirst().get();
+            productsList.remove(productDto);
             //TODO do przerobienia
             addToViewedList(product);
         }

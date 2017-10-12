@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             <label for="value">New Value:</label>
-            <input type="number" class="form-control" name="weightValue" id="value" value="${product.getValue()}">
+            <input type="number" class="form-control" name="value" id="value" value="${product.getValue()}">
         </div>
         <div class="form-group">
             <label for="currency">New Currency:</label>
@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <label for="weight">New Weight:</label>
-            <input type="number" class="form-control" name="weight" id="weight" value="${product.getParametersMap().get("weight")}">
+            <input type="number" class="form-control" name="weight" id="weight" value="${product.getParametersMap().get("weight").toString()}">
         </div>
         <div class="form-group">
             <label for="weightunit">New Unit:</label>
