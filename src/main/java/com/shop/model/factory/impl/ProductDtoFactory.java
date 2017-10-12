@@ -29,6 +29,7 @@ public class ProductDtoFactory {
         }
         Unit weightUnit = parseUnit(request.getParameter("weightunit"));
         EnergyConsumptionClass eclass = parseEClass(request.getParameter("eclass"));
+        ProductCategory category = parseCategory(request.getParameter("category"));
 
 
         ProductDto productDto = new ProductDto();
@@ -43,9 +44,14 @@ public class ProductDtoFactory {
         parametersMap.put("weightUnit", weightUnit);
         parametersMap.put("brand", brand);
         parametersMap.put("eclass", eclass);
+        parametersMap.put("category", category);
         productDto.setParametersMap(parametersMap);
 
         return productDto;
+    }
+
+    private static ProductCategory parseCategory(String category) {
+        return ProductCategory.valueOf(category);
     }
 
     public static ProductDto getProductDtoForEditedProduct(HttpServletRequest request) {
