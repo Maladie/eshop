@@ -37,7 +37,14 @@
                                     <p>${product.name}</p>
                                     <p>${product.value} ${product.currency}</p>
                                 </a>
-                                <p><button type="button" class="btn btn-outline-success">Add to cart</button></p>
+                                <c:choose>
+                                    <c:when test="${product.productAmount == 0}">
+                                        <h4>Sorry! Product Unavailable!</h4>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p><button type="button" class="btn btn-outline-success">Add to cart</button></p>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </c:forEach>
                     </c:when>

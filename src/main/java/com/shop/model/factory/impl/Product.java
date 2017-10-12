@@ -1,20 +1,38 @@
 package com.shop.model.factory.impl;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String brand;
+    //TODO TEMP
+    @Embedded
     private Money money;
+    @Embedded
     private Weight weight;
     private EnergyConsumptionClass EClass;
     private String description;
+    private ProductCategory category;
+    private int productAmount;
+
+    public int getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(int productAmount) {
+        this.productAmount = productAmount;
+    }
 
     public Product() {
         money = new Money();
         weight = new Weight();
+        productAmount = 0;
     }
 
     Product(int id,
@@ -25,7 +43,8 @@ public class Product {
             String currency,
             float weightValue,
             Unit unit,
-            EnergyConsumptionClass EClass) {
+            EnergyConsumptionClass EClass,
+            ProductCategory category) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -33,6 +52,7 @@ public class Product {
         this.weight = new Weight(weightValue, unit);
         this.EClass = EClass;
         this.description = description;
+        this.category = category;
     }
 
     public String getDescription() {
@@ -99,6 +119,10 @@ public class Product {
         return EClass;
     }
 
+    public ProductCategory getCategory() {
+        return category;
+    }
+
     public void setName(String name) {
         if (!name.equals("")) {
             this.name = name;
@@ -135,15 +159,9 @@ public class Product {
         this.EClass = EClass;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", money=" + money +
-                ", brand='" + brand + '\'' +
-                ", weight=" + weight +
-                ", EClass=" + EClass +
-                '}';
+    public void setCategory(ProductCategory category) {
+        this.category = category;
     }
+
+
 }

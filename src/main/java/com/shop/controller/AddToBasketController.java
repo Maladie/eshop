@@ -3,6 +3,7 @@ package com.shop.controller;
 import com.shop.model.Basket;
 import com.shop.model.BasketDto;
 import com.shop.model.factory.impl.Product;
+import com.shop.repository.impl.HibernateRepositoryImpl;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 import com.shop.service.SessionShoppingBasketHandler;
@@ -23,7 +24,7 @@ public class AddToBasketController extends HttpServlet {
         System.out.println(productIdParam);
         int productId = Integer.parseInt(productIdParam);
 
-        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         if(productService.getProductById(productId) == null) {
             System.out.println("produkt o id: " + productId + " nie moze zostac pobrany z repozytornium");
         }

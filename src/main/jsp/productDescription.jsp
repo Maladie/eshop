@@ -33,11 +33,17 @@
             </div>
             <div class="row">
                 <div class="col">
-
-                    <form action = "/addProduct" method = "POST">
-                        <input type="hidden" name="productId" value="${product.id}">
-                        <input class="btn btn-outline-success" type = "submit" value = "Add to cart" />
-                    </form>
+                    <c:choose>
+                        <c:when test="${product.productAmount == 0}">
+                            <h3>Sorry! Product Unavailable!</h3>
+                        </c:when>
+                        <c:otherwise>
+                            <form action="/addProduct" method="POST">
+                                <input type="hidden" name="productId" value="${product.id}">
+                                <input class="btn btn-outline-success" type="submit" value="Add to cart"/>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="col">
                     <p><a href="<c:url value = "/edit?id=${product.id}"/>"><button type="button" class="btn btn-outline-success">Edit this product's name</button></a></p>

@@ -1,7 +1,8 @@
 package com.shop.model.factory.impl;
 
+import javax.persistence.Embeddable;
 import java.math.BigDecimal;
-
+@Embeddable
 class Money {
 
     private BigDecimal value;

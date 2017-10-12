@@ -13,6 +13,7 @@ public class ProductDto {
     private int quantity;
     private String description;
     private Map<String, Object> parametersMap;
+    private int productAmount;
 
     {
         quantity = 1;
@@ -25,9 +26,18 @@ public class ProductDto {
         this.currency = productItem.getProduct().getCurrency();
         this.value = productItem.value();
         this.quantity = productItem.getQuantity();
+        this.productAmount = productItem.getProduct().getProductAmount();
     }
 
     public ProductDto() {
+    }
+
+    public int getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(int productAmount) {
+        this.productAmount = productAmount;
     }
 
     public int getId() {

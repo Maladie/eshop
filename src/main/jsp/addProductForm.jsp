@@ -34,7 +34,7 @@
             <select class="form-control" id="weightunit" name="weightunit">
                 <option>GRAMS</option>
                 <option>KILOGRAMS</option>
-                <option>TONS</option>
+                <option>TONES</option>
             </select>
         </div>
         <div class="form-group">
@@ -51,6 +51,10 @@
         <div class="form-group">
             <label for="description">Description:</label>
             <textarea class="form-control" id="description" rows="5" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount for Sale:</label>
+            <input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount">
         </div>
         <div class="form-group">
             <label for="chooseFile">Choose product image:</label>

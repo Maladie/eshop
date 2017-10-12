@@ -20,7 +20,8 @@ public class ProductDtoFactory {
         }
         String currency = request.getParameter("currency");
         String description = request.getParameter("description");
-        //optional values
+        int productAmount = Integer.valueOf(request.getParameter("amount"));
+                //optional values
         String brand = request.getParameter("brand");
         Float weight = 0f;
         if(!request.getParameter("weight").equals("")) {
@@ -28,28 +29,34 @@ public class ProductDtoFactory {
         }
         Unit weightUnit = parseUnit(request.getParameter("weightunit"));
         EnergyConsumptionClass eclass = parseEClass(request.getParameter("eclass"));
+        ProductCategory category = parseCategory(request.getParameter("category"));
 
 
-        ProductDto productDto =new ProductDto();
-        productDto.setId(ID++); //TODO Trzeba dopisać żeby tworzyło ID dla kolejnego produktu
+        ProductDto productDto = new ProductDto();
         productDto.setName(name);
         productDto.setValue(value);
         productDto.setCurrency(currency);
         productDto.setDescription(description);
+        productDto.setProductAmount(productAmount);
 
         Map<String, Object> parametersMap = productDto.getParametersMap();
         parametersMap.put("weightValue", weight);
         parametersMap.put("weightUnit", weightUnit);
         parametersMap.put("brand", brand);
         parametersMap.put("eclass", eclass);
+        parametersMap.put("category", category);
         productDto.setParametersMap(parametersMap);
 
         return productDto;
     }
 
+    private static ProductCategory parseCategory(String category) {
+        return ProductCategory.valueOf(category);
+    }
+
     public static ProductDto getProductDtoForEditedProduct(HttpServletRequest request) {
-        ProductDto updatedDto = getProductDtoForNewProduct(request);
         int id = Integer.parseInt(request.getParameter("id"));
+        ProductDto updatedDto = getProductDtoForNewProduct(request);
         updatedDto.setId(id);
         return updatedDto;
     }

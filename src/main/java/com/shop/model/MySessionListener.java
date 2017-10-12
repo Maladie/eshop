@@ -11,7 +11,7 @@ public class MySessionListener implements HttpSessionListener {
 
     public void sessionCreated(HttpSessionEvent event) {
         System.out.println("A new session is created");
-        BasketDto basket = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getBasketDto(event.getSession());
+        BasketDto basket = ProductService.productService().getBasketDto(event.getSession());
     }
 
     public void sessionDestroyed(HttpSessionEvent event) {

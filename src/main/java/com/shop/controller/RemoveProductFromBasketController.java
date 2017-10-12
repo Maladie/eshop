@@ -20,7 +20,7 @@ public class RemoveProductFromBasketController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        int productId = Integer.parseInt(request.getParameter("productId"));
-        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         productService.removeProductFromBasket(request.getSession(), productId);
         response.sendRedirect("/basket");
     }
