@@ -30,7 +30,7 @@ public class ProductServiceTest {
     @Before
     public void setUp(){
         productRepository = Mockito.mock(ProductRepository.class);
-        productService = ProductService.productService(productRepository);
+        productService = ProductService.productService();
     }
 
 //
