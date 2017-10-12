@@ -55,19 +55,20 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Dishwashers</a>
+
+            <a class="nav-link active bg-dark" href="/category?category=DISHWASHER">Dishwashers</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Freezers</a>
+            <a class="nav-link active bg-dark" href="/category?category=FREEZER">Freezers</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Kettles</a>
+            <a class="nav-link active bg-dark" href="/category?category=KETTLE">Kettles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Refrigerators</a>
+            <a class="nav-link active bg-dark" href="/category?category=REFRIGERATOR">Refrigerators</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#">Washing maschines</a>
+            <a class="nav-link active bg-dark" href="/category?category=WASHING_MACHINE">Washing maschines</a>
         </li>
     </ul>
 </nav>

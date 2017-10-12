@@ -2,6 +2,7 @@ package com.shop.service;
 
 import com.shop.model.*;
 import com.shop.model.factory.impl.Product;
+import com.shop.model.factory.impl.ProductCategory;
 import com.shop.repository.ProductRepository;
 import com.shop.repository.impl.HibernateRepositoryImpl;
 import com.shop.service.log.ProductLog;
@@ -116,5 +117,11 @@ public class ProductService {
                 return sortedList;
             default: return sortedList;
         }
+    }
+
+    public List<ProductDto> productListByCategory(String category) {
+
+        ProductCategory productCategory = ProductCategory.valueOf(category.toUpperCase());
+        return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(p ->ProductToProductDtoConverter.convertToDto(p)).collect(Collectors.toList());
     }
 }
