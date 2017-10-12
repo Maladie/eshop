@@ -9,9 +9,10 @@ import java.util.Map;
 
 public class ProductDtoFactory {
 
+    private static int ID = 100;
+
     public static ProductDto getProductDto(HttpServletRequest request) {
         //
-        int id = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
         BigDecimal value = null;
         if (!request.getParameter("value").equals("")) {
@@ -27,7 +28,7 @@ public class ProductDtoFactory {
 
 
         ProductDto productDto =new ProductDto();
-        productDto.setId(id);
+        productDto.setId(ID++); //TODO Trzeba dopisać żeby tworzyło ID dla kolejnego produktu
         productDto.setName(name);
         productDto.setValue(value);
         productDto.setCurrency(currency);
@@ -44,16 +45,10 @@ public class ProductDtoFactory {
     }
 
     private static EnergyConsumptionClass parseEClass(String eclass) {
-        if(eclass == null){
-            eclass = "A";
-        }
         return EnergyConsumptionClass.valueOf(eclass);
     }
 
     private static Unit parseUnit(String weightUnit) {
-        if(weightUnit == null){
-            weightUnit = "TONES";
-        }
         return Unit.valueOf(weightUnit);
     }
 }

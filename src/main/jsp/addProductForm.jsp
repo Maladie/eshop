@@ -9,8 +9,8 @@
             <input type="text" class="form-control" name="name" id="name" placeholder="Enter product name">
         </div>
         <div class="form-group">
-            <label for="weightValue">Value:</label>
-            <input type="number" class="form-control" name="weightValue" id="weightValue" placeholder="Enter product weightValue">
+            <label for="value">Value:</label>
+            <input type="number" class="form-control" name="value" id="value" placeholder="Enter product value">
         </div>
         <div class="form-group">
             <label for="currency">Currency:</label>
@@ -22,8 +22,35 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="fullDescription">Full name:</label>
-            <textarea class="form-control" id="fullDescription" rows="5" name="fullDescription"></textarea>
+            <label for="brand">Brand:</label>
+            <input type="text" class="form-control" name="brand" id="brand" placeholder="Enter brand name">
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight:</label>
+            <input type="number" class="form-control" name="weight" id="weight" placeholder="Enter weight of product">
+        </div>
+        <div class="form-group">
+            <label for="weightunit">Unit:</label>
+            <select class="form-control" id="weightunit" name="weightunit">
+                <option>GRAMS</option>
+                <option>KILOGRAMS</option>
+                <option>TONS</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="eclass">Energy Consumption Class</label>
+            <select class="form-control" id="eclass" name="eclass">
+                <option>AAA</option>
+                <option>AA</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" rows="5" name="description"></textarea>
         </div>
         <div class="form-group">
             <label for="chooseFile">Choose product image:</label>
