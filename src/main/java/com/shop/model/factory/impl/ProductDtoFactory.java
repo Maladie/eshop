@@ -14,7 +14,7 @@ public class ProductDtoFactory {
     public static ProductDto getProductDto(HttpServletRequest request) {
         //
         String name = request.getParameter("name");
-        BigDecimal value = null;
+        BigDecimal value = new BigDecimal(0);
         if (!request.getParameter("value").equals("")) {
             value = BigDecimal.valueOf(Long.parseLong(request.getParameter("value")));
         }
@@ -22,7 +22,10 @@ public class ProductDtoFactory {
         String description = request.getParameter("description");
         //optional values
         String brand = request.getParameter("brand");
-        Float weight = Float.parseFloat(request.getParameter("weight"));
+        Float weight = 0f;
+        if(!request.getParameter("weight").equals("")) {
+            weight = Float.parseFloat(request.getParameter("weight"));
+        }
         Unit weightUnit = parseUnit(request.getParameter("weightunit"));
         EnergyConsumptionClass eclass = parseEClass(request.getParameter("eclass"));
 
