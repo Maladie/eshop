@@ -19,10 +19,10 @@
             <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=id">Newest</a>
         </div>
         <form class="form-inline my-2 my-lg-0" action="/filter" method="get">
-            <input class="form-control mr-sm-2" name="searchParam" type="hidden" weightValue="${searchParam}" >
+            <input class="form-control mr-sm-2" name="searchParam" type="hidden" value="${searchParam}" >
             <input class="form-control mr-sm-2" name="filterParam" type="number" placeholder="Maximum Price"
                    aria-label="Search">
-            <input class="form-control mr-sm-2" name="sortType" type="hidden" weightValue="${sortType}" >
+            <input class="form-control mr-sm-2" name="sortType" type="hidden" value="${sortType}" >
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
         </form>
     </nav>

@@ -41,8 +41,8 @@ public class ProductService {
         return repository.getAllProducts().stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
     }
 
-    public List<Product> getProductBySearchCriteria(String searchCriteria) {
-        return repository.getProductsBySearchCritieria(searchCriteria);
+    public List<ProductDto> getProductBySearchCriteria(String searchCriteria) {
+        return repository.getProductsBySearchCritieria(searchCriteria).stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
     }
 
 //    public Product getProductById(int id){
@@ -94,7 +94,7 @@ public class ProductService {
         repository.editProduct(updatedProduct);
     }
 
-    public List<Product> filterProductListByPrice(List<Product> productList, String filterCriteria) {
+    public List<ProductDto> filterProductListByPrice(List<ProductDto> productList, String filterCriteria) {
         try {
             BigDecimal maxPrice = BigDecimal.valueOf((Long.parseLong(filterCriteria)));
             productList = productList.stream().filter(product -> product.getValue().compareTo(maxPrice) <= 0).collect(Collectors.toList());
@@ -104,8 +104,8 @@ public class ProductService {
         return productList;
     }
 
-    public List<Product> sortProducts(List<Product> filteredList, String sortCriteria) {
-        List<Product> sortedList = filteredList;
+    public List<ProductDto> sortProducts(List<ProductDto> filteredList, String sortCriteria) {
+        List<ProductDto> sortedList = filteredList;
         switch(sortCriteria){
             case "plh":
                 sortedList = sortedList.stream().sorted((o1, o2) -> o1.getValue().compareTo(o2.getValue())).collect(Collectors.toList());
