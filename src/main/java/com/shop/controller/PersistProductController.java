@@ -1,7 +1,7 @@
 package com.shop.controller;
 
 import com.shop.model.ProductDto;
-import com.shop.model.factory.impl.ProductDtoFactoryImpl;
+import com.shop.model.factory.impl.ProductDtoFactory;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 
@@ -22,7 +22,7 @@ public class PersistProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDto productDto =  ProductDtoFactoryImpl.getProductDto(request);
+        ProductDto productDto =  ProductDtoFactory.getProductDto(request);
         ProductService.productService(ProductRepositoryImpl.aProductRepository()).persistProduct(productDto);
         response.sendRedirect("/");
     }
