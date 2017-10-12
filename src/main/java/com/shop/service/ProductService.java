@@ -33,20 +33,28 @@ public class ProductService {
         observerList.add(ProductMailService.getProductMailService());
     }
 
-    public List<Product> getAllProductsForCustomer() {
-        return repository.getAllProducts();
+    public List<ProductDto> getAllProductsForCustomer() {
+        //TODO ?? ok ? quck fix for home controller
+        //TODO do obgadania
+        return repository.getAllProducts().stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
     }
 
     public List<Product> getProductBySearchCriteria(String searchCriteria) {
         return repository.getProductsBySearchCritieria(searchCriteria);
     }
 
+//    public Product getProductById(int id){
+//        return repository.getProductById(id);
+//    }
+
     public ProductDto getProductById(int id){
         return ProductToProductDtoConverter.convertToDto(repository.getProductById(id));
     }
 
-    public void persistProduct(Product product){
+    public void persistProduct(ProductDto productDto){
+        Product product = ProductToProductDtoConverter.convertToProduct(productDto);
         repository.persistProduct(product);
+        //TODO do obgadania ...
         notifyObservers("Created new", product);
     }
 
@@ -64,13 +72,14 @@ public class ProductService {
         repository.deleteProductByID(id);
     }
 
-    public void editProduct(Product updatedProduct){
+    public void editProduct(ProductDto updatedProductDto){
+        Product updatedProduct = ProductToProductDtoConverter.convertToProduct(updatedProductDto);
         repository.editProduct(updatedProduct);
     }
 
-    public List<Product> filterProductListByPrice(List<Product> productList, String filterCritieria) {
+    public List<Product> filterProductListByPrice(List<Product> productList, String filterCriteria) {
         try {
-            BigDecimal maxPrice = BigDecimal.valueOf((Long.parseLong(filterCritieria)));
+            BigDecimal maxPrice = BigDecimal.valueOf((Long.parseLong(filterCriteria)));
             productList = productList.stream().filter(product -> product.getValue().compareTo(maxPrice) <= 0).collect(Collectors.toList());
         }catch(NumberFormatException e){
             e.printStackTrace();
@@ -78,9 +87,9 @@ public class ProductService {
         return productList;
     }
 
-    public List<Product> sortProducts(List<Product> filteredList, String sortCritiera) {
+    public List<Product> sortProducts(List<Product> filteredList, String sortCriteria) {
         List<Product> sortedList = filteredList;
-        switch(sortCritiera){
+        switch(sortCriteria){
             case "plh":
                 sortedList = sortedList.stream().sorted((o1, o2) -> o1.getValue().compareTo(o2.getValue())).collect(Collectors.toList());
                 return sortedList;

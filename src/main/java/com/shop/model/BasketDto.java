@@ -34,6 +34,5 @@ public class BasketDto {
 
     public void removeProductFromBasket(int productId){
         ProductDto product = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(productId);
-        productDtoList.remove(product);
     }
 }

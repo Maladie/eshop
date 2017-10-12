@@ -9,28 +9,28 @@ import java.util.List;
 import java.util.Stack;
 
 public class ViewedProductsList {
-    private List<Product> productsList;
-    private int maxStoredProducts = 4;
+    private List<ProductDto> productsList;
+    private final int maxStoredProducts = 4;
 
     public ViewedProductsList() {
         productsList = new ArrayList<>();
     }
 
 
-    public void addToViewedList(ProductDto productDto) {
-        Product product = ProductToProductDtoConverter.convertToProduct(productDto);
+    public void addToViewedList(ProductDto product) {
         if (!productsList.contains(product)) {
             productsList.add(0, product);
             if (productsList.size() > maxStoredProducts) {
                 productsList.remove(maxStoredProducts - 1);
             }
         } else {
-            productsList.remove(productDto);
-            addToViewedList(productDto);
+            productsList.remove(product);
+            //TODO do przerobienia
+            addToViewedList(product);
         }
     }
 
-    public List<Product> getViewedProducts() {
+    public List<ProductDto> getViewedProducts() {
         return productsList;
     }
 }

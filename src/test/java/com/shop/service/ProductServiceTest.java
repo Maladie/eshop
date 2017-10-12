@@ -13,7 +13,6 @@ import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 
-import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
 
 public class ProductServiceTest {
 
@@ -34,8 +33,8 @@ public class ProductServiceTest {
         productService = ProductService.productService(productRepository);
     }
 
-
-
+//
+//    @Test
 //    public void shouldNewShoppingCartContainOneProductIfUserAddProductToShoppingCart() {
 //        //given
 //        int productId = 10;
@@ -47,7 +46,7 @@ public class ProductServiceTest {
 //        Assert.assertEquals("The size of the shopping cart should be 1", 1,shoppingCart.getBasketSize());
 //    }
 //
-//
+//    @Test
 //    public void shouldQuantityIncreaseWhenTheSameProductAddedToBasket(){
 //        //given
 //        int productId = 0;
@@ -59,11 +58,11 @@ public class ProductServiceTest {
 //        //then
 //        Assert.assertEquals("The Quantity of products should be 2", 2, basket.getProductItemQuantity(0));
 //    }
-
-
-    private Product aSimpleProduct(){
-        ProductFactory factory = new ProductFactoryImpl();
-        return factory.newProduct(SAMPLE, VALUE, CURRENCY, FULL_DESCRIPTION);
-    }
+//
+//
+//    private Product aSimpleProduct(){
+//        ProductFactory factory = new ProductFactoryImpl();
+//        return factory.newProduct(SAMPLE, VALUE, CURRENCY, FULL_DESCRIPTION);
+//    }
 
 }

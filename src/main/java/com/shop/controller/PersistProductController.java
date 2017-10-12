@@ -1,8 +1,7 @@
 package com.shop.controller;
 
-import com.shop.model.factory.ProductFactory;
-import com.shop.model.factory.impl.Product;
-import com.shop.model.factory.impl.ProductFactoryImpl;
+import com.shop.model.ProductDto;
+import com.shop.model.factory.impl.ProductDtoFactory;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 
@@ -23,10 +22,8 @@ public class PersistProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductFactory productFactory = new ProductFactoryImpl();
-        Product product = productFactory.newProduct(request);
-        ProductService.productService(ProductRepositoryImpl.aProductRepository()).persistProduct(product);
+        ProductDto productDto =  ProductDtoFactory.getProductDto(request);
+        ProductService.productService(ProductRepositoryImpl.aProductRepository()).persistProduct(productDto);
         response.sendRedirect("/");
-        
     }
 }
