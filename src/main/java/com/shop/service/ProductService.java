@@ -3,6 +3,7 @@ package com.shop.service;
 import com.shop.model.*;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.ProductRepository;
+import com.shop.repository.impl.HibernateRepositoryImpl;
 import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
 
@@ -21,10 +22,10 @@ public class ProductService {
 
     private ProductRepository repository;
 
-    public static ProductService productService(ProductRepository productRepository) {
-//        if(productService != null)
-//            return productService;
-        productService = new ProductService(productRepository);
+    public static ProductService productService() {
+        if(productService != null)
+            return productService;
+        productService = new ProductService(HibernateRepositoryImpl.aProductRepository());
         return productService;
     }
 
