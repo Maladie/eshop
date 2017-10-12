@@ -1,5 +1,8 @@
 package com.shop.model.factory.impl;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 class Weight {
 
     private float weightValue;

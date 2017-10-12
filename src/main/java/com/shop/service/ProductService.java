@@ -22,8 +22,8 @@ public class ProductService {
     private ProductRepository repository;
 
     public static ProductService productService(ProductRepository productRepository) {
-        if(productService != null)
-            return productService;
+//        if(productService != null)
+//            return productService;
         productService = new ProductService(productRepository);
         return productService;
     }
