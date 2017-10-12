@@ -28,7 +28,7 @@ public class SubmitBasketController extends HttpServlet{
         SubmittedBasketsList submittedBasketsList = SubmittedBasketsList.getInstance();
         RequestDispatcher dispatcher = req.getRequestDispatcher("baskethistory.jsp");
         req.setAttribute("submittedBaskets", submittedBasketsList);
-        
+
         dispatcher.forward(req, resp);
     }
 

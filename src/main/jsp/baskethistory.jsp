@@ -33,7 +33,7 @@
         </div>
     </c:forEach>
 
-    <c:if test="${submittedBaskets.getSubmittedBaskets().size() == 0}">
+    <c:if test="${submittedBaskets == null}">
         <br>
         <h4>You have not submitted any baskets yet!</h4>
         <br>
