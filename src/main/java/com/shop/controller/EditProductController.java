@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.model.ProductDto;
 import com.shop.model.factory.ProductFactory;
 import com.shop.model.factory.impl.Product;
 import com.shop.model.factory.impl.ProductFactoryImpl;
@@ -18,7 +19,7 @@ public class EditProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Product product = getProductById(request);
+        ProductDto product = getProductById(request);
         request.setAttribute("product", product);
         request.getRequestDispatcher("edit.jsp").forward(request, response);
     }
@@ -31,7 +32,7 @@ public class EditProductController extends HttpServlet {
         response.sendRedirect("/");
     }
 
-    private Product getProductById(HttpServletRequest request) {
+    private ProductDto getProductById(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
         return ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(id);
     }

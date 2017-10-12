@@ -17,15 +17,16 @@ public class ViewedProductsList {
     }
 
 
-    public void addToViewedList(Product product) {
+    public void addToViewedList(ProductDto productDto) {
+        Product product = ProductToProductDtoConverter.convertToProduct(productDto);
         if (!productsList.contains(product)) {
             productsList.add(0, product);
             if (productsList.size() > maxStoredProducts) {
                 productsList.remove(maxStoredProducts - 1);
             }
         } else {
-            productsList.remove(product);
-            addToViewedList(product);
+            productsList.remove(productDto);
+            addToViewedList(productDto);
         }
     }
 

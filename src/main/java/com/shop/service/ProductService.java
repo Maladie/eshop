@@ -1,8 +1,6 @@
 package com.shop.service;
 
-import com.shop.model.Basket;
-import com.shop.model.BasketDto;
-import com.shop.model.BasketToBasketDtoConverter;
+import com.shop.model.*;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.ProductRepository;
 import com.shop.service.log.ProductLog;
@@ -43,8 +41,8 @@ public class ProductService {
         return repository.getProductsBySearchCritieria(searchCriteria);
     }
 
-    public Product getProductById(int id){
-        return repository.getProductById(id);
+    public ProductDto getProductById(int id){
+        return ProductToProductDtoConverter.convertToDto(repository.getProductById(id));
     }
 
     public void persistProduct(Product product){

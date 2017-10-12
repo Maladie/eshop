@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.model.ProductDto;
 import com.shop.model.ViewedProductsList;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.impl.ProductRepositoryImpl;
@@ -19,12 +20,12 @@ public class FullProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         int id = Integer.parseInt(httpServletRequest.getParameter("product"));
-        Product product = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(id);
+        ProductDto productDto = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(id);
         //products log
         ViewedProductsList viewedProductsList = SessionLastProductViewedHandler.retrieveViewedProductList(httpServletRequest.getSession());
-        viewedProductsList.addToViewedList(product);
+        viewedProductsList.addToViewedList(productDto);
 
-        httpServletRequest.setAttribute("product", product);
+        httpServletRequest.setAttribute("product", productDto);
         httpServletRequest.getRequestDispatcher("productDescription.jsp").forward(httpServletRequest, httpServletResponse);
     }
 }

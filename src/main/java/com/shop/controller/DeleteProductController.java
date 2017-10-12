@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.model.ProductDto;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.impl.ProductRepositoryImpl;
 
@@ -19,7 +20,7 @@ public class DeleteProductController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = productService(ProductRepositoryImpl.aProductRepository()).getProductById(id);
+        ProductDto product = productService(ProductRepositoryImpl.aProductRepository()).getProductById(id);
         request.setAttribute("product", product);
         request.getRequestDispatcher("delete.jsp").forward(request, response);
     }
