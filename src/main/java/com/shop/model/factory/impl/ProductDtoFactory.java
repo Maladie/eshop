@@ -9,11 +9,12 @@ import java.util.Map;
 
 public class ProductDtoFactory {
 
-    public static ProductDto getProductDto(HttpServletRequest request) {
+    private static int ID = 100;
+
+    public static ProductDto getProductDtoForNewProduct(HttpServletRequest request) {
         //
-        int id = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
-        BigDecimal value = null;
+        BigDecimal value = new BigDecimal(0);
         if (!request.getParameter("value").equals("")) {
             value = BigDecimal.valueOf(Long.parseLong(request.getParameter("value")));
         }
@@ -21,13 +22,16 @@ public class ProductDtoFactory {
         String description = request.getParameter("description");
         //optional values
         String brand = request.getParameter("brand");
-        Float weight = Float.parseFloat(request.getParameter("weight"));
+        Float weight = 0f;
+        if(!request.getParameter("weight").equals("")) {
+            weight = Float.parseFloat(request.getParameter("weight"));
+        }
         Unit weightUnit = parseUnit(request.getParameter("weightunit"));
         EnergyConsumptionClass eclass = parseEClass(request.getParameter("eclass"));
 
 
         ProductDto productDto =new ProductDto();
-        productDto.setId(id);
+        productDto.setId(ID++); //TODO Trzeba dopisać żeby tworzyło ID dla kolejnego produktu
         productDto.setName(name);
         productDto.setValue(value);
         productDto.setCurrency(currency);
@@ -43,17 +47,18 @@ public class ProductDtoFactory {
         return productDto;
     }
 
+    public static ProductDto getProductDtoForEditedProduct(HttpServletRequest request) {
+        ProductDto updatedDto = getProductDtoForNewProduct(request);
+        int id = Integer.parseInt(request.getParameter("id"));
+        updatedDto.setId(id);
+        return updatedDto;
+    }
+
     private static EnergyConsumptionClass parseEClass(String eclass) {
-        if(eclass == null){
-            eclass = "A";
-        }
         return EnergyConsumptionClass.valueOf(eclass);
     }
 
     private static Unit parseUnit(String weightUnit) {
-        if(weightUnit == null){
-            weightUnit = "TONES";
-        }
         return Unit.valueOf(weightUnit);
     }
 }

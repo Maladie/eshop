@@ -28,6 +28,7 @@
             <div class="row">
                 <div class="col">
                     <p>${product.description}</p>
+                    <p>${product.parametersMap.get("brand")}</p>
                 </div>
             </div>
             <div class="row">

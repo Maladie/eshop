@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.model.ProductDto;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
@@ -21,8 +22,8 @@ public class FilterProductController extends HttpServlet {
         String searchCriteria = request.getParameter("searchParam");
         String filterCriteria = request.getParameter("filterParam");
         String sortCriteria = request.getParameter("sortType");
-        List<Product> productList = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductBySearchCriteria(searchCriteria);
-        List<Product> filteredList = ProductService.productService(ProductRepositoryImpl.aProductRepository()).filterProductListByPrice(productList, filterCriteria);
+        List<ProductDto> productList = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductBySearchCriteria(searchCriteria);
+        List<ProductDto> filteredList = ProductService.productService(ProductRepositoryImpl.aProductRepository()).filterProductListByPrice(productList, filterCriteria);
         if(sortCriteria != null){
             filteredList = ProductService.productService(ProductRepositoryImpl.aProductRepository()).sortProducts(filteredList, sortCriteria);
         }
