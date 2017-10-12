@@ -7,4 +7,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <listener>
         <listener-class>com.shop.model.MySessionListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>com.shop.repository.HibernateListener</listener-class>
+    </listener>
 </web-app>
