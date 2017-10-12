@@ -33,6 +33,6 @@ public class BasketDto {
     }
 
     public void removeProductFromBasket(int productId){
-        Product product = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(productId);
+        ProductDto product = ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(productId);
     }
 }

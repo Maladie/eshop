@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page pageEncoding="UTF-8" language="java" contentType="text/html" %>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"/>
 <br>
 <div class="container-fluid bg-3 text-center">
     <div class="row">
         <div class="col-sm-3">
-            <jsp:include page="navBar.jsp"></jsp:include>
+            <jsp:include page="navBar.jsp"/>
         </div>
         <div class="col-sm-9">
     <div class="row m-3">
@@ -22,27 +22,27 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h4>Price: ${product.weightValue} ${product.currency}</h4>
+                    <h4>Price: ${product.value} ${product.currency}</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p>${product.fullDescription}</p>
+                    <p>${product.description}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
 
                     <form action = "/addProduct" method = "POST">
-                        <input type="hidden" name="productId" weightValue="${product.id}">
-                        <input class="btn btn-outline-success" type = "submit" weightValue = "Add to cart" />
+                        <input type="hidden" name="productId" value="${product.id}">
+                        <input class="btn btn-outline-success" type = "submit" value = "Add to cart" />
                     </form>
                 </div>
                 <div class="col">
-                    <p><a href="<c:url weightValue = "/edit?id=${product.id}"/>"><button type="button" class="btn btn-outline-success">Edit this product's name</button></a></p>
+                    <p><a href="<c:url value = "/edit?id=${product.id}"/>"><button type="button" class="btn btn-outline-success">Edit this product's name</button></a></p>
                 </div>
                 <div class="col">
-                    <p><a href="<c:url weightValue = "/delete?id=${product.id}"/>"><button type="button" class="btn btn-outline-danger">Delete this product (Irreversible!)</button></a></p>
+                    <p><a href="<c:url value = "/delete?id=${product.id}"/>"><button type="button" class="btn btn-outline-danger">Delete this product (Irreversible!)</button></a></p>
                 </div>
             </div>
         </div>
@@ -51,4 +51,4 @@
     </div>
 </div>
 
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>

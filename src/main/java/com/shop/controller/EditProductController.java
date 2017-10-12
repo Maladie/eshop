@@ -1,8 +1,7 @@
 package com.shop.controller;
 
-import com.shop.model.factory.ProductFactory;
-import com.shop.model.factory.impl.Product;
-import com.shop.model.factory.impl.ProductFactoryImpl;
+import com.shop.model.ProductDto;
+import com.shop.model.factory.impl.ProductDtoFactory;
 import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 
@@ -18,21 +17,18 @@ public class EditProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Product product = getProductById(request);
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        ProductDto product = ProductService
+                .productService(ProductRepositoryImpl.aProductRepository())
+                .getProductById(id);
         request.setAttribute("product", product);
         request.getRequestDispatcher("edit.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductFactory productFactory = new ProductFactoryImpl();
-        Product updatedProduct = productFactory.getProductUpdateTemplate(request);
+        ProductDto updatedProduct = ProductDtoFactory.getProductDto(request);
         ProductService.productService(ProductRepositoryImpl.aProductRepository()).editProduct(updatedProduct);
         response.sendRedirect("/");
-    }
-
-    private Product getProductById(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        return ProductService.productService(ProductRepositoryImpl.aProductRepository()).getProductById(id);
     }
 }
