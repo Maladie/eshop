@@ -12,7 +12,6 @@ public class ProductDtoFactory {
     private static int ID = 100;
 
     public static ProductDto getProductDtoForNewProduct(HttpServletRequest request) {
-        //
         String name = request.getParameter("name");
         BigDecimal value = new BigDecimal(0);
         if (!request.getParameter("value").equals("")) {
@@ -60,5 +59,9 @@ public class ProductDtoFactory {
 
     private static Unit parseUnit(String weightUnit) {
         return Unit.valueOf(weightUnit);
+    }
+
+    public static ProductDto createProduct(HttpServletRequest request) {
+        return getProductDto(request);
     }
 }

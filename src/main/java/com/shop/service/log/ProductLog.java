@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductLog implements Observer{
 
     private static ProductLog productLog;
-
+ //TODO do poprawy...
     private String fileName = "C:\\Users\\RENT\\IdeaProjects\\eshop\\eshop\\src\\main\\jsp\\log";
 
     private ProductLog() {
@@ -33,11 +33,12 @@ public class ProductLog implements Observer{
     }
 
     private void logProductToFile(String actionDescr, Product product) {
-        List<String> productList =  Arrays.asList(LocalDateTime.now() + " " + actionDescr + " " + product.toString());
-        try {
-            Files.write(Paths.get(fileName), productList, StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //TODO do poprawienia... relatywna ścieżka by się przydała bo sypie błędami
+//        List<String> productList =  Arrays.asList(LocalDateTime.now() + " " + actionDescr + " " + product.toString());
+//        try {
+//            Files.write(Paths.get(fileName), productList, StandardOpenOption.APPEND);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
