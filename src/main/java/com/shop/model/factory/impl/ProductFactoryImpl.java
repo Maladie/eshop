@@ -12,20 +12,22 @@ public class ProductFactoryImpl implements ProductFactory {
     @Override
     public Product getProductUpdateTemplate(HttpServletRequest request) {
         int id = Integer.valueOf(request.getParameter("id"));
-        String description = request.getParameter("description");
+        String name = request.getParameter("description");
         BigDecimal value = null;
         if (!request.getParameter("value").equals("")) {
             value = BigDecimal.valueOf(Long.parseLong(request.getParameter("value")));
         }
         String currency = request.getParameter("currency");
         String fullDescription = request.getParameter("fullDescription");
-        return null;// new Product(id, description, value, currency, fullDescription);
+        //TODO temp
+        return new Product(id, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D);
+        // new Product(id, description, value, currency, fullDescription);
     }
 
     @Override
     public Product newProduct(HttpServletRequest request) {
         int id = PRODUCTCOUNTER++;
-        String description = request.getParameter("description");
+        String name = request.getParameter("description");
         BigDecimal value = new BigDecimal(0);
         try {
             value = BigDecimal.valueOf(Long.parseLong(request.getParameter("value")));
@@ -34,11 +36,13 @@ public class ProductFactoryImpl implements ProductFactory {
         }
         String currency = request.getParameter("currency");
         String fullDescription = request.getParameter("fullDescription");
-        return null;
+        //TODO temp
+        return new Product(id, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D);
     }
 
     @Override
-    public Product newProduct(String description, BigDecimal value, String currency, String fullDescription) {
-        return null;
+    public Product newProduct(String name, BigDecimal value, String currency, String fullDescription) {
+        //TODO temp
+        return new Product(PRODUCTCOUNTER++, name, "brand_Factory", fullDescription, value, currency, 1f, Unit.TONES,EnergyConsumptionClass.D);
     }
 }
