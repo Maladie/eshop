@@ -1,13 +1,20 @@
 package com.shop.model.factory.impl;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String brand;
+    //TODO TEMP
+    @Transient
     private Money money;
+    @Transient
     private Weight weight;
     private EnergyConsumptionClass EClass;
     private String description;
