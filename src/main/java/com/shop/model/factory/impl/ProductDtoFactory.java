@@ -10,8 +10,8 @@ import java.util.Map;
 public class ProductDtoFactory {
 
     public static ProductDto getProductDto(HttpServletRequest request) {
-        //
-        int id = Integer.valueOf(request.getParameter("id"));
+//        //
+//        int id = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
         BigDecimal value = null;
         if (!request.getParameter("value").equals("")) {
@@ -20,14 +20,20 @@ public class ProductDtoFactory {
         String currency = request.getParameter("currency");
         String description = request.getParameter("description");
         //optional values
-        String brand = request.getParameter("brand");
-        Float weight = Float.parseFloat(request.getParameter("weight"));
+        String brand = "brand_temp";
+        if (request.getParameter("brand") != null) {
+            brand = request.getParameter("brand");
+        }
+        Float weight = 1.0f;
+        if(request.getParameter("weight") !=null) {
+            weight = Float.parseFloat(request.getParameter("weight"));
+        }
         Unit weightUnit = parseUnit(request.getParameter("weightunit"));
         EnergyConsumptionClass eclass = parseEClass(request.getParameter("eclass"));
 
 
         ProductDto productDto =new ProductDto();
-        productDto.setId(id);
+//        productDto.setId(id);
         productDto.setName(name);
         productDto.setValue(value);
         productDto.setCurrency(currency);
@@ -55,5 +61,9 @@ public class ProductDtoFactory {
             weightUnit = "TONES";
         }
         return Unit.valueOf(weightUnit);
+    }
+
+    public static ProductDto createProduct(HttpServletRequest request) {
+        return getProductDto(request);
     }
 }
