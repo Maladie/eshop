@@ -34,7 +34,7 @@
             <select class="form-control" id="weightunit" name="weightunit">
                 <option>GRAMS</option>
                 <option>KILOGRAMS</option>
-                <option>TONS</option>
+                <option>TONES</option>
             </select>
         </div>
         <div class="form-group">
