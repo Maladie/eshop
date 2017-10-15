@@ -12,7 +12,7 @@ public class ProductDtoFactory {
     private static int ID = 100;
 
     public static ProductDto getProductDtoForNewProduct(HttpServletRequest request) {
-        //
+
         String name = request.getParameter("name");
         BigDecimal value = new BigDecimal(0);
         if (!request.getParameter("value").equals("")) {
@@ -21,7 +21,6 @@ public class ProductDtoFactory {
         String currency = request.getParameter("currency");
         String description = request.getParameter("description");
         int productAmount = Integer.valueOf(request.getParameter("amount"));
-                //optional values
         String brand = request.getParameter("brand");
         Float weight = 0f;
         if(!request.getParameter("weight").equals("")) {
@@ -30,7 +29,6 @@ public class ProductDtoFactory {
         Unit weightUnit = parseUnit(request.getParameter("weightunit"));
         EnergyConsumptionClass eclass = parseEClass(request.getParameter("eclass"));
         ProductCategory category = parseCategory(request.getParameter("category"));
-
 
         ProductDto productDto = new ProductDto();
         productDto.setName(name);
@@ -51,7 +49,11 @@ public class ProductDtoFactory {
     }
 
     private static ProductCategory parseCategory(String category) {
-        return ProductCategory.valueOf(category);
+        ProductCategory productCategory = ProductCategory.OTHER;
+        if(category != null){
+            productCategory = ProductCategory.valueOf(category);
+        }
+        return productCategory;
     }
 
     public static ProductDto getProductDtoForEditedProduct(HttpServletRequest request) {
