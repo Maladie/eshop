@@ -1,12 +1,6 @@
 package com.shop.controller;
 
-import com.shop.model.Basket;
-import com.shop.model.BasketDto;
-import com.shop.model.factory.impl.Product;
-import com.shop.repository.impl.HibernateRepositoryImpl;
-import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
-import com.shop.service.SessionShoppingBasketHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
