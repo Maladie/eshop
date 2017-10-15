@@ -8,7 +8,13 @@ import java.util.Enumeration;
 public class HibernateListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-
+        try
+        {   // Load driver class
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch (java.lang.ClassNotFoundException e) {
+            System.err.println("ClassNotFoundException: " +e);
+        }
         HibernateUtils.getEntityManagerFactory();
     }
 
