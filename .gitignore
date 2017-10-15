@@ -1,5 +1,5 @@
 .idea/
 *.iml
 target/
-#src/main/jsp/WEB-INF/
-#src/main/jsp/META-INF/
+src/main/jsp/WEB-INF/
+src/main/jsp/META-INF/
