@@ -22,6 +22,19 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="category">Category:</label>
+            <select class="form-control" id="category" name="category" >
+                <option>DISHWASHER</option>
+                <option>FREEZER</option>
+                <option>KETTLE</option>
+                <option>MICROWAVE_OVEN</option>
+                <option>OVEN</option>
+                <option>REFRIGERATOR</option>
+                <option>WASHING_MACHINE</option>
+                <option selected="selected">OTHER</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="brand">Brand:</label>
             <input type="text" class="form-control" name="brand" id="brand" placeholder="Enter brand name">
         </div>
