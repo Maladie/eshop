@@ -59,6 +59,7 @@ public class HibernateRepositoryImpl implements ProductRepository {
             entityManager.remove(product);
             entityManager.getTransaction().commit();
         }
+        productList.remove(product);
     }
 
     @Override
@@ -73,7 +74,7 @@ public class HibernateRepositoryImpl implements ProductRepository {
         product.setValue(value);
         product.setCurrency(updatedProduct.getCurrency());
         entityManager.getTransaction().begin();
-        entityManager.refresh(product);
+        entityManager.merge(product);
         entityManager.getTransaction().commit();
     }
 }
