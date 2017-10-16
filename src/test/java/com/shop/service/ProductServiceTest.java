@@ -1,13 +1,7 @@
 package com.shop.service;
 
-import com.shop.model.Basket;;
-import com.shop.model.factory.ProductFactory;
-import com.shop.model.factory.impl.Product;
-import com.shop.model.factory.impl.ProductFactoryImpl;
 import com.shop.repository.ProductRepository;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 
@@ -61,8 +55,8 @@ public class ProductServiceTest {
 //
 //
 //    private Product aSimpleProduct(){
-//        ProductFactory factory = new ProductFactoryImpl();
-//        return factory.newProduct(SAMPLE, VALUE, CURRENCY, FULL_DESCRIPTION);
+//        ProductFactory productfactory = new ProductFactoryImpl();
+//        return productfactory.newProduct(SAMPLE, VALUE, CURRENCY, FULL_DESCRIPTION);
 //    }
 
 }

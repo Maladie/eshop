@@ -1,6 +1,6 @@
 package com.shop.model;
 
-import com.shop.model.factory.impl.Product;
+import com.shop.model.productfactory.impl.Product;
 
 import java.math.BigDecimal;
 

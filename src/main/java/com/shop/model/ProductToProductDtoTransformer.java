@@ -1,15 +1,15 @@
 package com.shop.model;
 
-import com.shop.model.factory.impl.EnergyConsumptionClass;
-import com.shop.model.factory.impl.Product;
-import com.shop.model.factory.impl.ProductCategory;
-import com.shop.model.factory.impl.Unit;
+import com.shop.model.productfactory.impl.EnergyConsumptionClass;
+import com.shop.model.productfactory.impl.Product;
+import com.shop.model.productfactory.impl.ProductCategory;
+import com.shop.model.productfactory.impl.Unit;
 
 import java.util.Map;
 
-public class ProductToProductDtoConverter {
+public class ProductToProductDtoTransformer {
 
-    public static ProductDto convertToDto(Product product) {
+    public static ProductDto transformToDto(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
         productDto.setName(product.getName());
@@ -28,7 +28,7 @@ public class ProductToProductDtoConverter {
         return productDto;
     }
 
-    public static Product convertToProduct(ProductDto productDto){
+    public static Product transformToProduct(ProductDto productDto){
         Product product = new Product();
         product.setId(productDto.getId());
         product.setName(productDto.getName());

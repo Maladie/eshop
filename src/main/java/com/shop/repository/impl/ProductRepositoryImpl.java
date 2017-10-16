@@ -1,8 +1,8 @@
 package com.shop.repository.impl;
 
-import com.shop.model.factory.ProductFactory;
-import com.shop.model.factory.impl.Product;
-import com.shop.model.factory.impl.ProductFactoryImpl;
+import com.shop.model.productfactory.ProductFactory;
+import com.shop.model.productfactory.impl.Product;
+import com.shop.model.productfactory.impl.ProductFactoryImpl;
 import com.shop.repository.ProductRepository;
 
 import java.math.BigDecimal;

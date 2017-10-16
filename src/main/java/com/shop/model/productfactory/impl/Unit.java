@@ -1,4 +1,4 @@
-package com.shop.model.factory.impl;
+package com.shop.model.productfactory.impl;
 
 public enum Unit {
     GRAMS,

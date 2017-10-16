@@ -1,6 +1,6 @@
 package com.shop.repository;
 
-import com.shop.model.factory.impl.Product;
+import com.shop.model.productfactory.impl.Product;
 
 import java.util.List;
 
