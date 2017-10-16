@@ -16,7 +16,7 @@ public class ProductDtoFactory {
         String name = request.getParameter("name");
         BigDecimal value = new BigDecimal(0);
         if (!request.getParameter("value").equals("")) {
-            value = BigDecimal.valueOf(Long.parseLong(request.getParameter("value")));
+            value = new BigDecimal(request.getParameter("value"));
         }
         String currency = request.getParameter("currency");
         String description = request.getParameter("description");
