@@ -20,13 +20,14 @@ public class EditProductController extends HttpServlet {
         ProductDto product = ProductService
                 .productService()
                 .getProductById(id);
+        request.setAttribute("id", id);
         request.setAttribute("product", product);
         request.getRequestDispatcher("edit.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDto updatedProduct = ProductDtoFactory.getProductDtoForNewProduct(request);
+        ProductDto updatedProduct = ProductDtoFactory.getProductDtoForEditedProduct(request);
         ProductService.productService().editProduct(updatedProduct);
         response.sendRedirect("/");
     }
