@@ -2,8 +2,6 @@ package com.shop.controller;
 
 import com.shop.model.ProductDto;
 import com.shop.model.ViewedProductsList;
-import com.shop.model.factory.impl.Product;
-import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 import com.shop.service.SessionLastProductViewedHandler;
 

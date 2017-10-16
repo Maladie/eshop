@@ -1,7 +1,6 @@
 package com.shop.controller;
 
 import com.shop.model.ProductDto;
-import com.shop.repository.impl.ProductRepositoryImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.NoSuchElementException;
 
-import static com.shop.service.ProductService.*;
+import static com.shop.service.ProductService.productService;
 
 @WebServlet(name="Delete", value = "/delete")
 public class DeleteProductController extends HttpServlet{

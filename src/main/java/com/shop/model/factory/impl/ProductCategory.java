@@ -8,13 +8,12 @@ public enum ProductCategory {
     MICROWAVE_OVEN("MICROWAVE_OVEN"),
     OVEN("OVEN"),
     REFRIGERATOR("REFRIGERATOR"),
-    WASHING_MACHINE("WASHING_MACHINE");
+    WASHING_MACHINE("WASHING_MACHINE"),
+    OTHER("OTHER");
 
     private String category;
 
     ProductCategory(String category) {
         this.category = category;
     }
-
-
 }

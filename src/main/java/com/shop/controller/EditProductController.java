@@ -2,7 +2,6 @@ package com.shop.controller;
 
 import com.shop.model.ProductDto;
 import com.shop.model.factory.impl.ProductDtoFactory;
-import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 
 import javax.servlet.ServletException;
