@@ -1,16 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page pageEncoding="UTF-8" language="java" contentType="text/html" %>
-<jsp:include page="header.jsp"></jsp:include>
+<%@include file="header.jsp" %>
+<script type="text/javascript" src="scripts/validate.js"></script>
 
 <div class="container-fliud  d-flex justify-content-center">
-    <form action="/persistProduct" method="post" class="text-center">
+    <form action="/persistProduct" method="post" class="text-center" id="productform" novalidate>
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Enter product name">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Enter product name" required>
         </div>
         <div class="form-group">
             <label for="value">Value:</label>
-            <input type="number" class="form-control" name="value" id="value" placeholder="Enter product value">
+            <input type="number" class="form-control" name="value" id="value" placeholder="Enter product value" required>
         </div>
         <div class="form-group">
             <label for="currency">Currency:</label>
@@ -36,11 +37,11 @@
         </div>
         <div class="form-group">
             <label for="brand">Brand:</label>
-            <input type="text" class="form-control" name="brand" id="brand" placeholder="Enter brand name">
+            <input type="text" class="form-control" name="brand" id="brand" placeholder="Enter brand name" required>
         </div>
         <div class="form-group">
             <label for="weight">Weight:</label>
-            <input type="number" class="form-control" name="weight" id="weight" placeholder="Enter weight of product">
+            <input type="number" class="form-control" name="weight" id="weight" placeholder="Enter weight of product" required>
         </div>
         <div class="form-group">
             <label for="weightunit">Unit:</label>
@@ -63,11 +64,11 @@
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control" id="description" rows="5" name="description"></textarea>
+            <textarea class="form-control" id="description" rows="5" name="description" required></textarea>
         </div>
         <div class="form-group">
             <label for="amount">Amount for Sale:</label>
-            <input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount">
+            <input type="number" class="form-control" name="amount" id="amount" placeholder="Enter Amount" required>
         </div>
         <div class="form-group">
             <label for="chooseFile">Choose product image:</label>
@@ -81,5 +82,6 @@
             <button type="submit" class="btn btn-outline-success">Persist product</button>
         </div>
     </form>
+
 </div><br>
 <jsp:include page="footer.jsp"></jsp:include>
