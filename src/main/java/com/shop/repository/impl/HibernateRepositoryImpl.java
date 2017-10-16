@@ -53,6 +53,7 @@ public class HibernateRepositoryImpl implements ProductRepository {
     @Override
     public void deleteProductByID(int id) {
         Product product = getProductById(id);
+        productList.remove(product);
         if(product != null) {
             entityManager.getTransaction().begin();
             entityManager.remove(product);
