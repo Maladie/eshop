@@ -48,6 +48,10 @@ public class ProductService {
     }
 
     public ProductDto getProductById(int id){
+        Product product = repository.getProductById(id);
+        if(product == null){
+            return null;
+        }
         return ProductToProductDtoConverter.convertToDto(repository.getProductById(id));
     }
 
@@ -88,7 +92,11 @@ public class ProductService {
 
     public List<ProductDto> filterProductListByPrice(List<ProductDto> productList, String filterCriteria) {
         try {
-            BigDecimal maxPrice = BigDecimal.valueOf((Long.parseLong(filterCriteria)));
+            if(filterCriteria.equals("")){
+                //TODO temp fix if filter has no value
+                filterCriteria = BigDecimal.valueOf(Long.MAX_VALUE).toString();
+            }
+            BigDecimal maxPrice = new BigDecimal(filterCriteria);
             productList = productList.stream().filter(product -> product.getValue().compareTo(maxPrice) <= 0).collect(Collectors.toList());
         }catch(NumberFormatException e){
             e.printStackTrace();
@@ -119,5 +127,16 @@ public class ProductService {
 
         ProductCategory productCategory = ProductCategory.valueOf(category.toUpperCase());
         return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(p ->ProductToProductDtoConverter.convertToDto(p)).collect(Collectors.toList());
+    }
+    public List<ProductDto> getProductsByCategory(String category){
+        List<ProductDto> productList = new ArrayList<>();
+        if(!category.equals("")) {
+            ProductCategory productCategory = ProductCategory.valueOf(category.toUpperCase());
+             productList = repository.getProductsByCategory(productCategory).stream().map(ProductToProductDtoConverter::convertToDto).collect(Collectors.toList());
+        } else {
+            //TODO temp fix if category has no value
+            productList = repository.getAllProducts().stream().map(ProductToProductDtoConverter::convertToDto).collect(Collectors.toList());
+        }
+        return productList;
     }
 }
