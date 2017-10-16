@@ -20,6 +20,6 @@ public class HibernateListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-      
+
     }
 }
