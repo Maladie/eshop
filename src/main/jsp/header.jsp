@@ -60,9 +60,9 @@
                 <p style="font-size: 30px; font-weight: bold;">${sessionScope.get("basket").getBasketProductItemsAmount()}</p>
             </div>
             <ul></ul>
-            <ul class="nav navbar-nav navbar-right">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-in</button>
-            </ul>
+            <div class="nav navbar-nav navbar-right">
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/login">Log-in</a>
+            </div>
         </div>
     </div>
 </header>
