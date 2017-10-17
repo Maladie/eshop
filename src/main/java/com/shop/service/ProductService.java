@@ -4,11 +4,10 @@ import com.shop.model.*;
 import com.shop.model.factory.impl.Product;
 import com.shop.model.factory.impl.ProductCategory;
 import com.shop.repository.ProductRepository;
-import com.shop.repository.impl.HibernateRepositoryImpl;
+import com.shop.repository.impl.HibernateProductRepositoryImpl;
 import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
 
-import javax.jms.Session;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class ProductService {
     public static ProductService productService() {
         if(productService != null)
             return productService;
-        productService = new ProductService(HibernateRepositoryImpl.aProductRepository());
+        productService = new ProductService(HibernateProductRepositoryImpl.aProductRepository());
         return productService;
     }
 
@@ -40,11 +39,11 @@ public class ProductService {
     public List<ProductDto> getAllProductsForCustomer() {
         //TODO ?? ok ? quck fix for home controller
         //TODO do obgadania
-        return repository.getAllProducts().stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
+        return repository.getAllProducts().stream().map(product -> ProductToProductDtoTransformer.transformToDto(product)).collect(Collectors.toList());
     }
 
     public List<ProductDto> getProductBySearchCriteria(String searchCriteria) {
-        return repository.getProductsBySearchCritieria(searchCriteria).stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
+        return repository.getProductsBySearchCritieria(searchCriteria).stream().map(product -> ProductToProductDtoTransformer.transformToDto(product)).collect(Collectors.toList());
     }
 
     public ProductDto getProductById(int id) {
@@ -52,11 +51,11 @@ public class ProductService {
         if (product == null) {
             return null;
         }
-        return ProductToProductDtoConverter.transformToDto(repository.getProductById(id));
+        return ProductToProductDtoTransformer.transformToDto(repository.getProductById(id));
     }
 
     public void persistProduct(ProductDto productDto) {
-        Product product = ProductToProductDtoConverter.transformToProduct(productDto);
+        Product product = ProductToProductDtoTransformer.transformToProduct(productDto);
         repository.persistProduct(product);
     }
 
@@ -78,7 +77,7 @@ public class ProductService {
     }
 
     public BasketDto getBasketDto(HttpSession session){
-        return BasketToBasketDtoConverter.transformToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
+        return BasketToBasketDtoTransformer.transformToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
 
     public void deleteProductById(int id) {
@@ -86,7 +85,7 @@ public class ProductService {
     }
 
     public void editProduct(ProductDto updatedProductDto){
-        Product updatedProduct = ProductToProductDtoConverter.transformToProduct(updatedProductDto);
+        Product updatedProduct = ProductToProductDtoTransformer.transformToProduct(updatedProductDto);
         repository.editProduct(updatedProduct);
     }
 
@@ -134,6 +133,6 @@ public class ProductService {
     public List<ProductDto> productListByCategory(String category) {
 
         ProductCategory productCategory = ProductCategory.valueOf(category.toUpperCase());
-        return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(p -> ProductToProductDtoConverter.convertToDto(p)).collect(Collectors.toList());
+        return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(p -> ProductToProductDtoTransformer.transformToDto(p)).collect(Collectors.toList());
     }
 }
