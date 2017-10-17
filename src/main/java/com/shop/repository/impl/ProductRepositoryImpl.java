@@ -2,6 +2,7 @@ package com.shop.repository.impl;
 
 import com.shop.model.factory.ProductFactory;
 import com.shop.model.factory.impl.Product;
+import com.shop.model.factory.impl.ProductCategory;
 import com.shop.model.factory.impl.ProductFactoryImpl;
 import com.shop.repository.ProductRepository;
 
@@ -63,6 +64,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     public List<Product> getProductsBySearchCritieria(String searchCriteria){
         return mockProductList.stream().filter(p -> p.getName().toLowerCase().contains(searchCriteria.toLowerCase()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> getProductsByCategory(ProductCategory category) {
+        return null;
     }
 
     private void initMockRepo() {
