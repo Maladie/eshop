@@ -9,13 +9,13 @@ import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class HibernateRepositoryImpl implements ProductRepository {
+public class HibernateProductRepositoryImpl implements ProductRepository {
     private static ProductRepository productRepository;
     private static EntityManager entityManager;
 
     private static List<Product> productList;
 
-    private HibernateRepositoryImpl(){
+    private HibernateProductRepositoryImpl(){
         entityManager = HibernateUtils.getEntityManagerFactory().createEntityManager();
         productList = entityManager.createQuery("SELECT p from Product p", Product.class).getResultList();
     }
@@ -24,7 +24,7 @@ public class HibernateRepositoryImpl implements ProductRepository {
         if(productRepository != null){
             return productRepository;
         }
-        productRepository = new HibernateRepositoryImpl();
+        productRepository = new HibernateProductRepositoryImpl();
         return productRepository;
     }
 
