@@ -24,7 +24,7 @@ public class ProductService {
     private ProductRepository repository;
 
     public static ProductService productService() {
-        if (productService != null)
+        if(productService != null)
             return productService;
         productService = new ProductService(HibernateRepositoryImpl.aProductRepository());
         return productService;
@@ -52,11 +52,11 @@ public class ProductService {
         if (product == null) {
             return null;
         }
-        return ProductToProductDtoConverter.convertToDto(repository.getProductById(id));
+        return ProductToProductDtoConverter.transformToDto(repository.getProductById(id));
     }
 
     public void persistProduct(ProductDto productDto) {
-        Product product = ProductToProductDtoConverter.convertToProduct(productDto);
+        Product product = ProductToProductDtoConverter.transformToProduct(productDto);
         repository.persistProduct(product);
     }
 
@@ -77,16 +77,16 @@ public class ProductService {
         basket.voidBasket();
     }
 
-    public BasketDto getBasketDto(HttpSession session) {
-        return BasketToBasketDtoConverter.convertToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
+    public BasketDto getBasketDto(HttpSession session){
+        return BasketToBasketDtoConverter.transformToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
 
     public void deleteProductById(int id) {
         repository.deleteProductByID(id);
     }
 
-    public void editProduct(ProductDto updatedProductDto) {
-        Product updatedProduct = ProductToProductDtoConverter.convertToProduct(updatedProductDto);
+    public void editProduct(ProductDto updatedProductDto){
+        Product updatedProduct = ProductToProductDtoConverter.transformToProduct(updatedProductDto);
         repository.editProduct(updatedProduct);
     }
 

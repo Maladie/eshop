@@ -8,13 +8,13 @@ import com.shop.repository.ProductRepository;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class HibernateRepositoryImpl implements ProductRepository {
     private static ProductRepository productRepository;
     private static EntityManager entityManager;
 
     private static List<Product> productList;
+
     private HibernateRepositoryImpl(){
         entityManager = HibernateUtils.getEntityManagerFactory().createEntityManager();
         productList = entityManager.createQuery("SELECT p from Product p", Product.class).getResultList();
@@ -59,6 +59,7 @@ public class HibernateRepositoryImpl implements ProductRepository {
     @Override
     public void deleteProductByID(int id) {
         Product product = getProductById(id);
+        productList.remove(product);
         if(product != null) {
             entityManager.getTransaction().begin();
             entityManager.remove(product);

@@ -5,6 +5,7 @@
         <class>com.shop.model.factory.impl.Product</class>
         <class>com.shop.model.factory.impl.Money</class>
         <class>com.shop.model.factory.impl.Weight</class>
+        <class>com.shop.model.userfactory.impl.User</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
@@ -14,7 +15,7 @@
                       value="jdbc:mysql://sql.webpros-dev.nazwa.pl:3306/webpros-dev_java2kat?useSSL=false"/>
             <property name="hibernate.dialect.storage_engine" value="innodb"/>
             <property name="hibernate.max_fetch_depth" value="3"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
 
