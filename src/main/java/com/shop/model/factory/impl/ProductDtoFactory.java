@@ -1,4 +1,4 @@
-package com.shop.model.productfactory.impl;
+package com.shop.model.factory.impl;
 
 import com.shop.model.ProductDto;
 

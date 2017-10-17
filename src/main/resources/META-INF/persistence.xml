@@ -2,9 +2,9 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
     <persistence-unit name="PERSISTENCE" transaction-type="RESOURCE_LOCAL">
 
-        <class>com.shop.model.productfactory.impl.Product</class>
-        <class>com.shop.model.productfactory.impl.Money</class>
-        <class>com.shop.model.productfactory.impl.Weight</class>
+        <class>com.shop.model.factory.impl.Product</class>
+        <class>com.shop.model.factory.impl.Money</class>
+        <class>com.shop.model.factory.impl.Weight</class>
         <class>com.shop.model.userfactory.impl.User</class>
 
         <properties>

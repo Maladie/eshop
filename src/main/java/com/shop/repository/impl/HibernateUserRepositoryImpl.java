@@ -1,6 +1,5 @@
 package com.shop.repository.impl;
 
-import com.shop.model.productfactory.impl.Product;
 import com.shop.model.userfactory.impl.User;
 import com.shop.repository.HibernateUtils;
 import com.shop.repository.UserRepository;

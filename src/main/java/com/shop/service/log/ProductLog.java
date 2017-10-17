@@ -1,6 +1,6 @@
 package com.shop.service.log;
 
-import com.shop.model.productfactory.impl.Product;
+import com.shop.model.factory.impl.Product;
 import com.shop.service.Observer;
 
 import java.io.IOException;

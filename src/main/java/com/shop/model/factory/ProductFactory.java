@@ -1,6 +1,6 @@
-package com.shop.model.productfactory;
+package com.shop.model.factory;
 
-import com.shop.model.productfactory.impl.Product;
+import com.shop.model.factory.impl.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;

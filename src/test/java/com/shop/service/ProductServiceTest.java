@@ -55,8 +55,8 @@ public class ProductServiceTest {
 //
 //
 //    private Product aSimpleProduct(){
-//        ProductFactory productfactory = new ProductFactoryImpl();
-//        return productfactory.newProduct(SAMPLE, VALUE, CURRENCY, FULL_DESCRIPTION);
+//        ProductFactory factory = new ProductFactoryImpl();
+//        return factory.newProduct(SAMPLE, VALUE, CURRENCY, FULL_DESCRIPTION);
 //    }
 
 }

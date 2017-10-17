@@ -1,22 +1,20 @@
 package com.shop.repository.impl;
 
-import com.shop.model.productfactory.impl.Product;
-import com.shop.model.userfactory.impl.User;
+import com.shop.model.factory.impl.Product;
 import com.shop.repository.HibernateUtils;
 import com.shop.repository.ProductRepository;
-import com.shop.repository.UserRepository;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class HibernateProductRepositoryImpl implements ProductRepository {
+public class HibernateRepositoryImpl implements ProductRepository {
     private static ProductRepository productRepository;
     private static EntityManager entityManager;
 
     private static List<Product> productList;
 
-    private HibernateProductRepositoryImpl(){
+    private HibernateRepositoryImpl(){
         entityManager = HibernateUtils.getEntityManagerFactory().createEntityManager();
         productList = entityManager.createQuery("SELECT p from Product p", Product.class).getResultList();
     }
@@ -25,7 +23,7 @@ public class HibernateProductRepositoryImpl implements ProductRepository {
         if(productRepository != null){
             return productRepository;
         }
-        productRepository = new HibernateProductRepositoryImpl();
+        productRepository = new HibernateRepositoryImpl();
         return productRepository;
     }
 

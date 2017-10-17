@@ -1,6 +1,6 @@
 package com.shop.service.mail;
 
-import com.shop.model.productfactory.impl.Product;
+import com.shop.model.factory.impl.Product;
 import com.shop.service.Observer;
 
 public class ProductMailService implements Observer {

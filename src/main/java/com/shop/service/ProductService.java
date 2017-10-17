@@ -1,10 +1,10 @@
 package com.shop.service;
 
 import com.shop.model.*;
-import com.shop.model.productfactory.impl.Product;
-import com.shop.model.productfactory.impl.ProductCategory;
+import com.shop.model.factory.impl.Product;
+import com.shop.model.factory.impl.ProductCategory;
 import com.shop.repository.ProductRepository;
-import com.shop.repository.impl.HibernateProductRepositoryImpl;
+import com.shop.repository.impl.HibernateRepositoryImpl;
 import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
 
@@ -25,7 +25,7 @@ public class ProductService {
     public static ProductService productService() {
         if(productService != null)
             return productService;
-        productService = new ProductService(HibernateProductRepositoryImpl.aProductRepository());
+        productService = new ProductService(HibernateRepositoryImpl.aProductRepository());
         return productService;
     }
 
@@ -39,19 +39,19 @@ public class ProductService {
     public List<ProductDto> getAllProductsForCustomer() {
         //TODO ?? ok ? quck fix for home controller
         //TODO do obgadania
-        return productRepository.getAllProducts().stream().map(product -> ProductToProductDtoTransformer.transformToDto(product)).collect(Collectors.toList());
+        return productRepository.getAllProducts().stream().map(product -> ProductToProductDtoConverter.transformToDto(product)).collect(Collectors.toList());
     }
 
     public List<ProductDto> getProductBySearchCriteria(String searchCriteria) {
-        return productRepository.getProductsBySearchCritieria(searchCriteria).stream().map(product -> ProductToProductDtoTransformer.transformToDto(product)).collect(Collectors.toList());
+        return productRepository.getProductsBySearchCritieria(searchCriteria).stream().map(product -> ProductToProductDtoConverter.transformToDto(product)).collect(Collectors.toList());
     }
 
     public ProductDto getProductById(int id){
-        return ProductToProductDtoTransformer.transformToDto(productRepository.getProductById(id));
+        return ProductToProductDtoConverter.transformToDto(productRepository.getProductById(id));
     }
 
     public void persistProduct(ProductDto productDto){
-        Product product = ProductToProductDtoTransformer.transformToProduct(productDto);
+        Product product = ProductToProductDtoConverter.transformToProduct(productDto);
         productRepository.persistProduct(product);
     }
 
@@ -73,7 +73,7 @@ public class ProductService {
     }
 
     public BasketDto getBasketDto(HttpSession session){
-        return BasketToBasketDtoTransformer.transformToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
+        return BasketToBasketDtoConverter.transformToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
 
     public void deleteProductById(int id){
@@ -81,7 +81,7 @@ public class ProductService {
     }
 
     public void editProduct(ProductDto updatedProductDto){
-        Product updatedProduct = ProductToProductDtoTransformer.transformToProduct(updatedProductDto);
+        Product updatedProduct = ProductToProductDtoConverter.transformToProduct(updatedProductDto);
         productRepository.editProduct(updatedProduct);
     }
 
@@ -117,6 +117,6 @@ public class ProductService {
     public List<ProductDto> productListByCategory(String category) {
 
         ProductCategory productCategory = ProductCategory.valueOf(category.toUpperCase());
-        return productRepository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(p -> ProductToProductDtoTransformer.transformToDto(p)).collect(Collectors.toList());
+        return productRepository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(p -> ProductToProductDtoConverter.transformToDto(p)).collect(Collectors.toList());
     }
 }
