@@ -7,7 +7,7 @@ import com.shop.model.factory.impl.Unit;
 
 import java.util.Map;
 
-public class ProductToProductDtoConverter {
+public class ProductToProductDtoTransformer {
 
     public static ProductDto transformToDto(Product product) {
         ProductDto productDto = new ProductDto();
