@@ -1,8 +1,6 @@
 package com.shop.service;
 
 import com.shop.model.Basket;
-import com.shop.model.BasketDto;
-import com.shop.model.BasketToBasketDtoConverter;
 
 import javax.servlet.http.HttpSession;
 

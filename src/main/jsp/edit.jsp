@@ -3,10 +3,12 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 <jsp:include page="banner.jsp"></jsp:include>
+<script type="text/javascript" src="scripts/validate.js"></script>
 
 <div class="container-fliud  d-flex justify-content-center">
-    <form action="/edit" method="post" class="text-center">
-        <div class="form-group">
+    <form action="/edit" method="post" class="text-center" id="productform" novalidate>
+        <jsp:include page="productformcontent.jsp"/>
+        <%--<div class="form-group">
             <input type="hidden" name="id" value="${product.getId()}">
             <label for="name">New Name:</label>
             <input type="text" class="form-control" name="name" id="name" value="${product.name}">
@@ -68,7 +70,7 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-outline-success">Edit product</button>
-        </div>
+        </div>--%>
     </form>
 </div><br>
 <jsp:include page="footer.jsp"></jsp:include>

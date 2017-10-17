@@ -5,10 +5,10 @@
 <jsp:include page="banner.jsp"/>
 <div class="container-fluid bg-3 text-center">
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <jsp:include page="navBar.jsp"/>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-10">
         <c:if test="${viewedProductList.size() != 0}">
             <h5>Last Viewed Products</h5>
         </c:if>

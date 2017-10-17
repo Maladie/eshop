@@ -16,8 +16,10 @@ public class Product {
     private Money money;
     @Embedded
     private Weight weight;
+    @Enumerated(EnumType.STRING)
     private EnergyConsumptionClass EClass;
     private String description;
+    @Enumerated(EnumType.STRING)
     private ProductCategory category;
     private int productAmount;
 

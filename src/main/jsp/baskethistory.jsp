@@ -4,7 +4,7 @@
 
 <jsp:include page="header.jsp"></jsp:include>
 
-<div class="container-fluid bg-3 text-center">
+<div class="container-fluid bg-3 text-center" style="min-height: 50vh; margin-top: 20px">
 
     <h2>Submitted Baskets</h2>
 
@@ -34,10 +34,11 @@
     </c:forEach>
 
     <c:if test="${submittedBaskets == null}">
-        <br>
+        <div class="text-center" style="margin-top: 20px">
         <h4>You have not submitted any baskets yet!</h4>
         <br>
         <br>
+        </div>
     </c:if>
 </div>
 

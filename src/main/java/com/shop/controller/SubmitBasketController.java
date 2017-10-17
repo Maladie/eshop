@@ -2,11 +2,8 @@ package com.shop.controller;
 
 import com.shop.model.BasketDto;
 import com.shop.model.SubmittedBasketsList;
-import com.shop.repository.ProductRepository;
-import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
 
-import javax.jms.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 @WebServlet(name="SubmitBasket", value="/basketHistory")
 public class SubmitBasketController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         HttpSession currentSession = req.getSession();
         BasketDto basket = productService.getBasketDto(currentSession);
         SubmittedBasketsList submittedBasketsList = SubmittedBasketsList.getInstance();
@@ -34,7 +30,7 @@ public class SubmitBasketController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductService productService = ProductService.productService(ProductRepositoryImpl.aProductRepository());
+        ProductService productService = ProductService.productService();
         HttpSession currentSession = req.getSession();
         BasketDto basket = productService.getBasketDto(currentSession);
         SubmittedBasketsList submittedBasketsList = SubmittedBasketsList.getInstance();
@@ -44,6 +40,6 @@ public class SubmitBasketController extends HttpServlet{
         req.setAttribute("submittedBaskets", submittedBasketsList);
         dispatcher.forward(req, resp);
 
-        ProductService.productService(ProductRepositoryImpl.aProductRepository()).removeAllProductsFromBasket(req.getSession());
+        ProductService.productService().removeAllProductsFromBasket(req.getSession());
     }
 }

@@ -49,8 +49,8 @@
             <a class="nav-link active bg-dark" href="#" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ovens</a>
             <div class="collapse" id="collapseExample">
 
-                    <a class="nav-link active bg-dark" href="#">Ovens</a>
-                    <a class="nav-link active bg-dark" href="#">Microvawe ovens</a>
+                    <a class="nav-link active bg-dark" href="/category?category=OVEN">Ovens</a>
+                    <a class="nav-link active bg-dark" href="/category?category=MICROWAVE_OVEN">Microvawe ovens</a>
 
             </div>
         </li>

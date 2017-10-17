@@ -1,8 +1,6 @@
 package com.shop.model;
 
-import com.shop.repository.impl.ProductRepositoryImpl;
 import com.shop.service.ProductService;
-import com.shop.service.SessionShoppingBasketHandler;
 
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;

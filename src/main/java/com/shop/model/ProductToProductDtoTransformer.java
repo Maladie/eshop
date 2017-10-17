@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class ProductToProductDtoConverter {
 
-    public static ProductDto convertToDto(Product product) {
+    public static ProductDto transformToDto(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
         productDto.setName(product.getName());
@@ -28,7 +28,7 @@ public class ProductToProductDtoConverter {
         return productDto;
     }
 
-    public static Product convertToProduct(ProductDto productDto){
+    public static Product transformToProduct(ProductDto productDto){
         Product product = new Product();
         product.setId(productDto.getId());
         product.setName(productDto.getName());
