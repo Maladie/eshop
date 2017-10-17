@@ -5,21 +5,22 @@
 
 <div class="container-fluid bg-3 text-center">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <jsp:include page="navBar.jsp"></jsp:include>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
     <nav class="nav nav-pills flex-column flex-sm-row">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=plh">Price: Low to High</a>
-            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=phl">Price: High to Low</a>
-            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=alp">Name Alphabetically</a>
+            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=plh">Price: Low to High</a>
+            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=phl">Price: High to Low</a>
+            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=alp">Name Alphabetically</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=id">Newest</a>
+            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=id">Newest</a>
         </div>
         <form class="form-inline my-2 my-lg-0" action="/filter" method="get">
             <input class="form-control mr-sm-2" name="searchParam" type="hidden" value="${searchParam}" >
+            <input class="form-control mr-sm-2" name="category" type="hidden" value="${category}" >
             <input class="form-control mr-sm-2" name="filterParam" type="number" placeholder="Maximum Price"
                    aria-label="Search">
             <input class="form-control mr-sm-2" name="sortType" type="hidden" value="${sortType}" >
@@ -27,7 +28,7 @@
         </form>
     </nav>
             <br><br>
-            <div>
+            <div class="row" style="min-height: 70vh;">
                 <c:choose>
                     <c:when test="${productList.size() > 0}">
                         <c:forEach items="${productList}" var="product">
@@ -49,33 +50,13 @@
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
+                        <div class="text-center">
                         <h2>Niestety nie posiadamy takiego produktu :(</h2>
+                        </div>
                     </c:otherwise>
                 </c:choose>
             </div>
         </div>
     </div>
 </div>
-
-<div class="container-fluid bg-3 text-center">
-    <div class="row">
-    <c:choose>
-    <c:when test="${productList.size() > 0}">
-    <c:forEach items="${productList}" var="product">
-        <div class="col-sm-3 p-5">
-            <a href="/productDescription?product=${product.id}" class="productLink">
-                <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"  class="img-responsive" alt="Image">
-                <p>${product.name}</p>
-                <p>${product.weightValue} ${product.currency}</p>
-            </a>
-            <p><button type="button" class="btn btn-outline-success">Add to cart</button></p>
-        </div>
-    </c:forEach>
-    </c:when>
-    <c:otherwise>
-        <h2>Niestety nie posiadamy takiego produktu :(</h2>
-    </c:otherwise>
-    </c:choose>
-    </div>
-</div><br>
 <jsp:include page="footer.jsp"></jsp:include>

@@ -3,8 +3,8 @@
 <%@include file="header.jsp" %>
 <script type="text/javascript" src="scripts/validate.js"></script>
 
-<div class="container-fliud  d-flex justify-content-center">
-    <form action="/persistProduct" method="post" class="text-center" id="productform" novalidate>
+<div class="container  justify-content-center" style="margin-top: 100px; margin-bottom: 150px">
+    <form action="/persistProduct" method="post" id="productform" novalidate>
     <jsp:include page="productformcontent.jsp"/>
     </form>
 </div><br>

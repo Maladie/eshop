@@ -11,19 +11,22 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="webpros-dev_java2kat"/>
             <property name="javax.persistence.jdbc.password" value="Java2Kat"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql.webpros-dev.nazwa.pl:3306/webpros-dev_java2kat?useSSL=false"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://sql.webpros-dev.nazwa.pl:3306/webpros-dev_java2kat?useSSL=false"/>
             <property name="hibernate.dialect.storage_engine" value="innodb"/>
             <property name="hibernate.max_fetch_depth" value="3"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
 
-            <!-- cache configuration -->
-            <!--<property name="hibernate.ejb.classcache.org.hibernate.ejb.test.Item" value="read-write"/>-->
-            <!--<property name="hibernate.ejb.collectioncache.org.hibernate.ejb.test.Item.distributors" value="read-write, RegionName"/>-->
-
-            <!-- alternatively to <class> and <property> declarations, you can use a regular hibernate.cfg.xml file -->
-            <!-- property name="hibernate.ejb.cfgfile" value="/org/hibernate/ejb/test/hibernate.cfg.xml"/ -->
+            <property name="hibernate.c3p0.acquire_increment" value="1"/>
+            <property name="hibernate.c3p0.idle_test_period" value="60"/><!-- seconds -->
+            <property name="hibernate.c3p0.min_size" value="3"/>
+            <property name="hibernate.c3p0.max_size" value="20"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.timeout" value="0"/> <!-- seconds -->
+            <property name="hibernate.c3p0.acquireRetryAttempts" value="3"/>
+            <property name="hibernate.c3p0.acquireRetryDelay" value="250"/>
         </properties>
     </persistence-unit>
 </persistence>
