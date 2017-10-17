@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
 public interface ProductFactory {
+
     Product getProductUpdateTemplate(HttpServletRequest request);
 
     Product newProduct(HttpServletRequest request);
