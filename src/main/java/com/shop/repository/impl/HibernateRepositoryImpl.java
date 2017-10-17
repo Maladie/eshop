@@ -1,6 +1,7 @@
 package com.shop.repository.impl;
 
 import com.shop.model.factory.impl.Product;
+import com.shop.model.factory.impl.ProductCategory;
 import com.shop.repository.HibernateUtils;
 import com.shop.repository.ProductRepository;
 
@@ -34,7 +35,12 @@ public class HibernateRepositoryImpl implements ProductRepository {
 
     @Override
     public List<Product> getProductsBySearchCritieria(String searchCriteria) {
-        return entityManager.createQuery("SELECT p from Product p WHERE p.name LIKE :search", Product.class).setParameter("search", searchCriteria).getResultList();
+        return entityManager.createQuery("SELECT p from Product p WHERE p.name LIKE :search", Product.class).setParameter("search", searchCriteria +"%").getResultList();
+    }
+
+    @Override
+    public List<Product> getProductsByCategory(ProductCategory category) {
+        return entityManager.createQuery("select p from Product p where p.category = :cat", Product.class).setParameter("cat", category).getResultList();
     }
 
     @Override

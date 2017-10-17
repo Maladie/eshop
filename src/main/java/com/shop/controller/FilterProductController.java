@@ -17,16 +17,21 @@ public class FilterProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String searchCriteria = request.getParameter("searchParam");
+        String searchParam = request.getParameter("searchParam");
+        String category = request.getParameter("category");
         String filterCriteria = request.getParameter("filterParam");
         String sortCriteria = request.getParameter("sortType");
-        List<ProductDto> productList = ProductService.productService().getProductBySearchCriteria(searchCriteria);
+
+        List<ProductDto> productList = ProductService.productService().getProductBySearchCriteria(searchParam);
+        //filter products with category value if set to any
+        productList =  ProductService.productService().filterProductsByCategory(productList, category);
         List<ProductDto> filteredList = ProductService.productService().filterProductListByPrice(productList, filterCriteria);
         if(sortCriteria != null){
             filteredList = ProductService.productService().sortProducts(filteredList, sortCriteria);
         }
+        request.setAttribute("searchParam", searchParam);
         request.setAttribute("productList", filteredList);
-        request.setAttribute("searchParam", searchCriteria);
+        request.setAttribute("category", category);
         request.setAttribute("filterParam", filterCriteria);
         request.setAttribute("sortType", sortCriteria);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchResult.jsp");

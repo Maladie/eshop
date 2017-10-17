@@ -17,12 +17,22 @@ public class FullProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        int id = Integer.parseInt(httpServletRequest.getParameter("product"));
+        Integer id = Integer.parseInt(httpServletRequest.getParameter("product"));
         ProductDto product = ProductService.productService().getProductById(id);
 
         //viewed products log to view
         ViewedProductsList viewedProductsList = SessionLastProductViewedHandler.retrieveViewedProductList(httpServletRequest.getSession());
-        viewedProductsList.addToViewedList(product);
+        if(product !=null) {
+            //add to viewed products
+            viewedProductsList.addToViewedList(product);
+            //set product attribute
+            httpServletRequest.setAttribute("product", product);
+        } else {
+            //remove from viewed list
+            viewedProductsList.removeFromViewedList(id);
+            //set error attribute
+            httpServletRequest.setAttribute("productremovederror","Product not exist");
+        }
 
         httpServletRequest.setAttribute("product", product);
         httpServletRequest.getRequestDispatcher("productDescription.jsp").forward(httpServletRequest, httpServletResponse);

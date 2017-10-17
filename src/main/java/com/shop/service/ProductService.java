@@ -24,7 +24,7 @@ public class ProductService {
     private ProductRepository repository;
 
     public static ProductService productService() {
-        if(productService != null)
+        if (productService != null)
             return productService;
         productService = new ProductService(HibernateRepositoryImpl.aProductRepository());
         return productService;
@@ -47,50 +47,58 @@ public class ProductService {
         return repository.getProductsBySearchCritieria(searchCriteria).stream().map(product -> ProductToProductDtoConverter.convertToDto(product)).collect(Collectors.toList());
     }
 
-    public ProductDto getProductById(int id){
+    public ProductDto getProductById(int id) {
+        Product product = repository.getProductById(id);
+        if (product == null) {
+            return null;
+        }
         return ProductToProductDtoConverter.convertToDto(repository.getProductById(id));
     }
 
-    public void persistProduct(ProductDto productDto){
+    public void persistProduct(ProductDto productDto) {
         Product product = ProductToProductDtoConverter.convertToProduct(productDto);
         repository.persistProduct(product);
     }
 
-    public void addProductToBasket(HttpSession session, int productId){
+    public void addProductToBasket(HttpSession session, int productId) {
         Product product = repository.getProductById(productId);
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
         basket.addToBasket(product);
     }
 
-    public void removeProductFromBasket(HttpSession session, int productId){
+    public void removeProductFromBasket(HttpSession session, int productId) {
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
         Product product = repository.getProductById(productId);
         basket.removeFromBasket(product);
     }
 
-    public void removeAllProductsFromBasket(HttpSession session){
+    public void removeAllProductsFromBasket(HttpSession session) {
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
         basket.voidBasket();
     }
 
-    public BasketDto getBasketDto(HttpSession session){
+    public BasketDto getBasketDto(HttpSession session) {
         return BasketToBasketDtoConverter.convertToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
 
-    public void deleteProductById(int id){
+    public void deleteProductById(int id) {
         repository.deleteProductByID(id);
     }
 
-    public void editProduct(ProductDto updatedProductDto){
+    public void editProduct(ProductDto updatedProductDto) {
         Product updatedProduct = ProductToProductDtoConverter.convertToProduct(updatedProductDto);
         repository.editProduct(updatedProduct);
     }
 
     public List<ProductDto> filterProductListByPrice(List<ProductDto> productList, String filterCriteria) {
         try {
-            BigDecimal maxPrice = BigDecimal.valueOf((Long.parseLong(filterCriteria)));
+            if (filterCriteria.equals("")) {
+                //TODO temp fix if filter has no value
+                filterCriteria = BigDecimal.valueOf(Long.MAX_VALUE).toString();
+            }
+            BigDecimal maxPrice = new BigDecimal(filterCriteria);
             productList = productList.stream().filter(product -> product.getValue().compareTo(maxPrice) <= 0).collect(Collectors.toList());
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
         return productList;
@@ -98,7 +106,7 @@ public class ProductService {
 
     public List<ProductDto> sortProducts(List<ProductDto> filteredList, String sortCriteria) {
         List<ProductDto> sortedList = filteredList;
-        switch(sortCriteria){
+        switch (sortCriteria) {
             case "plh":
                 sortedList = sortedList.stream().sorted((o1, o2) -> o1.getValue().compareTo(o2.getValue())).collect(Collectors.toList());
                 return sortedList;
@@ -111,13 +119,21 @@ public class ProductService {
             case "id":
                 sortedList = sortedList.stream().sorted((o1, o2) -> o2.getId() - o1.getId()).collect(Collectors.toList());
                 return sortedList;
-            default: return sortedList;
+            default:
+                return sortedList;
         }
+    }
+
+    public List<ProductDto> filterProductsByCategory(List<ProductDto> productDtoList, String category) {
+        if(!category.equals("")){
+            productDtoList.removeIf(productDto -> productDto.getParametersMap().get("category") != ProductCategory.valueOf(category));
+        }
+        return productDtoList;
     }
 
     public List<ProductDto> productListByCategory(String category) {
 
         ProductCategory productCategory = ProductCategory.valueOf(category.toUpperCase());
-        return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(p ->ProductToProductDtoConverter.convertToDto(p)).collect(Collectors.toList());
+        return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(p -> ProductToProductDtoConverter.convertToDto(p)).collect(Collectors.toList());
     }
 }

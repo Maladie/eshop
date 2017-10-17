@@ -3,7 +3,7 @@
 <%@include file="header.jsp" %>
 <script type="text/javascript" src="scripts/validate.js"></script>
 
-<div class="container  justify-content-center">
+<div class="container  justify-content-center" style="margin-top: 100px; margin-bottom: 150px">
     <form action="/persistProduct" method="post" id="productform" novalidate>
     <jsp:include page="productformcontent.jsp"/>
     </form>

@@ -5,21 +5,22 @@
 
 <div class="container-fluid bg-3 text-center">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <jsp:include page="navBar.jsp"></jsp:include>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
     <nav class="nav nav-pills flex-column flex-sm-row">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=plh">Price: Low to High</a>
-            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=phl">Price: High to Low</a>
-            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=alp">Name Alphabetically</a>
+            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=plh">Price: Low to High</a>
+            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=phl">Price: High to Low</a>
+            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=alp">Name Alphabetically</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&filterParam=${filterParam}&sortType=id">Newest</a>
+            <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=id">Newest</a>
         </div>
         <form class="form-inline my-2 my-lg-0" action="/filter" method="get">
             <input class="form-control mr-sm-2" name="searchParam" type="hidden" value="${searchParam}" >
+            <input class="form-control mr-sm-2" name="category" type="hidden" value="${category}" >
             <input class="form-control mr-sm-2" name="filterParam" type="number" placeholder="Maximum Price"
                    aria-label="Search">
             <input class="form-control mr-sm-2" name="sortType" type="hidden" value="${sortType}" >
