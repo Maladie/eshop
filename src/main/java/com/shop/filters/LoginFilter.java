@@ -39,7 +39,7 @@ public class LoginFilter implements Filter {
 
     //basic validation of pages that do not require authentication
     private boolean doesThisURLNeedsLogin(String url) {
-        String[] URLsThatDoesntRequireLogin = { "/login", "/" };
+        String[] URLsThatDoesntRequireLogin = { "/login", "/", "/register" };
 
         for(String validUrl : URLsThatDoesntRequireLogin) {
             if (url.endsWith(validUrl)) {

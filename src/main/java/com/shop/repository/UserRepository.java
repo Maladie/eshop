@@ -8,5 +8,5 @@ public interface UserRepository {
 
     void persistUser(UserDto userDto);
 
-    UserDto getUserByLoginAndPassword(String login, String password);
+    boolean checkIfCredentialsAreCorrect(String login, String password);
 }

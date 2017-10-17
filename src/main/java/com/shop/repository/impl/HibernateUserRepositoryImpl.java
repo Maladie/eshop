@@ -44,12 +44,12 @@ public class HibernateUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public UserDto getUserByLoginAndPassword(String login, String password) {
-        User user = entityManager.createQuery("SELECT u from User u WHERE u.username = :login AND u.password = :password", User.class)
-                .setParameter("login", login).setParameter("password", password).getSingleResult();
-        if(user == null){
-            throw new NoSuchElementException("No user found for given password / username");
+    public boolean checkIfCredentialsAreCorrect(String login, String password) {
+        List<User> userList = entityManager.createQuery("SELECT u from User u WHERE u.username = :login AND u.password = :password", User.class)
+                .setParameter("login", login).setParameter("password", password).getResultList();
+        if(userList.isEmpty()){
+            return false;
         }
-        return UserToUserDtoTransfomer.transformToUserDto(user);
+        return true;
     }
 }
