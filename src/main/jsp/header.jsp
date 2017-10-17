@@ -61,6 +61,9 @@
             </div>
             <ul></ul>
             <div class="nav navbar-nav navbar-right">
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/register">Register</a>
+            </div>
+            <div class="nav navbar-nav navbar-right">
                 <a class="btn btn-outline-success my-2 my-sm-0" href="/login">Log-in</a>
             </div>
         </div>
