@@ -1,12 +1,18 @@
 package com.shop.model;
 
 import com.shop.model.factory.impl.Product;
+import com.shop.model.userfactory.impl.User;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 public class Basket {
+
+    private int id;
+
+    private int userId;
 
     private Set<ProductItem> productItemList;
 
@@ -45,9 +51,9 @@ public class Basket {
 
     public Integer getProductItemQuantity(int productId){
         Optional<Integer> optionalAmount = productItemList.stream()
-                .filter(p -> p.getProduct().getId() == productId).map(p -> p.getQuantity()).findFirst();
+                .filter(p -> p.getProduct().getId() == productId).map(ProductItem::getQuantity).findFirst();
 
-            return optionalAmount.isPresent() ? optionalAmount.get() : 0;
+            return optionalAmount.orElse(0);
     }
 
     Set<ProductItem> productItemList(){
@@ -60,5 +66,9 @@ public class Basket {
             productsAmount += p.getQuantity();
         }
         return productsAmount;
+    }
+
+    public void setUserId(int userId){
+        this.userId = userId;
     }
 }

@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.model.ProductDto;
+import com.shop.service.ProductListOperationsService;
 import com.shop.service.ProductService;
 import com.shop.service.SessionLastProductViewedHandler;
 
@@ -19,7 +20,7 @@ public class HomeController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductService productService = ProductService.productService();
+        ProductListOperationsService productService = ProductListOperationsService.productService();
         List<ProductDto> productList = productService.getAllProductsForCustomer();
         request.setAttribute("productList", productList);
 

@@ -1,9 +1,12 @@
 package com.shop.model.userfactory.impl;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.shop.model.Basket;
+import com.shop.model.BasketDto;
+import com.shop.model.BasketToBasketDtoTransformer;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -19,7 +22,6 @@ public class User {
     private String password;
 
     private boolean admin;
-
 
     public User() {
     }
@@ -71,4 +73,5 @@ public class User {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
 }

@@ -2,6 +2,7 @@ package com.shop.controller;
 
 import com.shop.model.BasketDto;
 import com.shop.model.SubmittedBasketsList;
+import com.shop.service.BasketService;
 import com.shop.service.ProductService;
 
 import javax.servlet.RequestDispatcher;
@@ -19,8 +20,7 @@ public class SubmitBasketController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductService productService = ProductService.productService();
-        HttpSession currentSession = req.getSession();
-        BasketDto basket = productService.getBasketDto(currentSession);
+        BasketDto basketDto = BasketService.basketService().getBasketDto(req.getSession());
         SubmittedBasketsList submittedBasketsList = SubmittedBasketsList.getInstance();
         RequestDispatcher dispatcher = req.getRequestDispatcher("baskethistory.jsp");
         req.setAttribute("submittedBaskets", submittedBasketsList);
@@ -31,15 +31,14 @@ public class SubmitBasketController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductService productService = ProductService.productService();
-        HttpSession currentSession = req.getSession();
-        BasketDto basket = productService.getBasketDto(currentSession);
+        BasketDto basketDto = BasketService.basketService().getBasketDto(req.getSession());
         SubmittedBasketsList submittedBasketsList = SubmittedBasketsList.getInstance();
-        submittedBasketsList.addToSubmittedBaskets(basket);
+        submittedBasketsList.addToSubmittedBaskets(basketDto);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("baskethistory.jsp");
         req.setAttribute("submittedBaskets", submittedBasketsList);
         dispatcher.forward(req, resp);
 
-        ProductService.productService().removeAllProductsFromBasket(req.getSession());
+        BasketService.basketService().removeAllProductsFromBasket(req.getSession());
     }
 }

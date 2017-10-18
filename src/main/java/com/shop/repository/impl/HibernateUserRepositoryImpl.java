@@ -30,13 +30,12 @@ public class HibernateUserRepositoryImpl implements UserRepository {
 
 
     @Override
-    public UserDto getUserById(int id) {
-        return null;
+    public User getUserById(int id) {
+        return entityManager.createQuery("SELECT u from User u WHERE u.id = :id", User.class).setParameter("id", id).getSingleResult();
     }
 
     @Override
-    public void persistUser(UserDto userDto) {
-        User user = UserToUserDtoTransfomer.transformToUserDto(userDto);
+    public void persistUser(User user) {
         userList.add(user);
         entityManager.getTransaction().begin();
         entityManager.persist(user);
@@ -47,9 +46,6 @@ public class HibernateUserRepositoryImpl implements UserRepository {
     public boolean checkIfCredentialsAreCorrect(String login, String password) {
         List<User> userList = entityManager.createQuery("SELECT u from User u WHERE u.username = :login AND u.password = :password", User.class)
                 .setParameter("login", login).setParameter("password", password).getResultList();
-        if(userList.isEmpty()){
-            return false;
-        }
-        return true;
+        return !userList.isEmpty();
     }
 }

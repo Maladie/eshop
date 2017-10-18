@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.model.ProductDto;
+import com.shop.service.ProductListOperationsService;
 import com.shop.service.ProductService;
 
 import javax.servlet.RequestDispatcher;
@@ -18,7 +19,7 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String searchCriteria = httpServletRequest.getParameter("searchParam");
-        ProductService productService = ProductService.productService();
+        ProductListOperationsService productService = ProductListOperationsService.productService();
         List<ProductDto> productList = productService.getProductBySearchCriteria(searchCriteria);
         httpServletRequest.setAttribute("productList", productList);
         httpServletRequest.setAttribute("searchParam", searchCriteria);

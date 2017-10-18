@@ -10,6 +10,4 @@ public interface ProductFactory {
     Product getProductUpdateTemplate(HttpServletRequest request);
 
     Product newProduct(HttpServletRequest request);
-
-    Product newProduct(String description, BigDecimal value, String currency, String fullDescription);
 }

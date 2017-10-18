@@ -1,12 +1,12 @@
 package com.shop.repository;
 
-import com.shop.model.UserDto;
+import com.shop.model.userfactory.impl.User;
 
 public interface UserRepository {
 
-    UserDto getUserById(int id);
+    User getUserById(int id);
 
-    void persistUser(UserDto userDto);
+    void persistUser(User userDto);
 
     boolean checkIfCredentialsAreCorrect(String login, String password);
 }
