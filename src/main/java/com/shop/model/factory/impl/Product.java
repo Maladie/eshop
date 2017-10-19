@@ -24,8 +24,6 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
     private int productAmount;
-    @OneToOne(mappedBy = "product")
-    private ProductItem productItem;
 
     public int getProductAmount() {
         return productAmount;
