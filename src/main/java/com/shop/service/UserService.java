@@ -26,10 +26,4 @@ public class UserService {
     private UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    public void registerNewUser(HttpServletRequest request){
-        UserDtoFactory userDtoFactory = new UserDtoFactoryImpl();
-        UserDto userDto = userDtoFactory.newUser(request);
-        HibernateUserRepositoryImpl.aUserRepository().persistUser(userDto);
-    }
 }
