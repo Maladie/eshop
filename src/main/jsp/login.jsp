@@ -2,7 +2,7 @@
 <jsp:include page="header.jsp"/>
 
 <div class="container-fluid bg-3">
-    <div class="mx-auto pt-5" style="width: 200px;">
+    <div class="mx-auto pt-5" style="width: 300px;">
 
     <form id="loginform" action="/login" method="post">
         <div class="form-group">
@@ -14,7 +14,7 @@
             <input class="form-control" type="password" name="password" id="password" required>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-dark">Login</button>
+            <button type="submit" class="btn btn-dark btn-block">Login</button>
         </div>
     </form>
     </div>

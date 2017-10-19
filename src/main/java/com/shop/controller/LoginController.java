@@ -1,6 +1,8 @@
 package com.shop.controller;
 
 
+import com.shop.service.LoginUserService;
+import com.shop.service.utils.LoginResult;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -17,8 +19,13 @@ public class LoginController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.getRequestDispatcher("login.jsp").forward(request,response);
+        String logout = request.getParameter("logout");
+        if(logout != null &&logout.equals("true")){
+            request.getSession().setAttribute("userName", null);
+            request.getRequestDispatcher("logout.jsp").forward(request,response);
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 
 
@@ -26,16 +33,14 @@ public class LoginController extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-
-        logger.warn("Log attemt: user[" + username + "], password [" + password + "]");
-
-        if(username.equals("root") && password.equals("root")){
-            System.out.println("root zalogowany");
-            req.getSession().setAttribute("userName","root");
-            res.sendRedirect("/");
+        LoginResult loginResult = LoginUserService.loginService().loginUser(username, password);
+        logger.warn("Log attempt: user[" + username + "], password [" + password + "]. Result: "+loginResult);
+        if(loginResult.equals(LoginResult.ALL_OK)){
+            req.getSession().setAttribute("userName",username);
         } else {
-            System.out.println("zly login");
-            res.sendRedirect("/login");
+            String message = loginResult.equals(LoginResult.INVALID_LOGIN) ? "Niepoprawny login" : "Niepoprawne hasło";
+            req.setAttribute("errorMsg", message);
         }
+        res.sendRedirect("/");
     }
 }

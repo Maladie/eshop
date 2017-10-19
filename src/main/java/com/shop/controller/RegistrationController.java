@@ -1,6 +1,6 @@
 package com.shop.controller;
 
-import com.shop.service.UserService;
+import com.shop.service.RegisterUserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +19,7 @@ public class RegistrationController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserService.userService().registerNewUser(request);
+        RegisterUserService.userService().registerUser(request);
         response.sendRedirect("/home");
     }
 }
