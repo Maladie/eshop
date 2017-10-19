@@ -34,7 +34,7 @@ public class SubmitBasketController extends HttpServlet{
         HttpSession session = req.getSession();
         BasketService.basketService().submitBasket(session);
         List<BasketDto> submittedBasketsList = BasketService.basketService().getSubmitedBasketsHistory(session);
-
+        ProductService.productService().decreaseQuantityOfSoldProducts(session);
         RequestDispatcher dispatcher = req.getRequestDispatcher("baskethistory.jsp");
         req.setAttribute("submittedBaskets", submittedBasketsList);
         dispatcher.forward(req, resp);

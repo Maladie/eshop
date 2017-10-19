@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import com.shop.model.Basket;
+import com.shop.model.ProductItem;
 import com.shop.model.factory.ProductFactory;
 import com.shop.model.factory.impl.Product;
 import com.shop.model.factory.impl.ProductFactoryImpl;
@@ -9,6 +11,7 @@ import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,5 +51,24 @@ public class ProductService {
         ProductFactory productFactory = new ProductFactoryImpl();
         Product updatedProduct = productFactory.getProductUpdateTemplate(request);
         repository.editProduct(updatedProduct);
+    }
+
+    public void decreaseQuantityOfSoldProducts(HttpSession session) {
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
+        basket.productItemList().stream().forEach(productItem -> {
+            Product product = productItem.getProduct();
+            int newProductAmount = calculateNewProductAmount(productItem);
+            product.setProductAmount(newProductAmount);
+            repository.editProduct(product);
+        });
+    }
+
+    private int calculateNewProductAmount(ProductItem productItem){
+        Product product = productItem.getProduct();
+        int newProductAmount = product.getProductAmount() - productItem.getQuantity();
+        if(newProductAmount < 0){
+            newProductAmount = 0;
+        }
+        return newProductAmount;
     }
 }
