@@ -1,8 +1,6 @@
 package com.shop.controller;
 
-import com.shop.model.Basket;
 import com.shop.model.BasketDto;
-import com.shop.model.SubmittedBasketsList;
 import com.shop.service.BasketService;
 import com.shop.service.ProductService;
 
