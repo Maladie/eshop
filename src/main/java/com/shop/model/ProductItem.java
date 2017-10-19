@@ -5,17 +5,26 @@ import com.shop.model.factory.impl.Product;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-class ProductItem {
+@Entity
+public class ProductItem {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @OneToOne
     private Product product;
     private int quantity;
 
+    @ManyToOne(fetch = FetchType.EAGER)
     private Basket basket;
 
     public ProductItem(Product product) {
         this.product = product;
         this.quantity = new Integer(1);
+    }
+
+    public ProductItem() {
     }
 
     public Product getProduct() {

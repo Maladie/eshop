@@ -52,5 +52,9 @@ public class BasketService {
         return BasketToBasketDtoTransformer.transformToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
 
+    public void submitBasket(int id, Basket basket){
+        basketRepository.submitBasket(id, basket);
+    }
+
 
 }

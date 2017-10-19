@@ -8,12 +8,14 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Entity
 public class Basket {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private int userId;
 
+    @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL)
     private Set<ProductItem> productItemList;
 
     public Basket() {
@@ -28,6 +30,7 @@ public class Basket {
             productItem.incrementQuantify();
         }else{
             ProductItem newProductItem = new ProductItem(product);
+            newProductItem.setBasket(this);
             productItemList.add(newProductItem);
         }
     }

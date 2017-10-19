@@ -1,5 +1,7 @@
 package com.shop.model.factory.impl;
 
+import com.shop.model.ProductItem;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -22,6 +24,8 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
     private int productAmount;
+    @OneToOne(mappedBy = "product")
+    private ProductItem productItem;
 
     public int getProductAmount() {
         return productAmount;
