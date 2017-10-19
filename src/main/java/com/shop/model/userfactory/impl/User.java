@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class User {
@@ -12,11 +13,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private UUID userId;
     private String name;
     private String surname;
 
     private String username;
     private String password;
+    private String salt;
 
     private boolean admin;
 
@@ -26,6 +29,14 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public UUID getUserId() {
+        return userId;
     }
 
     public void setId(int id) {
@@ -70,5 +81,13 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 }
