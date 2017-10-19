@@ -13,7 +13,7 @@ public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int userId;
+    private String username;
 
     @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL)
     private Set<ProductItem> productItemList;
@@ -59,7 +59,7 @@ public class Basket {
             return optionalAmount.orElse(0);
     }
 
-    Set<ProductItem> productItemList(){
+    public Set<ProductItem> productItemList(){
         return productItemList;
     }
 
@@ -71,7 +71,11 @@ public class Basket {
         return productsAmount;
     }
 
-    public void setUserId(int userId){
-        this.userId = userId;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

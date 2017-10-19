@@ -51,4 +51,14 @@ public class ProductItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "ProductItem{" +
+                "id=" + id +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", basket=" + basket +
+                '}';
+    }
 }
