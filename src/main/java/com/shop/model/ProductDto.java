@@ -1,5 +1,8 @@
 package com.shop.model;
 
+import com.shop.model.factory.impl.Product;
+import org.apache.commons.lang3.mutable.MutableInt;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +30,16 @@ public class ProductDto {
         this.value = productItem.value();
         this.quantity = productItem.getQuantity();
         this.productAmount = productItem.getProduct().getProductAmount();
+    }
+
+    public ProductDto(Map<Product, MutableInt> productItem) {
+        Product product = (Product) productItem.keySet().toArray()[0];
+        this.id = product.getId();
+        this.name = product.getName();
+        this.currency = product.getCurrency();
+        this.value = Basket.value(productItem);
+        this.quantity = productItem.get(product).getValue();
+        this.productAmount = product.getProductAmount();
     }
 
     public ProductDto() {

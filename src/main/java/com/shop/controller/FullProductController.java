@@ -19,7 +19,7 @@ public class FullProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         Integer id = Integer.parseInt(httpServletRequest.getParameter("product"));
-        ProductDto product = ProductListOperationsService.productService().getProductById(id);
+        ProductDto product = ProductListOperationsService.productService().getProductDtoById(id);
 
         //viewed products log to view
         ViewedProductsList viewedProductsList = SessionLastProductViewedHandler.retrieveViewedProductList(httpServletRequest.getSession());

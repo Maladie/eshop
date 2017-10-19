@@ -18,7 +18,7 @@ public class DeleteProductController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        ProductDto product = ProductListOperationsService.productService().getProductById(id);
+        ProductDto product = ProductListOperationsService.productService().getProductDtoById(id);
         request.setAttribute("product", product);
         request.getRequestDispatcher("delete.jsp").forward(request, response);
     }

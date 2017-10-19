@@ -20,7 +20,7 @@ public class EditProductController extends HttpServlet {
         Integer id = Integer.parseInt(request.getParameter("id"));
         ProductDto product = ProductListOperationsService
                 .productService()
-                .getProductById(id);
+                .getProductDtoById(id);
         request.setAttribute("id", id);
         request.setAttribute("product", product);
         request.getRequestDispatcher("edit.jsp").forward(request, response);
