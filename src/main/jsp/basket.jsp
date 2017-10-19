@@ -3,7 +3,11 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div style="min-height: 100vh">
     <div class="container-fluid bg-3 text-center" style="min-height: 40vh; margin-top: 30px;">
-        <h2>Your shopping cart</h2>
+
+        <div class="mx-auto pt-5 text-center" style="width: 400px;">
+            <h2>Your shopping cart</h2>
+            <a href="/basketHistory" class="btn btn-outline-success btn-block">Check your previous purchases</a>
+        </div>
         <div class="row">
             <c:forEach items="${basket.getProductDtoList()}" var="product">
                 <div class="col-sm-2 p-3">
