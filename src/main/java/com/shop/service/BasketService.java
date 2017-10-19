@@ -32,14 +32,14 @@ public class BasketService {
     }
 
     public void addProductToBasket(HttpSession session, int productId) {
-        Product product = ProductToProductDtoTransformer.transformToProduct(productService.getProductById(productId));
+        Product product = productService.getProductById(productId);
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
         basket.addToBasket(product);
     }
 
     public void removeProductFromBasket(HttpSession session, int productId) {
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
-        Product product = ProductToProductDtoTransformer.transformToProduct(productService.getProductById(productId));
+        Product product = productService.getProductById(productId);
         basket.removeFromBasket(product);
     }
 

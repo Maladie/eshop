@@ -8,7 +8,6 @@ import com.shop.repository.ProductRepository;
 import com.shop.repository.impl.HibernateProductRepositoryImpl;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,19 +31,23 @@ public class ProductListOperationsService {
     public List<ProductDto> getAllProductsForCustomer() {
         //TODO ?? ok ? quck fix for home controller
         //TODO do obgadania
-        return repository.getAllProducts().stream().map(ProductToProductDtoTransformer::transformToDto).collect(Collectors.toList());
+        return repository.getAllProducts().stream().map(ProductToProductDtoTransformer::transform).collect(Collectors.toList());
     }
 
     public List<ProductDto> getProductBySearchCriteria(String searchCriteria) {
-        return repository.getProductsBySearchCritieria(searchCriteria).stream().map(ProductToProductDtoTransformer::transformToDto).collect(Collectors.toList());
+        return repository.getProductsBySearchCritieria(searchCriteria).stream().map(ProductToProductDtoTransformer::transform).collect(Collectors.toList());
     }
 
-    public ProductDto getProductById(int id) {
+    public Product getProductById(int id) {
         Product product = repository.getProductById(id);
         if (product == null) {
             return null;
         }
-        return ProductToProductDtoTransformer.transformToDto(repository.getProductById(id));
+        return product;
+    }
+
+    public ProductDto getProductDtoById (int id) {
+        return ProductToProductDtoTransformer.transform(getProductById(id));
     }
 
     public List<ProductDto> filterProductListByPrice(List<ProductDto> productList, String filterCriteria) {
@@ -91,6 +94,6 @@ public class ProductListOperationsService {
     public List<ProductDto> productListByCategory(String category) {
 
         ProductCategory productCategory = ProductCategory.valueOf(category.toUpperCase());
-        return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(ProductToProductDtoTransformer::transformToDto).collect(Collectors.toList());
+        return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(ProductToProductDtoTransformer::transform).collect(Collectors.toList());
     }
 }

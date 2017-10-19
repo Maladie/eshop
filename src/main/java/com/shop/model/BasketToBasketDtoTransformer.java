@@ -14,15 +14,4 @@ public class BasketToBasketDtoTransformer {
         });
         return basketDto;
     }
-
-    public static Basket transformToBasket(BasketDto basketDto){
-        Basket basket = new Basket();
-        basketDto.getProductDtoList().forEach(productDto -> {
-           Product product = ProductToProductDtoTransformer.transformToProduct(productDto);
-            ProductItem productItem = new ProductItem(product);
-            productItem.setQuantity(productDto.getQuantity());
-            basket.productItemList().add(productItem);
-        });
-        return basket;
-    }
 }
