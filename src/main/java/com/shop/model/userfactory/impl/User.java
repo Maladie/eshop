@@ -1,12 +1,10 @@
 package com.shop.model.userfactory.impl;
 
-import com.shop.model.Basket;
-import com.shop.model.BasketDto;
-import com.shop.model.BasketToBasketDtoTransformer;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class User {
@@ -15,19 +13,30 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private UUID userId;
     private String name;
     private String surname;
 
     private String username;
     private String password;
+    private String salt;
 
     private boolean admin;
+
 
     public User() {
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public UUID getUserId() {
+        return userId;
     }
 
     public void setId(int id) {
@@ -74,4 +83,11 @@ public class User {
         this.admin = admin;
     }
 
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
 }

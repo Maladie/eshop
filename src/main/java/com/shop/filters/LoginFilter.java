@@ -16,6 +16,7 @@ public class LoginFilter implements Filter {
         // here by config.getInitParameter("name") and assign it as field.
     }
 
+    //TODO refactor
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
             throws IOException, ServletException {
@@ -28,8 +29,8 @@ public class LoginFilter implements Filter {
 
         String loginURL = request.getContextPath() + "/login";
 
-
-        if(doesThisURLNeedsLogin(request.getRequestURI()) && (session.getAttribute("userName") == null)){
+//TODO lock access to register and login page after successfully logged in
+        if (doesThisURLNeedsLogin(request.getRequestURI()) && (session.getAttribute("userName") == null)) {
             response.sendRedirect(loginURL);
         } else {
             chain.doFilter(request, response);
@@ -39,9 +40,9 @@ public class LoginFilter implements Filter {
 
     //basic validation of pages that do not require authentication
     private boolean doesThisURLNeedsLogin(String url) {
-        String[] URLsThatDoesntRequireLogin = { "/login", "/", "/register" };
+        String[] URLsThatDoesntRequireLogin = {"/login", "/", "/register"};
 
-        for(String validUrl : URLsThatDoesntRequireLogin) {
+        for (String validUrl : URLsThatDoesntRequireLogin) {
             if (url.endsWith(validUrl)) {
                 return false;
             }

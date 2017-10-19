@@ -6,6 +6,7 @@ import com.shop.model.userfactory.UserDtoFactory;
 import com.shop.model.userfactory.impl.User;
 import com.shop.model.userfactory.impl.UserDtoFactoryImpl;
 import com.shop.repository.UserRepository;
+import com.shop.repository.impl.HibernateProductRepositoryImpl;
 import com.shop.repository.impl.HibernateUserRepositoryImpl;
 
 import javax.servlet.http.HttpServletRequest;
