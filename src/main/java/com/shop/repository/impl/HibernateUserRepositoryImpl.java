@@ -49,7 +49,8 @@ public class HibernateUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void persistUser(User user) {
+    public void persistUser(UserDto userDto) {
+        User user = UserToUserDtoTransfomer.transformToUserDto(userDto);
         userList.add(user);
         entityManager.getTransaction().begin();
         entityManager.persist(user);
