@@ -1,5 +1,6 @@
 package com.shop.model;
 
+import com.shop.service.BasketService;
 import com.shop.service.ProductService;
 
 import javax.servlet.http.HttpSessionEvent;
@@ -9,7 +10,7 @@ public class MySessionListener implements HttpSessionListener {
 
     public void sessionCreated(HttpSessionEvent event) {
         System.out.println("A new session is created");
-        BasketDto basket = ProductService.productService().getBasketDto(event.getSession());
+        BasketDto basketDto = BasketService.basketService().getBasketDto(event.getSession());
     }
 
     public void sessionDestroyed(HttpSessionEvent event) {

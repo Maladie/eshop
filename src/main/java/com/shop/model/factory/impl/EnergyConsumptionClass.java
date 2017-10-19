@@ -18,4 +18,8 @@ public enum EnergyConsumptionClass {
     public String getSymbol() {
         return symbol;
     }
+
+    public static EnergyConsumptionClass parseEClass(String eclass) {
+        return EnergyConsumptionClass.valueOf(eclass);
+    }
 }

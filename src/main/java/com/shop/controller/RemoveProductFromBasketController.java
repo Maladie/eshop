@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.service.BasketService;
 import com.shop.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -15,8 +16,8 @@ public class RemoveProductFromBasketController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        int productId = Integer.parseInt(request.getParameter("productId"));
-        ProductService productService = ProductService.productService();
-        productService.removeProductFromBasket(request.getSession(), productId);
+        BasketService basketService = BasketService.basketService();
+        basketService.removeProductFromBasket(request.getSession(), productId);
         response.sendRedirect("/basket");
     }
 }

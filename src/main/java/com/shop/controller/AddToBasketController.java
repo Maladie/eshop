@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import com.shop.service.BasketService;
+import com.shop.service.ProductListOperationsService;
 import com.shop.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -18,11 +20,12 @@ public class AddToBasketController extends HttpServlet {
         System.out.println(productIdParam);
         int productId = Integer.parseInt(productIdParam);
 
-        ProductService productService = ProductService.productService();
-        if(productService.getProductById(productId) == null) {
+        ProductListOperationsService productListOperationsService = ProductListOperationsService.productService();
+        BasketService basketService = BasketService.basketService();
+        if(productListOperationsService.getProductById(productId) == null) {
             System.out.println("produkt o id: " + productId + " nie moze zostac pobrany z repozytornium");
         }
-        productService.addProductToBasket(request.getSession(), productId);
+        basketService.addProductToBasket(request.getSession(), productId);
 
         System.out.println("dodano do koszyka");
 
