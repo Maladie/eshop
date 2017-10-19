@@ -1,6 +1,8 @@
 package com.shop.service;
 
+import com.shop.model.userfactory.UserFactory;
 import com.shop.model.userfactory.impl.User;
+import com.shop.model.userfactory.impl.UserFactoryImpl;
 import com.shop.repository.UserRepository;
 import com.shop.repository.impl.HibernateUserRepositoryImpl;
 import com.shop.service.utils.PasswordUtils;
@@ -31,27 +33,8 @@ public class RegisterUserService {
     }
 
     public void registerUser(HttpServletRequest request){
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        User user = new User();
-        user.setName(name);
-        user.setSurname(surname);
-        user.setUsername(userName);
-        user.setUserId(UUID.randomUUID());
-        setUserPassword(user, password);
+        UserFactory userFactory = new UserFactoryImpl();
+        User user = userFactory.newUser(request);
         userRepository.persistUser(user);
-    }
-
-    private void setUserPassword(User user, String pass){
-        String salt = generateSalt();
-        user.setSalt(salt);
-        String password = PasswordUtils.generatePasswordHash(pass, salt);
-        user.setPassword(password);
-    }
-
-    private String generateSalt(){
-        return PasswordUtils.generateSalt();
     }
 }
