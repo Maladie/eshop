@@ -35,6 +35,16 @@ public class RegisterUserService {
     public void registerUser(HttpServletRequest request){
         UserFactory userFactory = new UserFactoryImpl();
         User user = userFactory.newUser(request);
-        userRepository.persistUser(user);
+        boolean validUsername = isLoginAvailable(user.getUsername());
+        if(validUsername) {
+            userRepository.persistUser(user);
+            System.out.println("=========================================================");
+            System.out.println(" Registered as {"+user.getUsername()+"}");
+            System.out.println("=========================================================");
+        } else {
+            System.out.println("=========================================================");
+            System.out.println(" User login ("+user.getUsername()+") already used!!! ");
+            System.out.println("=========================================================");
+        }
     }
 }
