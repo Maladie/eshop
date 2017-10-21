@@ -8,7 +8,7 @@
 
     <h2>Submitted Baskets</h2>
 
-    <c:forEach items="${submittedBaskets.getSubmittedBaskets()}" var="basket">
+    <c:forEach items="${submittedBaskets}" var="basket">
         <div class="row">
             <div class="col-sm-2">
                 <h5>Basket</h5>

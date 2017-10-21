@@ -8,12 +8,14 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Entity
 public class Basket {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String username;
 
-    private int userId;
-
+    @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL)
     private Set<ProductItem> productItemList;
 
     public Basket() {
@@ -28,6 +30,7 @@ public class Basket {
             productItem.incrementQuantify();
         }else{
             ProductItem newProductItem = new ProductItem(product);
+            newProductItem.setBasket(this);
             productItemList.add(newProductItem);
         }
     }
@@ -56,7 +59,7 @@ public class Basket {
             return optionalAmount.orElse(0);
     }
 
-    Set<ProductItem> productItemList(){
+    public Set<ProductItem> productItemList(){
         return productItemList;
     }
 
@@ -68,7 +71,11 @@ public class Basket {
         return productsAmount;
     }
 
-    public void setUserId(int userId){
-        this.userId = userId;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

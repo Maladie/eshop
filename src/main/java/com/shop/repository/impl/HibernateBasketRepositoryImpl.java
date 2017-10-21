@@ -10,6 +10,7 @@ import com.shop.repository.BasketRepository;
 import com.shop.repository.HibernateUtils;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class HibernateBasketRepositoryImpl implements BasketRepository {
@@ -22,7 +23,7 @@ public class HibernateBasketRepositoryImpl implements BasketRepository {
 
     private HibernateBasketRepositoryImpl(){
         entityManager = HibernateUtils.getEntityManagerFactory().createEntityManager();
-//        basketList = entityManager.createQuery("SELECT b from Basket b", Basket.class).getResultList(); //Tymczasowo wyłączone, encja nie istnieje w bazie
+        basketList = entityManager.createQuery("SELECT b from Basket b", Basket.class).getResultList();
     }
 
     public static BasketRepository aBasketRepository(){
@@ -34,10 +35,19 @@ public class HibernateBasketRepositoryImpl implements BasketRepository {
     }
 
     @Override
-    public void submitBasket(int userId, Basket basket) {
-        basket.setUserId(userId);
+    public void submitBasket(String username, Basket basket) {
+        basket.setUsername(username);
         entityManager.getTransaction().begin();
         entityManager.persist(basket);
         entityManager.getTransaction().commit();
+    }
+
+    public List<Basket> getBasketList() {
+        return basketList;
+    }
+
+    @Override
+    public List<Basket> getBasketListByUsername(String username) {
+        return entityManager.createQuery("SELECT b from Basket b WHERE b.username = :username", Basket.class).setParameter("username", username).getResultList();
     }
 }

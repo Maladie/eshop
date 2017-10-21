@@ -9,6 +9,8 @@ import com.shop.repository.BasketRepository;
 import com.shop.repository.impl.HibernateBasketRepositoryImpl;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BasketService {
 
@@ -44,13 +46,29 @@ public class BasketService {
     }
 
     public void removeAllProductsFromBasket(HttpSession session) {
-        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
-        basket.voidBasket();
+        Basket basket = new Basket();
+        session.setAttribute("basket", basket);
     }
 
     public BasketDto getBasketDto(HttpSession session){
         return BasketToBasketDtoTransformer.transformToBasketDto(SessionShoppingBasketHandler.retrieveBasket(session));
     }
 
+    public void submitBasket(HttpSession session){
+        String username = (String) session.getAttribute("userName");
+        Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
+        basketRepository.submitBasket(username, basket);
+    }
 
+
+    public List<BasketDto> getSubmitedBasketsHistory(HttpSession session) {
+        String username = (String) session.getAttribute("userName");
+        List<Basket> basketList =  basketRepository.getBasketListByUsername(username);
+        List<BasketDto> basketDtoList = transformToBasketDtoList(basketList);
+        return basketDtoList;
+    }
+
+    private List<BasketDto> transformToBasketDtoList(List<Basket> basketList){
+       return basketList.stream().map(basket -> BasketToBasketDtoTransformer.transformToBasketDto(basket)).collect(Collectors.toList());
+    }
 }
