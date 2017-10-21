@@ -1,133 +1,133 @@
 document.addEventListener("DOMContentLoaded", function () {
     "use strict";
-    var form = document.getElementById("registerForm");
-    // form.classList.add("was-validated");
-    var userName = form.elements["userName"];
-    var password = form.elements["password"];
-    var name = form.elements["name"];
-    var surname = form.elements["surname"];
-    var submitButton = document.getElementById('submitbtn');
-    if (form !== null) {
-        form.addEventListener("submit", function (event) {
-            // var submittedForm = event.target;
-            // var userName = submittedForm.elements["userName"];
-            // var password = submittedForm.elements["password"];
-            // var name = submittedForm.elements["name"];
-            // var surname = submittedForm.elements["surname"];
-            var validName = isNameValid(name.value);
-            var validSurname = isSurnameValid(surname.value);
-            var validUserName = (isLoginValid(userName.value) && !isUserNameAlreadyUsed(userName.value));
-            var validPassword = isPasswordValid(password.value);
+    var $form = $('#registerForm');
+    var $userNameInput = $('#userName');
+    var $passwordInput = $('#password');
+    var $nameInput = $('#name');
+    var $surnameInput = $('#surname');
+    var $submitButton = $('#submitbtn');
+
+    var validName = false;
+    var validSurname = false;
+    var validUserName = false;
+    var validPassword = false;
+
+    if ($form !== undefined && $form !== null) {
+        debugger;
+        $form.submit(function (event) {
             debugger;
             if (validName && validSurname && validUserName && validPassword) {
-                this.classList.add("was-validated");
+                this.addClass("was-validated");
             } else {
+                //break form submitting
                 event.preventDefault();
                 event.stopPropagation();
             }
         });
+        $form.change(function (event) {
+            //skip searchBar input
+            debugger;
+            var inputs = $('input').filter(':not(#searchBar)');
+            var isValid = inputsValid(inputs);
+                $submitButton.attr('disabled', !isValid);
+        });
     }
-    userName.addEventListener('change', function (event) {
-        console.log("userName change event");
-        var username = event.target;
-        var usedLoginFeedback = document.getElementById("userName-used-feedback");
-        var feedback = document.getElementById("userName-feedback");
-        if (!isLoginValid(username.value)) {
-            usedLoginFeedback.style.display = "none";
-            feedback.style.display = "inline";
-            setValidityState(username, false);
+    $userNameInput.change(function (event) {
+        var usedLoginFeedback = $("#userName-used-feedback");
+        var feedback = $("#userName-feedback");
+        if (!isLoginValid($userNameInput.val())) {
+            usedLoginFeedback.hide();
+            feedback.show();
+            setValidityState($userNameInput, false);
         } else {
-            feedback.style.display = "none";
-            setValidityState(username, true);
-            checkUserName(username.value);
+            feedback.hide();
+            setValidityState($userNameInput, true);
+            checkUserName($userNameInput.val());
         }
     });
-    password.addEventListener('change', function (event) {
-        var passwordInput = event.target;
-        var feedback = document.getElementById("pass-feedback");
-        if (!isPasswordValid(passwordInput.value)) {
-            feedback.style.display = "block";
-            setValidityState(passwordInput,false);
+    $passwordInput.change(function (event) {
+        var feedback = $("#pass-feedback");
+        if (!isPasswordValid($passwordInput.val())) {
+            feedback.show();
+            setValidityState($passwordInput,false);
         } else {
-            feedback.style.display = "none";
-            setValidityState(passwordInput, true);
+            feedback.hide();
+            setValidityState($passwordInput, true);
         }
     });
-    name.addEventListener('change', function (event) {
-        var nameInput = event.target;
-        var feedback = document.getElementById("name-feedback");
-        if (!isNameValid(nameInput.value)) {
-            feedback.style.display = "inline";
-            setValidityState(nameInput, false);
+    $nameInput.change(function (event) {
+        var feedback = $("#name-feedback");
+        if (!isNameValid($nameInput.val())) {
+            feedback.show();
+            setValidityState($nameInput, false);
         } else {
-            feedback.style.display = "none";
-            setValidityState(nameInput, true);
+            feedback.hide();
+            setValidityState($nameInput, true);
         }
     });
-    surname.addEventListener('change', function (event) {
-        var surnameInput = event.target;
-        var feedback = document.getElementById("surname-feedback");
-        if (!isSurnameValid(surnameInput.value)) {
-            feedback.style.display = "inline";
-            setValidityState(surnameInput, false);
+    $surnameInput.change(function (event) {
+        var feedback = $("#surname-feedback");
+        if (!isSurnameValid($surnameInput.val())) {
+            feedback.show();
+            setValidityState($surnameInput, false);
         } else {
-            feedback.style.display = "none";
-           setValidityState(surnameInput, true);
+            feedback.hide();
+           setValidityState($surnameInput, true);
         }
     });
     var isLoginValid = function (login) {
-        return login.length >= 3;
+        if(login !== undefined) {
+            return login.length >= 3;
+        }
+        return false;
+    };
+    var isPasswordValid = function (password) {
+        if(password !== undefined) {
+            return password.length >= 8;
+        }
+        return false;
     };
     var isNameValid = function (name) {
-        debugger;
-        return name.length > 0;
+        if (name !== undefined) {
+            return name.length > 0;
+        }
+        return false;
     };
     var isSurnameValid = function (surname) {
         return isNameValid(surname);
     };
-    var isPasswordValid = function (password) {
-        return password.length >= 8;
-    };
     var checkUserName = function (username) {
-        $.ajax({
-            type: 'POST',
-            url: 'register',
-            data: {
-                validateUserName: username
-            },
-            success: function (response) {
-                return isUserNameAlreadyUsed(response);
-            },
-            dataType: 'text'
-        });
-    };
-    form.addEventListener('change', function (event) {
-        console.log("form changed");
-        var inputs = $('input').filter(':not(#searchBar)');
-        var isValid = inputsValid(inputs);
-        if (submitButton !== null) {
-            submitButton.disabled = !isValid;
+        if(username !== undefined && username.length >=3) {
+            $.ajax({
+                type: 'POST',
+                url: 'register',
+                data: {
+                    validateUserName: username
+                },
+                success: function (response) {
+                    return isUserNameAlreadyUsed(response);
+                },
+
+                dataType: 'text'
+            });
+        } else {
+            console.log('UserName too short. Skipped checking');
         }
-    });
+    };
 
     /**
      *
-     * @param input {input}
+     * @param input {Object}
      * @param isValid {boolean}
      */
     var setValidityState = function (input, isValid) {
         if (isValid) {
-            input.classList.remove("is-invalid");
-            input.classList.remove("invalid");
-            input.classList.add("is-valid");
-            input.classList.add("valid");
+            input.removeClass("is-invalid invalid");
+            input.addClass("is-valid valid");
         } else {
-            input.classList.remove("is-valid");
-            input.classList.remove("valid");
-            input.classList.add("is-invalid");
-            input.classList.add("invalid");
+            input.removeClass("is-valid valid");
+            input.addClass("is-invalid invalid");
         }
-        //console.log("setValid " + isValid +" "+input.name)
     };
 
     /**
@@ -138,27 +138,28 @@ document.addEventListener("DOMContentLoaded", function () {
     var inputsValid = function(inputs){
         var valid = true;
         for (var i=0; i<inputs.length; i++) {
-            if(inputs[i].classList.contains('is-invalid') && valid === true){
+            if(hasClassInvalid(inputs[i]) && valid === true){
                 valid = false;
             }
         }
         return valid;
     };
-    var isUserNameAlreadyUsed = function (response) {
-        console.log("login check");
-        var username = document.getElementById("userName");
-        var usedLoginFeedback = document.getElementById("userName-used-feedback");
-        if (response === 'unavailable') {
-            usedLoginFeedback.style.display = "block";
-            setValidityState(username, false);
-        } else {
-            usedLoginFeedback.style.display = "none";
-            setValidityState(username, true);
-        }
-        console.log("login checked");
-        $('#registerForm').trigger("change");
-        console.log("login check - triggered form change");
+
+    var hasClassInvalid = function(input){
+        var classList = input.classList;
+        return classList.contains('is-invalid') || classList.contains('invalid');
+
     };
-    $('#name').trigger("change");
-    $('#surname').trigger("change");
+    var isUserNameAlreadyUsed = function (responseMessage) {
+        var loginUnavailableFeedback = $('#userName-used-feedback');
+        if (responseMessage === 'unavailable') {
+            loginUnavailableFeedback.show();
+            setValidityState($userNameInput, false);
+        } else {
+            loginUnavailableFeedback.hide();
+            setValidityState($userNameInput, true);
+        }
+        // invoke form change event
+        $form.change();
+    };
 });
