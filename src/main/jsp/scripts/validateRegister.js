@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         $form.submit(function (event) {
             debugger;
             if (validName && validSurname && validUserName && validPassword) {
-                this.addClass("was-validated");
+                $form.addClass("was-validated");
             } else {
                 //break form submitting
                 event.preventDefault();
@@ -39,10 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
             usedLoginFeedback.hide();
             feedback.show();
             setValidityState($userNameInput, false);
+            validUserName = false;
         } else {
             feedback.hide();
             setValidityState($userNameInput, true);
             checkUserName($userNameInput.val());
+            validUserName =true;
         }
     });
     $passwordInput.change(function (event) {
@@ -50,9 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isPasswordValid($passwordInput.val())) {
             feedback.show();
             setValidityState($passwordInput,false);
+            validPassword = false;
         } else {
             feedback.hide();
             setValidityState($passwordInput, true);
+            validPassword =true;
         }
     });
     $nameInput.change(function (event) {
@@ -60,9 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isNameValid($nameInput.val())) {
             feedback.show();
             setValidityState($nameInput, false);
+            validName = false;
         } else {
             feedback.hide();
             setValidityState($nameInput, true);
+            validName = true;
         }
     });
     $surnameInput.change(function (event) {
@@ -70,9 +76,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isSurnameValid($surnameInput.val())) {
             feedback.show();
             setValidityState($surnameInput, false);
+            validSurname = false;
         } else {
             feedback.hide();
            setValidityState($surnameInput, true);
+           validSurname = true;
         }
     });
     var isLoginValid = function (login) {
