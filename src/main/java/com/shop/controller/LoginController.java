@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String username = req.getParameter("username");
+        String username = req.getParameter("userName");
         String password = req.getParameter("password");
         LoginResult loginResult = LoginUserService.loginService().loginUser(username, password);
         logger.warn("Log attempt: user[" + username + "], password [" + password + "]. Result: "+loginResult);

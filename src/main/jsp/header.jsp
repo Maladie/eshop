@@ -1,5 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <title>The best online shop ever!</title>
@@ -54,7 +54,7 @@
                 </li>
                 <li class="nav-item">
                     <form class="form-inline my-2 my-lg-0" action="/search" method="get">
-                        <input class="form-control mr-sm-2" name="searchParam" type="text" placeholder="Search"
+                        <input class="form-control mr-sm-2" id="searchBar" name="searchParam" type="text" placeholder="Search"
                                aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
