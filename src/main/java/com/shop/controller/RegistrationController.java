@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.service.RegisterUserService;
+import com.shop.service.utils.RegisterResult;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,8 +28,10 @@ public class RegistrationController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(result? "available" : "unavailable");
         } else {
-            RegisterUserService.userService().registerUser(request);
-            response.sendRedirect("/home");
+            RegisterResult registerResult= RegisterUserService.userService().registerUser(request, true);
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(registerResult.toString());
         }
     }
 }
