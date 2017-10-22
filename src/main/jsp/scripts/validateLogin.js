@@ -8,15 +8,19 @@ document.addEventListener("DOMContentLoaded", function() {
         form.submit(function (event) {
             if(isLoginValid(login.val()) && isValidPassword(password.val())){
                 console.log("login + password = valid");
+                postLogin();
+                event.preventDefault();
+                event.stopPropagation();
             }else {
                 console.log("login + password = invalid");
                 event.preventDefault();
                 event.stopPropagation();
+                $('alert-danger').show();
             }
         });
         form.change( function (event) {
+            $('.alert').hide();
             var button= $("#loginButton");
-            debugger;
             console.log(login.value);
             console.log(login.val());
             if(isLoginValid(login.val()) && isValidPassword(password.val())){
@@ -72,6 +76,44 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         password.change();
         login.change();
-        password.focus();
+        $('#loginButton').focus();
+        var postLogin = function () {
+            $.ajax({
+                type: 'POST',
+                url: 'login',
+                data: {
+                    userName: login.val(),
+                    password: password.val()
+                },
+                success: function (response) {
+                    return loginResponse(response);
+                },
+
+                dataType: 'text'
+            });
+        };
+        var loginResponse = function (response) {
+            if(response ==='ALL_OK'){
+                showRedirect();
+            } else {
+                showInfoInvalidLoginPassword();
+            }
+        }
     }
 });
+var showRedirect = function () {
+$('.alert-success').show();
+var fiveSeconds = new Date().getTime() + 5000;
+    $('#clock').countdown(fiveSeconds, {elapse: true})
+        .on('update.countdown', function(event) {
+            var $this = $(this);
+            if (event.elapsed) {
+                window.location.href = '/home'
+            } else {
+                $this.html(event.strftime('<a class="alert-link" href="/home">Redirecting in: <span>%S</span><br> Click to skip waiting.</a>'));
+            }
+        });
+};
+var showInfoInvalidLoginPassword = function () {
+$('.alert-danger').show();
+};
