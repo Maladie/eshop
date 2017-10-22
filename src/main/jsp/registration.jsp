@@ -2,9 +2,17 @@
 <%@page pageEncoding="UTF-8" language="java" contentType="text/html" %>
 <%@include file="header.jsp" %>
 <script type="text/javascript" src="scripts/validateRegister.js"></script>
-<script type="text/javascript" src="scripts/jquery/jquery-3.2.1.min.js"></script>
 <div class="container  justify-content-center" style="margin-top: 100px; margin-bottom: 150px">
-    <form action="/register" method="post" id="registerForm" novalidate>
+    <div class="row">
+    <div class="alert alert-danger col-md-7" role="alert">
+        Registration failed
+    </div>
+    <div class="alert alert-success col-md-7" role="alert">
+        Registration success. Logged-in.
+        <div id="clock"></div>
+    </div>
+    </div>
+    <form id="registerForm" novalidate>
         <div class="row ">
             <div class="col-md-3">
                 <div class="form-group">
@@ -23,7 +31,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1">
+            </div>
+                <div class="col-md-3">
                 <div class="form-group">
                     <label for="userName">Username:</label>
                     <input type="text" class="form-control is-invalid" name="userName" id="userName" placeholder="Your username"
