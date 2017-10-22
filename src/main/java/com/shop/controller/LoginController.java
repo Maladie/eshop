@@ -37,10 +37,12 @@ public class LoginController extends HttpServlet{
         logger.warn("Log attempt: user[" + username + "], password [" + password + "]. Result: "+loginResult);
         if(loginResult.equals(LoginResult.ALL_OK)){
             req.getSession().setAttribute("userName",username);
-        } else {
-            String message = loginResult.equals(LoginResult.INVALID_LOGIN) ? "Niepoprawny login" : "Niepoprawne hasło";
-            req.setAttribute("errorMsg", message);
         }
-        res.sendRedirect("/");
+        res.setContentType("text/plain");
+        res.setCharacterEncoding("UTF-8");
+        res.getWriter().write(loginResult.toString());
+
+//        req.setAttribute("loginResult", loginResult);
+//        res.sendRedirect("/");
     }
 }
