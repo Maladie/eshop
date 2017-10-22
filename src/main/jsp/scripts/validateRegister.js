@@ -15,21 +15,20 @@ document.addEventListener("DOMContentLoaded", function () {
     if ($form !== undefined && $form !== null) {
         debugger;
         $form.submit(function (event) {
-            debugger;
             if (validName && validSurname && validUserName && validPassword) {
-                $form.addClass("was-validated");
-            } else {
-                //break form submitting
-                event.preventDefault();
-                event.stopPropagation();
+                postRegistrationForm();
             }
+            $form.addClass('was-validated');
+            //break form submitting
+            event.preventDefault();
+            event.stopPropagation();
         });
         $form.change(function (event) {
+            $('.alert').hide();
             //skip searchBar input
-            debugger;
             var inputs = $('input').filter(':not(#searchBar)');
             var isValid = inputsValid(inputs);
-                $submitButton.attr('disabled', !isValid);
+            $submitButton.attr('disabled', !isValid);
         });
     }
     $userNameInput.change(function (event) {
@@ -44,19 +43,19 @@ document.addEventListener("DOMContentLoaded", function () {
             feedback.hide();
             setValidityState($userNameInput, true);
             checkUserName($userNameInput.val());
-            validUserName =true;
+            validUserName = true;
         }
     });
     $passwordInput.change(function (event) {
         var feedback = $("#pass-feedback");
         if (!isPasswordValid($passwordInput.val())) {
             feedback.show();
-            setValidityState($passwordInput,false);
+            setValidityState($passwordInput, false);
             validPassword = false;
         } else {
             feedback.hide();
             setValidityState($passwordInput, true);
-            validPassword =true;
+            validPassword = true;
         }
     });
     $nameInput.change(function (event) {
@@ -79,18 +78,18 @@ document.addEventListener("DOMContentLoaded", function () {
             validSurname = false;
         } else {
             feedback.hide();
-           setValidityState($surnameInput, true);
-           validSurname = true;
+            setValidityState($surnameInput, true);
+            validSurname = true;
         }
     });
     var isLoginValid = function (login) {
-        if(login !== undefined) {
+        if (login !== undefined) {
             return login.length >= 3;
         }
         return false;
     };
     var isPasswordValid = function (password) {
-        if(password !== undefined) {
+        if (password !== undefined) {
             return password.length >= 8;
         }
         return false;
@@ -105,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return isNameValid(surname);
     };
     var checkUserName = function (username) {
-        if(username !== undefined && username.length >=3) {
+        if (username !== undefined && username.length >= 3) {
             $.ajax({
                 type: 'POST',
                 url: 'register',
@@ -143,17 +142,17 @@ document.addEventListener("DOMContentLoaded", function () {
      * @param inputs
      * @returns {boolean}
      */
-    var inputsValid = function(inputs){
+    var inputsValid = function (inputs) {
         var valid = true;
-        for (var i=0; i<inputs.length; i++) {
-            if(hasClassInvalid(inputs[i]) && valid === true){
+        for (var i = 0; i < inputs.length; i++) {
+            if (hasClassInvalid(inputs[i]) && valid === true) {
                 valid = false;
             }
         }
         return valid;
     };
 
-    var hasClassInvalid = function(input){
+    var hasClassInvalid = function (input) {
         var classList = input.classList;
         return classList.contains('is-invalid') || classList.contains('invalid');
 
@@ -170,4 +169,45 @@ document.addEventListener("DOMContentLoaded", function () {
         // invoke form change event
         $form.change();
     };
+    var postRegistrationForm = function () {
+        $.ajax({
+            type: 'POST',
+            url: 'register',
+            data: {
+                userName: $userNameInput.val(),
+                password: $passwordInput.val(),
+                name: $nameInput.val(),
+                surname: $surnameInput.val()
+            },
+            success: function (response) {
+                return registerResponse(response);
+            },
+
+            dataType: 'text'
+        });
+    };
+    var registerResponse = function (response) {
+        debugger;
+        if (response === 'SUCCESS') {
+            showRedirect();
+        } else {
+            showInfoRegistrationError();
+        }
+    }
 });
+var showRedirect = function () {
+    $('.alert-success').show();
+    var fiveSeconds = new Date().getTime() + 5000;
+    $('#clock').countdown(fiveSeconds, {elapse: true})
+        .on('update.countdown', function (event) {
+            var $this = $(this);
+            if (event.elapsed) {
+                window.location.href = '/home'
+            } else {
+                $this.html(event.strftime('<a class="alert-link" href="/home">Redirecting in: <span>%S</span><br>  Click to skip waiting.</a>'));
+            }
+        });
+};
+var showInfoRegistrationError = function () {
+    $('.alert-danger').show();
+};
