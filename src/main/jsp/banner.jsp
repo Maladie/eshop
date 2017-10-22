@@ -6,24 +6,24 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="https://wallpapercave.com/wp/9IwCA2l.jpg" alt="First slide">
+            <img class="d-block w-100" src="http://java2kat.webpros.pl/eshop/gotowe/cup.jpg" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
-                <h1>SALE -70%</h1>
-                <p>For ALL jackets!</p>
+                <h1 class="bannerheader">SALE for Autumn Evenings</h1>
+                <p class="bannerparagraph">50% discount for all Romance Books to enjoy a&nbsp;cosy&nbsp;evening.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://wallpapercave.com/wp/9IwCA2l.jpg" alt="Second slide">
+            <img class="d-block w-100" src="http://java2kat.webpros.pl/eshop/gotowe/fantasy.jpg" alt="Second slide">
             <div class="carousel-caption d-none d-md-block">
-                <h1>SALE -50%</h1>
-                <p>For ALL accessories!</p>
+                <h1 class="bannerheader">Wide Offer of Fantasy Books</h1>
+                <p class="bannerparagraph">The best top sellers from respected authors.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://wallpapercave.com/wp/9IwCA2l.jpg" alt="Third slide">
+            <img class="d-block w-100" src="http://java2kat.webpros.pl/eshop/gotowe/bookstore.jpg" alt="Third slide">
             <div class="carousel-caption d-none d-md-block">
-                <h1>SALE -20%</h1>
-                <p>For ALL shoes!</p>
+                <h1 class="bannerheader">New Arrivals</h1>
+                <p class="bannerparagraph">Check out our fresh offer for bookworms!</p>
             </div>
         </div>
     </div>

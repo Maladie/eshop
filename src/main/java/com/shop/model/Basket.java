@@ -1,7 +1,6 @@
 package com.shop.model;
 
 import com.shop.model.factory.impl.Product;
-import com.shop.model.userfactory.impl.User;
 
 import javax.persistence.*;
 import java.util.HashSet;
