@@ -1,9 +1,9 @@
 package com.shop.model;
 
 import com.shop.model.factory.impl.Product;
-import com.shop.model.userfactory.impl.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -14,12 +14,16 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String username;
-
+    private LocalDateTime submitDate;
     @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL)
     private Set<ProductItem> productItemList;
 
     public Basket() {
         this.productItemList = new HashSet<>();
+    }
+
+    public LocalDateTime getSubmitDate() {
+        return submitDate;
     }
 
     public void addToBasket(Product product){
@@ -77,5 +81,9 @@ public class Basket {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setSubmitDate(LocalDateTime submitDate) {
+        this.submitDate = submitDate;
     }
 }

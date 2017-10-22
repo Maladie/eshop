@@ -1,7 +1,5 @@
 package com.shop.model;
 
-import com.shop.model.factory.impl.Product;
-
 import java.util.List;
 
 public class BasketToBasketDtoTransformer {
@@ -12,6 +10,7 @@ public class BasketToBasketDtoTransformer {
         basket.productItemList().forEach(p -> {ProductDto productDto = new ProductDto(p);
             productDtoList.add(productDto);
         });
+        basketDto.setSubmitDate(basket.getSubmitDate());
         return basketDto;
     }
 }
