@@ -19,6 +19,7 @@ public class LoginController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String logout = request.getParameter("logout");
         if(logout != null &&logout.equals("true")){
             request.getSession().setAttribute("userName", null);

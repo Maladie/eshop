@@ -18,6 +18,7 @@ public class FullProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        httpServletRequest.setCharacterEncoding("UTF-8");
         Integer id = Integer.parseInt(httpServletRequest.getParameter("product"));
         ProductDto product = ProductListOperationsService.productService().getProductDtoById(id);
 
