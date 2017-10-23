@@ -80,17 +80,6 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/persistProduct"> + Add product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/basketHistory"> Your previous purchases</a>
-                </li>
-                <li class="nav-item">
-                    <form class="form-inline my-2 my-lg-0" action="/search" method="get">
-                        <input class="form-control mr-sm-2" id="searchBar" name="searchParam" type="text" placeholder="Search"
-                               aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
                     <a class="nav-link" style="margin-right: 5px" href="/persistProduct"> + Add product</a>
                 </li>
             </ul>
