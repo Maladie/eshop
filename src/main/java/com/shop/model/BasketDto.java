@@ -1,10 +1,20 @@
 package com.shop.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BasketDto {
+    private LocalDateTime submitDate;
+
+    public LocalDateTime getSubmitDate() {
+        return submitDate;
+    }
+
+    void setSubmitDate(LocalDateTime submitDate) {
+        this.submitDate = submitDate;
+    }
 
     List<ProductDto> productDtoList;
 
