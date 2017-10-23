@@ -75,7 +75,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         ProductFactory productFactory = new ProductFactoryImpl();
         for(int i = 0 ;i <20; i ++) {
             Product product = productFactory.newProduct("Product number " + i,new BigDecimal(5+i*2),"PLN", FULL_DESCRIPTION);
-            product.setProductAmount(0);
+//            product.setProductAmount(0);
             mockProductList.add(product);
         }
         for(int i = 0 ;i <10; i ++) {

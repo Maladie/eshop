@@ -16,7 +16,7 @@ public class ProductToProductDtoTransformer {
         productDto.setCurrency(product.getCurrency());
         productDto.setValue(product.getValue());
         productDto.setDescription(product.getDescription());
-        productDto.setProductAmount(product.getProductAmount());
+        productDto.setProductAvailability(product.getProductAvailability());
 
         Map<String, Object> parametersMap = productDto.getParametersMap();
         parametersMap.put("weightValue", product.getWeightValue());
@@ -35,7 +35,7 @@ public class ProductToProductDtoTransformer {
         product.setValue(productDto.getValue());
         product.setDescription(productDto.getDescription());
         product.setCurrency(productDto.getCurrency());
-        product.setProductAmount(productDto.getProductAmount());
+        product.setProductAvailability(productDto.getProductAvailability());
 
         Map<String, Object> parametersMap = productDto.getParametersMap();
         product.setBrand((String) parametersMap.get("brand"));

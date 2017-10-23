@@ -1,10 +1,13 @@
 package com.shop.model.factory.impl;
 
 import com.shop.model.ProductDto;
+import com.shop.model.warehousefactory.impl.Warehouse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ProductDtoFactory {
 
@@ -19,7 +22,11 @@ public class ProductDtoFactory {
         }
         String currency = request.getParameter("currency");
         String description = request.getParameter("description");
+        //TODO: implement with warehouses solution
         int productAmount = Integer.valueOf(request.getParameter("amount"));
+        Set<Warehouse> productAvability = new HashSet<>();
+        productAvability.add(new Warehouse());
+
         String brand = request.getParameter("brand");
         Float weight = 0f;
         if(!request.getParameter("weight").equals("")) {
@@ -34,7 +41,8 @@ public class ProductDtoFactory {
         productDto.setValue(value);
         productDto.setCurrency(currency);
         productDto.setDescription(description);
-        productDto.setProductAmount(productAmount);
+        //TODO: implement with warehouses solution
+        productDto.setProductAvailability(productAvability);
 
         Map<String, Object> parametersMap = productDto.getParametersMap();
         parametersMap.put("weightValue", weight);

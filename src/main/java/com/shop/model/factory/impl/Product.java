@@ -1,7 +1,11 @@
 package com.shop.model.factory.impl;
 
+import com.shop.model.warehousefactory.impl.Warehouse;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -21,20 +25,16 @@ public class Product {
     private String description;
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
-    private int productAmount;
 
-    public int getProductAmount() {
-        return productAmount;
-    }
+    //TODO: relacja z Warehouse
+    private Set<Warehouse> productAvailability;
 
-    public void setProductAmount(int productAmount) {
-        this.productAmount = productAmount;
-    }
+
 
     public Product() {
         money = new Money();
         weight = new Weight();
-        productAmount = 0;
+        productAvailability = new HashSet<>();
     }
 
     Product(int id,
@@ -55,6 +55,14 @@ public class Product {
         this.EClass = EClass;
         this.description = description;
         this.category = category;
+    }
+
+    public Set<Warehouse> getProductAvailability() {
+        return productAvailability;
+    }
+
+    public void setProductAvailability(Set<Warehouse> productAvailability) {
+        this.productAvailability = productAvailability;
     }
 
     public String getDescription() {

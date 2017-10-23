@@ -1,8 +1,11 @@
 package com.shop.model;
 
+import com.shop.model.warehousefactory.impl.Warehouse;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class ProductDto {
 
@@ -13,7 +16,7 @@ public class ProductDto {
     private int quantity;
     private String description;
     private Map<String, Object> parametersMap;
-    private int productAmount;
+    private Set<Warehouse> productAvailability;
 
     {
         quantity = 1;
@@ -26,18 +29,18 @@ public class ProductDto {
         this.currency = productItem.getProduct().getCurrency();
         this.value = productItem.value();
         this.quantity = productItem.getQuantity();
-        this.productAmount = productItem.getProduct().getProductAmount();
+        this.productAvailability = productItem.getProduct().getProductAvailability();
     }
 
     public ProductDto() {
     }
 
-    public int getProductAmount() {
-        return productAmount;
+    public Set<Warehouse> getProductAvailability() {
+        return productAvailability;
     }
 
-    public void setProductAmount(int productAmount) {
-        this.productAmount = productAmount;
+    public void setProductAvailability(Set<Warehouse> productAvailability) {
+        this.productAvailability = productAvailability;
     }
 
     public int getId() {
