@@ -3,12 +3,12 @@ package com.shop.service;
 import com.shop.model.Basket;
 import com.shop.model.BasketDto;
 import com.shop.model.BasketToBasketDtoTransformer;
-import com.shop.model.ProductToProductDtoTransformer;
 import com.shop.model.factory.impl.Product;
 import com.shop.repository.BasketRepository;
 import com.shop.repository.impl.HibernateBasketRepositoryImpl;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +57,7 @@ public class BasketService {
     public void submitBasket(HttpSession session){
         String username = (String) session.getAttribute("userName");
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
+        basket.setSubmitDate(LocalDateTime.now());
         basketRepository.submitBasket(username, basket);
     }
 

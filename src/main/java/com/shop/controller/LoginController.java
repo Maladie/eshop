@@ -19,6 +19,7 @@ public class LoginController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String logout = request.getParameter("logout");
         if(logout != null &&logout.equals("true")){
             request.getSession().setAttribute("userName", null);
@@ -31,16 +32,18 @@ public class LoginController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String username = req.getParameter("username");
+        String username = req.getParameter("userName");
         String password = req.getParameter("password");
         LoginResult loginResult = LoginUserService.loginService().loginUser(username, password);
         logger.warn("Log attempt: user[" + username + "], password [" + password + "]. Result: "+loginResult);
         if(loginResult.equals(LoginResult.ALL_OK)){
             req.getSession().setAttribute("userName",username);
-        } else {
-            String message = loginResult.equals(LoginResult.INVALID_LOGIN) ? "Niepoprawny login" : "Niepoprawne hasło";
-            req.setAttribute("errorMsg", message);
         }
-        res.sendRedirect("/");
+        res.setContentType("text/plain");
+        res.setCharacterEncoding("UTF-8");
+        res.getWriter().write(loginResult.toString());
+
+//        req.setAttribute("loginResult", loginResult);
+//        res.sendRedirect("/");
     }
 }

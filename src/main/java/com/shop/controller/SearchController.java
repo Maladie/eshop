@@ -18,6 +18,7 @@ public class SearchController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        httpServletRequest.setCharacterEncoding("UTF-8");
         String searchCriteria = httpServletRequest.getParameter("searchParam");
         ProductListOperationsService productService = ProductListOperationsService.productService();
         List<ProductDto> productList = productService.getProductBySearchCriteria(searchCriteria);

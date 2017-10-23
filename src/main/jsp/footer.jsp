@@ -1,4 +1,4 @@
-<%@page pageEncoding="UTF-8" language="java" contentType="text/html" %>
+<%@page pageEncoding="UTF-8" language="java" contentType="text/html;charset=UTF-8" %>
 <footer class="footer-bs">
     <div class="container">
         <div class="row-fluid">
