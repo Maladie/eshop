@@ -44,12 +44,11 @@
         }
         .bg-light {
             font-family: 'PT Sans';
-            color: #e36702;
-            background-color: #373737;
+            background-color: #373737 !important;
         }
 
-        .btn-outline-success, .btn-outline-success:active, .btn-outline-success:visited {
-            color: #e36702 !important;
+        .btn-outline-success {
+            color: #e36702;
             border-color: #e36702;
         }
 
@@ -58,6 +57,12 @@
             color: white; !important;
             background-color: #e36702;
         }
+
+        .nav-link {
+            margin-left: 20px; margin-right: 5px;
+            color: #e36702 !important;
+        }
+
     </style>
 </head>
 <body>
@@ -73,7 +78,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" style="margin-left: 20px; margin-right: 5px" href="/">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="margin-right: 5px" href="/persistProduct"> + Add product</a>
@@ -84,7 +89,7 @@
                                        alt="Cart"></a>
             </div>
             <div>
-                <p style="font-size: 20px; font-weight: bold; margin-top: 15px">${sessionScope.get("basket").getBasketProductItemsAmount()}</p>
+                <p style="font-size: 20px; font-weight: bold; margin-top: 15px; color: #e36702">${sessionScope.get("basket").getBasketProductItemsAmount()}</p>
             </div>
             <div class="nav-item navbar-nav navbar-right" style="margin-right: 20px; margin-left: 20px">
                 <form class="form-inline my-2 my-lg-0" action="/search" method="get">
