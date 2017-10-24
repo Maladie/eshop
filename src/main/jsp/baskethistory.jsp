@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page pageEncoding="UTF-8" language="java" contentType="text/html" %>
 
 
@@ -10,14 +11,16 @@
 
     <c:forEach items="${submittedBaskets}" var="basket">
         <div class="row">
-            <div class="col-sm-2">
-                <h5>Basket</h5>
-                <p></p>
-                <img width="100"
-                     height="100"
+            <div class="col-sm-2"><c:set var="stringDate" value="${basket.submitDate}" />
+                <fmt:parseDate value="${basket.submitDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+                <h5>Basket <br/>
+                    <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" /></h5>
+                <img width="80"
+                     height="80"
                      src="https://image.flaticon.com/icons/png/512/2/2772.png"
-                     alt="Generic placeholder image">
+                     alt="Generic placeholder image"><br/>
             </div>
+
             <c:forEach items="${basket.getProductDtoList()}" var="product">
                 <div class="col-sm-2 p-3">
                     <a href="/productDescription?product=${product.getId()}" class="productLink">
@@ -26,6 +29,7 @@
                              class="img-responsive" alt="Image">
                         <p>${product.getName()}</p>
                         <p>Quantity: ${product.getQuantity()} Total: ${product.getValue()}</p>
+
                     </a>
                 </div>
             </c:forEach>
