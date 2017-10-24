@@ -186,7 +186,7 @@ public class Product {
                 ", EClass=" + EClass +
                 ", description='" + description + '\'' +
                 ", category=" + category +
-                ", productAmount=" + productAmount +
+                ", productAvailability=" + productAvailability +
                 '}';
     }
 }
