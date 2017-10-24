@@ -25,9 +25,6 @@ public class PersistProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         ProductService.productService().persistProduct(request);
-        FtpConnector ftpConnector = WebProsFtpConnector.getFtpConnector();
-        String path = ftpConnector.uploadFile(request);
-        System.out.println(path);
         response.sendRedirect("/");
     }
 }

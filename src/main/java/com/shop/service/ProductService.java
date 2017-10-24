@@ -9,6 +9,8 @@ import com.shop.repository.ProductRepository;
 import com.shop.repository.impl.HibernateProductRepositoryImpl;
 import com.shop.service.log.ProductLog;
 import com.shop.service.mail.ProductMailService;
+import com.shop.service.utils.FtpConnector;
+import com.shop.service.utils.WebProsFtpConnector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,6 +41,8 @@ public class ProductService {
 
     public void persistProduct(HttpServletRequest request) {
         ProductFactory productFactory = new ProductFactoryImpl();
+        FtpConnector ftpConnector = WebProsFtpConnector.getFtpConnector();
+        ftpConnector.uploadFile(request);
         Product product = productFactory.newProduct(request);
         repository.persistProduct(product);
     }
