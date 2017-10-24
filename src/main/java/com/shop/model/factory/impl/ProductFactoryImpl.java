@@ -35,6 +35,7 @@ public class ProductFactoryImpl implements ProductFactory {
         Unit weightUnit = Unit.parseUnit(request.getParameter("weightunit"));
         EnergyConsumptionClass eclass = EnergyConsumptionClass.parseEClass(request.getParameter("eclass"));
         ProductCategory category = ProductCategory.parseCategory(request.getParameter("category"));
+        String imagePath = buildImagePath(request);
 
         //Set parameters to product
         product.setName(name);
@@ -65,7 +66,7 @@ public class ProductFactoryImpl implements ProductFactory {
         return 0f;
     }
 
-    private String buildFilePath(HttpServletRequest request) {
+    private String buildImagePath(HttpServletRequest request) {
         Part filePart = null;
         String fileName = null;
         try {
