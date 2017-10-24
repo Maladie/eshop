@@ -2,7 +2,6 @@ package com.shop.service.utils;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
-import sun.net.ftp.impl.FtpClient;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +33,7 @@ public class WebProsFtpConnector implements FtpConnector {
     }
 
     @Override
-    public String uploadFile(HttpServletRequest request) {
+    public void uploadFile(HttpServletRequest request) {
         FTPClient client = new FTPClient();
         InputStream fileContent = null;
         String filePath = null;
@@ -54,11 +53,10 @@ public class WebProsFtpConnector implements FtpConnector {
         } finally {
             closeConnection(client, fileContent);
         }
-        return buildFullServerPath(filePath);
     }
 
-    private String buildFilePath(String fileName){
-       return "/eshop/produkty/" + fileName;
+    private String buildFilePath(String fileName) {
+        return "/eshop/produkty/" + fileName;
     }
 
     private void closeConnection(FTPClient client, InputStream fileContent) {
@@ -70,9 +68,5 @@ public class WebProsFtpConnector implements FtpConnector {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private String buildFullServerPath(String filePath){
-        return "http://java2kat.webpros.pl" + filePath;
     }
 }

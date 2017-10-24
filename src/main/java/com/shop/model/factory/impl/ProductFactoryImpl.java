@@ -2,8 +2,12 @@ package com.shop.model.factory.impl;
 
 import com.shop.model.factory.ProductFactory;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Paths;
 
 public class ProductFactoryImpl implements ProductFactory {
 
@@ -47,17 +51,29 @@ public class ProductFactoryImpl implements ProductFactory {
         return product;
     }
 
-    private BigDecimal setValueIfNotEmpty(HttpServletRequest request){
+    private BigDecimal setValueIfNotEmpty(HttpServletRequest request) {
         if (!request.getParameter("value").equals("")) {
             return new BigDecimal(request.getParameter("value"));
         }
         return new BigDecimal(0);
     }
 
-    private Float setWeightIfNotEmpty(HttpServletRequest request){
-        if(!request.getParameter("weight").equals("")) {
+    private Float setWeightIfNotEmpty(HttpServletRequest request) {
+        if (!request.getParameter("weight").equals("")) {
             return Float.parseFloat(request.getParameter("weight"));
         }
         return 0f;
+    }
+
+    private String buildFilePath(HttpServletRequest request) {
+        Part filePart = null;
+        String fileName = null;
+        try {
+            filePart = request.getPart("image");
+        } catch (IOException | ServletException e) {
+            e.printStackTrace();
+            fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        }
+        return "http://java2kat.webpros.pl" + fileName;
     }
 }

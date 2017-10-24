@@ -4,5 +4,5 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface FtpConnector {
 
-    public String uploadFile(HttpServletRequest request);
+    void uploadFile(HttpServletRequest request);
 }
