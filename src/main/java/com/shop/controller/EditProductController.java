@@ -6,12 +6,14 @@ import com.shop.service.ProductListOperationsService;
 import com.shop.service.ProductService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@MultipartConfig
 @WebServlet(name = "Edit", value = "/edit")
 public class EditProductController extends HttpServlet {
 

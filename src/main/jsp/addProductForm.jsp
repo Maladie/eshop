@@ -4,7 +4,7 @@
 <script type="text/javascript" src="scripts/validateProductForm.js"></script>
 
 <div class="container  justify-content-center" style="margin-top: 100px; margin-bottom: 150px">
-    <form action="/persistProduct" method="post" id="productform" novalidate>
+    <form action="/persistProduct" method="post" id="productform" novalidate enctype="multipart/form-data">
     <jsp:include page="productformcontent.jsp"/>
     </form>
 </div><br>

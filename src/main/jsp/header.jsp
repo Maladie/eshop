@@ -59,6 +59,10 @@
 
         .nav-link {
             margin-left: 20px; margin-right: 5px;
+            color: #ffffff !important;
+        }
+
+        .nav-link:hover, .nav-link:focus {
             color: #e36702 !important;
         }
 
