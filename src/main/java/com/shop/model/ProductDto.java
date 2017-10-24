@@ -7,7 +7,7 @@ import java.util.Map;
 public class ProductDto {
 
     private int id;
-    private String name;
+    private String title;
     private String currency;
     private BigDecimal value;
     private int quantity;
@@ -22,7 +22,7 @@ public class ProductDto {
 
     public ProductDto(ProductItem productItem) {
         this.id = productItem.getProduct().getId();
-        this.name = productItem.getProduct().getName();
+        this.title = productItem.getProduct().getTitle();
         this.currency = productItem.getProduct().getCurrency();
         this.value = productItem.value();
         this.quantity = productItem.getQuantity();
@@ -44,8 +44,8 @@ public class ProductDto {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public String getCurrency() {
@@ -64,8 +64,8 @@ public class ProductDto {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setCurrency(String currency) {

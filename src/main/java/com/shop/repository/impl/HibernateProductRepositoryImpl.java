@@ -35,7 +35,7 @@ public class HibernateProductRepositoryImpl implements ProductRepository {
 
     @Override
     public List<Product> getProductsBySearchCritieria(String searchCriteria) {
-        return entityManager.createQuery("SELECT p from Product p WHERE p.name LIKE :search", Product.class).setParameter("search", searchCriteria +"%").getResultList();
+        return entityManager.createQuery("SELECT p from Product p WHERE p.title LIKE :search", Product.class).setParameter("search", searchCriteria +"%").getResultList();
     }
 
     @Override
@@ -71,7 +71,7 @@ public class HibernateProductRepositoryImpl implements ProductRepository {
     @Override
     public void editProduct(Product updatedProduct) {
         Product product = getProductById(updatedProduct.getId());
-        product.setName(updatedProduct.getName());
+        product.setTitle(updatedProduct.getTitle());
         BigDecimal value = product.getValue();
         BigDecimal newValue = updatedProduct.getValue();
         if(newValue != null){

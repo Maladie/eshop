@@ -1,10 +1,6 @@
 package com.shop.model;
 
-import com.shop.model.factory.impl.EnergyConsumptionClass;
 import com.shop.model.factory.impl.Product;
-import com.shop.model.factory.impl.ProductCategory;
-import com.shop.model.factory.impl.Unit;
-
 import java.util.Map;
 
 public class ProductToProductDtoTransformer {
@@ -12,17 +8,15 @@ public class ProductToProductDtoTransformer {
     public static ProductDto transform(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
-        productDto.setName(product.getName());
+        productDto.setTitle(product.getTitle());
         productDto.setCurrency(product.getCurrency());
         productDto.setValue(product.getValue());
         productDto.setDescription(product.getDescription());
         productDto.setProductAmount(product.getProductAmount());
 
         Map<String, Object> parametersMap = productDto.getParametersMap();
-        parametersMap.put("weightValue", product.getWeightValue());
-        parametersMap.put("weightUnit", product.getWeightUnit());
-        parametersMap.put("brand", product.getBrand());
-        parametersMap.put("eclass", product.getEClass());
+        parametersMap.put("author", product.getAuthor());
+        parametersMap.put("isbn13",product.getISBN13());
         parametersMap.put("category", product.getCategory());
 
         return productDto;

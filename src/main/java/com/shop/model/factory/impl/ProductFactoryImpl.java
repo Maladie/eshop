@@ -8,6 +8,8 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 public class ProductFactoryImpl implements ProductFactory {
 
@@ -25,29 +27,28 @@ public class ProductFactoryImpl implements ProductFactory {
         Product product = new Product();
 
         //Get parameters from HttpServletRequest
-        String name = request.getParameter("name");
+        String title = request.getParameter("title");
         BigDecimal value = setValueIfNotEmpty(request);
         String currency = request.getParameter("currency");
+        // ? Todo.. bierzemy pierwszego czy wszystkich ?
+        List<Author> authors = getAuthors(request);
+
+        long isbn13 = Long.parseLong(request.getParameter("isbn13"));
         String description = request.getParameter("description");
         int productAmount = Integer.valueOf(request.getParameter("amount"));
-        String brand = request.getParameter("brand");
-        Float weight = setWeightIfNotEmpty(request);
-        Unit weightUnit = Unit.parseUnit(request.getParameter("weightunit"));
-        EnergyConsumptionClass eclass = EnergyConsumptionClass.parseEClass(request.getParameter("eclass"));
         ProductCategory category = ProductCategory.parseCategory(request.getParameter("category"));
         String imagePath = buildImagePath(request);
 
         //Set parameters to product
-        product.setName(name);
+        product.setTitle(title);
+        product.setAuthor(authors);
         product.setValue(value);
         product.setCurrency(currency);
         product.setDescription(description);
+        product.setISBN13(isbn13);
         product.setProductAmount(productAmount);
-        product.setBrand(brand);
-        product.setWeightValue(weight);
-        product.setWeightUnit(weightUnit);
-        product.setEClass(eclass);
         product.setCategory(category);
+        product.setImagePath(imagePath);
 
         return product;
     }
@@ -57,13 +58,6 @@ public class ProductFactoryImpl implements ProductFactory {
             return new BigDecimal(request.getParameter("value"));
         }
         return new BigDecimal(0);
-    }
-
-    private Float setWeightIfNotEmpty(HttpServletRequest request) {
-        if (!request.getParameter("weight").equals("")) {
-            return Float.parseFloat(request.getParameter("weight"));
-        }
-        return 0f;
     }
 
     private String buildImagePath(HttpServletRequest request) {
@@ -76,5 +70,11 @@ public class ProductFactoryImpl implements ProductFactory {
             fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         }
         return "http://java2kat.webpros.pl" + fileName;
+    }
+
+    private List<Author> getAuthors(HttpServletRequest request){
+        String authorName = request.getParameter("authorName");
+        String authorSurname = request.getParameter("authorSurname");
+        return Arrays.asList(new Author(authorName, authorSurname));
     }
 }

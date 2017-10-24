@@ -1,9 +1,9 @@
 package com.shop.model.factory.impl;
 
-import com.shop.model.ProductItem;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -11,19 +11,38 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String brand;
-    //TODO TEMP
+    private String title;
+    @ManyToMany
+    private List<Author> author = new ArrayList<>();
     @Embedded
     private Money money;
-    @Embedded
-    private Weight weight;
-    @Enumerated(EnumType.STRING)
-    private EnergyConsumptionClass EClass;
     private String description;
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
+    private long ISBN13;
     private int productAmount;
+    private String imagePath;
+
+    public Product() {
+        money = new Money();
+        productAmount = 0;
+    }
+
+    public Product(String title,
+                   List<Author> author,
+                   Money money,
+                   String description,
+                   ProductCategory category,
+                   long ISBN,
+                   int productAmount) {
+        this.title = title;
+        this.author = author;
+        this.money = money;
+        this.description = description;
+        this.category = category;
+        this.ISBN13 = ISBN;
+        this.productAmount = productAmount;
+    }
 
     public int getProductAmount() {
         return productAmount;
@@ -31,32 +50,6 @@ public class Product {
 
     public void setProductAmount(int productAmount) {
         this.productAmount = productAmount;
-    }
-
-    public Product() {
-        money = new Money();
-        weight = new Weight();
-        productAmount = 0;
-    }
-
-    Product(int id,
-            String name,
-            String brand,
-            String description,
-            BigDecimal value,
-            String currency,
-            float weightValue,
-            Unit unit,
-            EnergyConsumptionClass EClass,
-            ProductCategory category) {
-        this.id = id;
-        this.name = name;
-        this.brand = brand;
-        this.money = new Money(value, currency);
-        this.weight = new Weight(weightValue, unit);
-        this.EClass = EClass;
-        this.description = description;
-        this.category = category;
     }
 
     public String getDescription() {
@@ -71,66 +64,12 @@ public class Product {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public BigDecimal getValue() {
-        return money.getValue();
-    }
-
-    public String getCurrency() {
-        return money.getCurrency();
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public float getWeightValue() {
-        return weight.getWeightValue();
-    }
-
-    public Unit getWeightUnit() {
-        return weight.getUnit();
-    }
-
-    public Weight getWeight(){
-        return weight;
-    }
-
-    public String getEClassSymbol() {
-        return EClass.getSymbol();
-    }
-
-    public Money getMoney() {
-        return money;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setMoney(Money money) {
-        this.money = money;
-    }
-
-    public void setWeight(Weight weight) {
-        this.weight = weight;
-    }
-
-    public EnergyConsumptionClass getEClass() {
-        return EClass;
-    }
-
-    public ProductCategory getCategory() {
-        return category;
-    }
-
-    public void setName(String name) {
-        if (!name.equals("")) {
-            this.name = name;
-        }
+    public BigDecimal getValue() {
+        return money.getValue();
     }
 
     public void setValue(BigDecimal value) {
@@ -139,46 +78,61 @@ public class Product {
         }
     }
 
+    public String getCurrency() {
+        return money.getCurrency();
+    }
+
     public void setCurrency(String currency) {
         if (!currency.equals("")) {
             this.money.setCurrency(currency);
         }
     }
 
-    public void setBrand(String brand) {
-        if (!brand.equals("")) {
-            this.brand = brand;
-        }
-    }
-
-    public void setWeightValue(float weight) {
-        this.weight.setWeightValue(weight);
-    }
-
-    public void setWeightUnit(Unit unit) {
-        this.weight.setUnit(unit);
-    }
-
-    public void setEClass(EnergyConsumptionClass EClass) {
-        this.EClass = EClass;
+    public ProductCategory getCategory() {
+        return category;
     }
 
     public void setCategory(ProductCategory category) {
         this.category = category;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<Author> getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(List<Author> author) {
+        this.author = author;
+    }
+
+    public long getISBN13() {
+        return ISBN13;
+    }
+
+    public void setISBN13(long ISBN) {
+        this.ISBN13 = ISBN;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", brand='" + brand + '\'' +
+                ", title='" + title + '\'' +
                 ", money=" + money +
-                ", weight=" + weight +
-                ", EClass=" + EClass +
                 ", description='" + description + '\'' +
                 ", category=" + category +
                 ", productAmount=" + productAmount +
                 '}';
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
