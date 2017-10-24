@@ -16,4 +16,12 @@ public enum ProductCategory {
     ProductCategory(String category) {
         this.category = category;
     }
+
+    public static ProductCategory parseCategory(String category) {
+        ProductCategory productCategory = ProductCategory.OTHER;
+        if(category != null){
+            productCategory = ProductCategory.valueOf(category);
+        }
+        return productCategory;
+    }
 }

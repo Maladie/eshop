@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.model.ProductDto;
+import com.shop.service.ProductListOperationsService;
 import com.shop.service.ProductService;
 
 import javax.servlet.RequestDispatcher;
@@ -19,7 +20,7 @@ public class CategoryController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category = request.getParameter("category");
         String searchParam = request.getParameter("searchParam");
-        ProductService productService = ProductService.productService();
+        ProductListOperationsService productService = ProductListOperationsService.productService();
         List<ProductDto> productList = productService.productListByCategory(category);
         request.setAttribute("productList", productList);
         request.setAttribute("searchParam", searchParam);

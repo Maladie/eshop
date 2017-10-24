@@ -2,15 +2,29 @@ package com.shop.model;
 
 import com.shop.model.factory.impl.Product;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-class ProductItem {
+@Entity
+public class ProductItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @OneToOne
     private Product product;
     private int quantity;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Basket basket;
 
     public ProductItem(Product product) {
         this.product = product;
         this.quantity = new Integer(1);
+    }
+
+    public ProductItem() {
     }
 
     public Product getProduct() {
@@ -30,7 +44,21 @@ class ProductItem {
         return product.getValue().multiply(bigDecimalQuantity);
     }
 
+    public void setBasket(Basket basket){
+        this.basket = basket;
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductItem{" +
+                "id=" + id +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", basket=" + basket +
+                '}';
     }
 }

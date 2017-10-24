@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class ProductToProductDtoTransformer {
 
-    public static ProductDto transformToDto(Product product) {
+    public static ProductDto transform(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
         productDto.setName(product.getName());
@@ -26,24 +26,5 @@ public class ProductToProductDtoTransformer {
         parametersMap.put("category", product.getCategory());
 
         return productDto;
-    }
-
-    public static Product transformToProduct(ProductDto productDto){
-        Product product = new Product();
-        product.setId(productDto.getId());
-        product.setName(productDto.getName());
-        product.setValue(productDto.getValue());
-        product.setDescription(productDto.getDescription());
-        product.setCurrency(productDto.getCurrency());
-        product.setProductAvailability(productDto.getProductAvailability());
-
-        Map<String, Object> parametersMap = productDto.getParametersMap();
-        product.setBrand((String) parametersMap.get("brand"));
-        product.setWeightValue((Float) parametersMap.get("weightValue"));
-        product.setWeightUnit((Unit) parametersMap.get("weightUnit"));
-        product.setEClass((EnergyConsumptionClass) parametersMap.get("eclass"));
-        product.setCategory((ProductCategory) parametersMap.get("category"));
-
-        return product;
     }
 }

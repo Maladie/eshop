@@ -3,7 +3,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 <jsp:include page="banner.jsp"></jsp:include>
-<script type="text/javascript" src="scripts/validate.js"></script>
+<script type="text/javascript" src="scripts/validateProductForm.js"></script>
 
 <div class="container-fliud  d-flex justify-content-center">
     <form action="/edit" method="post" class="text-center" id="productform" novalidate>

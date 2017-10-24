@@ -4,12 +4,6 @@ import com.shop.model.userfactory.impl.User;
 
 public class UserToUserDtoTransfomer {
 
-    public static UserDto transformToUserDto(User user){
-        UserDto userDto = new UserDto();
-        setUserDtoFields(userDto, user);
-        return userDto;
-    }
-
     public static User transformToUserDto(UserDto userDto){
         User user = new User();
         setUserFields(user, userDto);
@@ -25,12 +19,4 @@ public class UserToUserDtoTransfomer {
         user.setAdmin(userDto.isAdmin());
     }
 
-    private static void setUserDtoFields(UserDto userDto, User user){
-        userDto.setId(user.getId());
-        userDto.setName(user.getName());
-        userDto.setSurname(user.getSurname());
-        userDto.setUsername(user.getUsername());
-        userDto.setPassword(user.getPassword());
-        userDto.setAdmin(user.isAdmin());
-    }
 }

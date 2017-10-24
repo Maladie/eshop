@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.model.BasketDto;
+import com.shop.service.BasketService;
 import com.shop.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,6 @@ public class PaymentController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        BasketDto basketDto = ProductService.productService().getBasketDto(req.getSession());
+        BasketDto basketDto = BasketService.basketService().getBasketDto(req.getSession());
     }
 }

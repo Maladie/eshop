@@ -8,7 +8,6 @@ import com.shop.repository.UserRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class HibernateUserRepositoryImpl implements UserRepository {
     private static UserRepository userRepository;
@@ -30,8 +29,23 @@ public class HibernateUserRepositoryImpl implements UserRepository {
 
 
     @Override
-    public UserDto getUserById(int id) {
-        return null;
+    public User getUserById(int id) {
+        return entityManager.createQuery("SELECT u from User u WHERE u.id = :id", User.class).setParameter("id", id).getSingleResult();
+    }
+
+    @Override
+    public void persistUser(User user) {
+        userList.add(user);
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public boolean checkIfCredentialsAreCorrect(String login, String password) {
+        List<User> userList = entityManager.createQuery("SELECT u from User u WHERE u.username = :login AND u.password = :password", User.class)
+                .setParameter("login", login).setParameter("password", password).getResultList();
+        return !userList.isEmpty();
     }
 
     @Override
@@ -44,12 +58,18 @@ public class HibernateUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public UserDto getUserByLoginAndPassword(String login, String password) {
-        User user = entityManager.createQuery("SELECT u from User u WHERE u.username = :login AND u.password = :password", User.class)
-                .setParameter("login", login).setParameter("password", password).getSingleResult();
-        if(user == null){
-            throw new NoSuchElementException("No user found for given password / username");
-        }
-        return UserToUserDtoTransfomer.transformToUserDto(user);
+    public boolean checkIfLoginExists(String username) {
+        entityManager.getTransaction().begin();
+        List<User> result = entityManager.createQuery("Select u from User u where u.username = :username", User.class).setParameter("username", username).getResultList();
+        entityManager.getTransaction().commit();
+        return result.size() == 1;
+    }
+
+    @Override
+    public User getUserByLogin(String username) {
+        entityManager.getTransaction().begin();
+        User user = entityManager.createQuery("select u from User u where u.username = :username", User.class).setParameter("username", username).getSingleResult();
+        entityManager.getTransaction().commit();
+        return user;
     }
 }

@@ -1,6 +1,8 @@
 package com.shop.controller;
 
 
+import com.shop.service.LoginUserService;
+import com.shop.service.utils.LoginResult;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -17,25 +19,31 @@ public class LoginController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.getRequestDispatcher("login.jsp").forward(request,response);
+        request.setCharacterEncoding("UTF-8");
+        String logout = request.getParameter("logout");
+        if(logout != null &&logout.equals("true")){
+            request.getSession().setAttribute("userName", null);
+            request.getRequestDispatcher("logout.jsp").forward(request,response);
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String username = req.getParameter("username");
+        String username = req.getParameter("userName");
         String password = req.getParameter("password");
-
-        logger.warn("Log attemt: user[" + username + "], password [" + password + "]");
-
-        if(username.equals("root") && password.equals("root")){
-            System.out.println("root zalogowany");
-            req.getSession().setAttribute("userName","root");
-            res.sendRedirect("/");
-        } else {
-            System.out.println("zly login");
-            res.sendRedirect("/login");
+        LoginResult loginResult = LoginUserService.loginService().loginUser(username, password);
+        logger.warn("Log attempt: user[" + username + "], password [" + password + "]. Result: "+loginResult);
+        if(loginResult.equals(LoginResult.ALL_OK)){
+            req.getSession().setAttribute("userName",username);
         }
+        res.setContentType("text/plain");
+        res.setCharacterEncoding("UTF-8");
+        res.getWriter().write(loginResult.toString());
+
+//        req.setAttribute("loginResult", loginResult);
+//        res.sendRedirect("/");
     }
 }

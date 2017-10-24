@@ -21,8 +21,8 @@ public class PersistProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDto productDto =  ProductDtoFactory.getProductDtoForNewProduct(request);
-        ProductService.productService().persistProduct(productDto);
+        request.setCharacterEncoding("UTF-8");
+        ProductService.productService().persistProduct(request);
         response.sendRedirect("/");
     }
 }

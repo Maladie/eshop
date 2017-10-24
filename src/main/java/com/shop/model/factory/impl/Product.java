@@ -2,6 +2,8 @@ package com.shop.model.factory.impl;
 
 import com.shop.model.warehousefactory.impl.Warehouse;
 
+import com.shop.model.ProductItem;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -173,5 +175,18 @@ public class Product {
         this.category = category;
     }
 
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", money=" + money +
+                ", weight=" + weight +
+                ", EClass=" + EClass +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                ", productAmount=" + productAmount +
+                '}';
+    }
 }

@@ -2,16 +2,28 @@ package com.shop.model;
 
 import com.shop.model.factory.impl.Product;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Entity
 public class Basket {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String username;
+    private LocalDateTime submitDate;
+    @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL)
     private Set<ProductItem> productItemList;
 
     public Basket() {
         this.productItemList = new HashSet<>();
+    }
+
+    public LocalDateTime getSubmitDate() {
+        return submitDate;
     }
 
     public void addToBasket(Product product){
@@ -22,6 +34,7 @@ public class Basket {
             productItem.incrementQuantify();
         }else{
             ProductItem newProductItem = new ProductItem(product);
+            newProductItem.setBasket(this);
             productItemList.add(newProductItem);
         }
     }
@@ -45,12 +58,12 @@ public class Basket {
 
     public Integer getProductItemQuantity(int productId){
         Optional<Integer> optionalAmount = productItemList.stream()
-                .filter(p -> p.getProduct().getId() == productId).map(p -> p.getQuantity()).findFirst();
+                .filter(p -> p.getProduct().getId() == productId).map(ProductItem::getQuantity).findFirst();
 
-            return optionalAmount.isPresent() ? optionalAmount.get() : 0;
+            return optionalAmount.orElse(0);
     }
 
-    Set<ProductItem> productItemList(){
+    public Set<ProductItem> productItemList(){
         return productItemList;
     }
 
@@ -60,5 +73,17 @@ public class Basket {
             productsAmount += p.getQuantity();
         }
         return productsAmount;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setSubmitDate(LocalDateTime submitDate) {
+        this.submitDate = submitDate;
     }
 }
