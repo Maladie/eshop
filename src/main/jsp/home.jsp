@@ -16,20 +16,19 @@
             <c:forEach items="${viewedProductList}" var="product">
                 <div class="col-sm-4 p-5">
                     <a href="/productDescription?product=${product.id}" class="productLink">
-                        <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
-                             class="img-responsive" alt="Image">
-                        <p>${product.name}</p>
+                        <img width="250px" src=${product.imagePath}
+                                class="img-responsive" alt="Image">
+                        <p>${product.title}</p>
                         <p>${product.value} ${product.currency}</p>
                     </a>
                     <c:choose>
                         <c:when test="${product.productAmount == 0}">
-                            <h3>Sorry! Product Unavailable!</h3>
+                            <h4>Sorry! Product Unavailable!</h4>
                         </c:when>
                         <c:otherwise>
                             <form action="/addProduct" method="POST">
                                 <input type="hidden" name="productId" value="${product.id}">
                                 <input class="btn btn-outline-success" type="submit" value="Add to cart"/>
-
                             </form>
                         </c:otherwise>
                     </c:choose>
@@ -42,9 +41,9 @@
             <c:forEach items="${productList}" var="product">
                 <div class="col-sm-4 p-5">
                     <a href="/productDescription?product=${product.id}" class="productLink">
-                        <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
-                             class="img-responsive" alt="Image">
-                        <p>${product.name}</p>
+                        <img width="250px" src=${product.imagePath}
+                                class="img-responsive" alt="Image">
+                        <p>${product.title}</p>
                         <p>${product.value} ${product.currency}</p>
                     </a>
                     <c:choose>

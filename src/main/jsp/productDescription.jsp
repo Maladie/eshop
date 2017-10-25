@@ -10,13 +10,13 @@
         <div class="col-sm-9">
             <div class="row m-3">
                 <div class="col">
-                    <h1>${product.name}</h1>
+                    <h1>${product.title}</h1>
                 </div>
             </div>
 
             <div class="row m-3">
                 <div class="col">
-                    <img src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
+                    <img src=${product.imagePath}
                          class="img-responsive"
                          alt="Image">
                 </div>

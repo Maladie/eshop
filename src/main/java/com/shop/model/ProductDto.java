@@ -14,6 +14,7 @@ public class ProductDto {
     private String description;
     private Map<String, Object> parametersMap;
     private int productAmount;
+    private String imagePath;
 
     {
         quantity = 1;
@@ -27,6 +28,7 @@ public class ProductDto {
         this.value = productItem.value();
         this.quantity = productItem.getQuantity();
         this.productAmount = productItem.getProduct().getProductAmount();
+        this.imagePath = productItem.getProduct().getImagePath();
     }
 
     public ProductDto() {
@@ -94,5 +96,13 @@ public class ProductDto {
 
     public void setParametersMap(Map<String, Object> parametersMap) {
         this.parametersMap = parametersMap;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

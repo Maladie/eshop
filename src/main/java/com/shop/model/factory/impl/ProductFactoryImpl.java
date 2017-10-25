@@ -14,16 +14,16 @@ import java.util.List;
 public class ProductFactoryImpl implements ProductFactory {
 
     @Override
-    public Product getProductUpdateTemplate(HttpServletRequest request) {
+    public Product getProductUpdateTemplate(HttpServletRequest request, String filepath) {
         int id = Integer.valueOf(request.getParameter("id"));
 
-        Product product = newProduct(request);
+        Product product = newProduct(request, filepath);
         product.setId(id);
         return product;
     }
 
     @Override
-    public Product newProduct(HttpServletRequest request) {
+    public Product newProduct(HttpServletRequest request, String filepath) {
         Product product = new Product();
 
         //Get parameters from HttpServletRequest
@@ -31,13 +31,13 @@ public class ProductFactoryImpl implements ProductFactory {
         BigDecimal value = setValueIfNotEmpty(request);
         String currency = request.getParameter("currency");
         // ? Todo.. bierzemy pierwszego czy wszystkich ?
-        List<Author> authors = getAuthors(request);
+        Author authors = getAuthors(request);
 
-        long isbn13 = Long.parseLong(request.getParameter("isbn13"));
+        String isbn13 = request.getParameter("isbn13");
         String description = request.getParameter("description");
         int productAmount = Integer.valueOf(request.getParameter("amount"));
         ProductCategory category = ProductCategory.parseCategory(request.getParameter("category"));
-        String imagePath = buildImagePath(request);
+        String imagePath = buildImagePath(filepath);
 
         //Set parameters to product
         product.setTitle(title);
@@ -60,21 +60,13 @@ public class ProductFactoryImpl implements ProductFactory {
         return new BigDecimal(0);
     }
 
-    private String buildImagePath(HttpServletRequest request) {
-        Part filePart = null;
-        String fileName = null;
-        try {
-            filePart = request.getPart("image");
-        } catch (IOException | ServletException e) {
-            e.printStackTrace();
-            fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        }
-        return "http://java2kat.webpros.pl" + fileName;
+    private String buildImagePath(String filePath) {
+        return "http://java2kat.webpros.pl" + filePath;
     }
 
-    private List<Author> getAuthors(HttpServletRequest request){
+    private Author getAuthors(HttpServletRequest request){
         String authorName = request.getParameter("authorName");
         String authorSurname = request.getParameter("authorSurname");
-        return Arrays.asList(new Author(authorName, authorSurname));
+        return new Author(authorName, authorSurname);
     }
 }

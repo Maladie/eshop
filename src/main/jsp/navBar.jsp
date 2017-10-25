@@ -46,29 +46,27 @@
 <nav class="d-block bg-dark">
     <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="#" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ovens</a>
-            <div class="collapse" id="collapseExample">
 
-                    <a class="nav-link active bg-dark" href="/category?category=OVEN">Ovens</a>
-                    <a class="nav-link active bg-dark" href="/category?category=MICROWAVE_OVEN">Microvawe ovens</a>
-
-            </div>
+            <a class="nav-link active bg-dark" href="/category?category=BIOGRAPHIES_MEMOIRS">Biographies, memoirs</a>
         </li>
         <li class="nav-item">
 
-            <a class="nav-link active bg-dark" href="/category?category=DISHWASHER">Dishwashers</a>
+            <a class="nav-link active bg-dark" href="/category?category=HISTORY">History</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="/category?category=FREEZER">Freezers</a>
+            <a class="nav-link active bg-dark" href="/category?category=LITERATURE_FICTION">Literature fiction</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="/category?category=KETTLE">Kettles</a>
+            <a class="nav-link active bg-dark" href="/category?category=MYSTERY">Mystery</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="/category?category=REFRIGERATOR">Refrigerators</a>
+            <a class="nav-link active bg-dark" href="/category?category=THRILLER_SUSPENSE">Thriller, suspense</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-dark" href="/category?category=WASHING_MACHINE">Washing maschines</a>
+            <a class="nav-link active bg-dark" href="/category?category=ROMANCE">Romance</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active bg-dark" href="/category?category=SCIENCE_FICTION_FANTASY">Science fiction, fantasy</a>
         </li>
     </ul>
 </nav>

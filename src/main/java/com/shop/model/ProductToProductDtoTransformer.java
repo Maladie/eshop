@@ -13,6 +13,7 @@ public class ProductToProductDtoTransformer {
         productDto.setValue(product.getValue());
         productDto.setDescription(product.getDescription());
         productDto.setProductAmount(product.getProductAmount());
+        productDto.setImagePath(product.getImagePath());
 
         Map<String, Object> parametersMap = productDto.getParametersMap();
         parametersMap.put("author", product.getAuthor());
