@@ -12,10 +12,10 @@
             <c:forEach items="${basket.getProductDtoList()}" var="product">
                 <div class="col-sm-2 p-3">
                     <a href="/productDescription?product=${product.getId()}" class="productLink">
-                        <img height="30" width="30"
-                             src="http://icons.iconarchive.com/icons/sonya/swarm/256/Shopping-icon.png"
+                        <img width="100"
+                             src=${product.imagePath}
                              class="img-responsive" alt="Image">
-                        <p>${product.getName()}</p>
+                        <p>${product.title}</p>
                         <p>Quantity: ${product.getQuantity()} Total: ${product.getValue()}</p>
                         <form action="/removeProduct" method="POST">
                             <input type="hidden" name="productId" value="${product.id}">

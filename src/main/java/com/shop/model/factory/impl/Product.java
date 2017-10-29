@@ -12,14 +12,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    @ManyToMany
-    private List<Author> author = new ArrayList<>();
+    @Embedded
+    private Author author;
     @Embedded
     private Money money;
     private String description;
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
-    private long ISBN13;
+    private String ISBN13;
     private int productAmount;
     private String imagePath;
 
@@ -29,11 +29,11 @@ public class Product {
     }
 
     public Product(String title,
-                   List<Author> author,
+                   Author author,
                    Money money,
                    String description,
                    ProductCategory category,
-                   long ISBN,
+                   String ISBN,
                    int productAmount) {
         this.title = title;
         this.author = author;
@@ -104,19 +104,19 @@ public class Product {
         this.title = title;
     }
 
-    public List<Author> getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(List<Author> author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
-    public long getISBN13() {
+    public String getISBN13() {
         return ISBN13;
     }
 
-    public void setISBN13(long ISBN) {
+    public void setISBN13(String ISBN) {
         this.ISBN13 = ISBN;
     }
 
@@ -134,5 +134,9 @@ public class Product {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 }
