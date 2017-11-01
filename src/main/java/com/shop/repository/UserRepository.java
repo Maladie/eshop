@@ -12,4 +12,6 @@ public interface UserRepository {
 
     boolean checkIfCredentialsAreCorrect(String login, String password);
     User getUserByLogin(String login);
+
+    boolean isAdmin(String login);
 }
