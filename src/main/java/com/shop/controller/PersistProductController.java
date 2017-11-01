@@ -18,13 +18,24 @@ public class PersistProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        httpServletRequest.getRequestDispatcher("addProductForm.jsp").forward(httpServletRequest, httpServletResponse);
+        boolean isAdmin = (boolean)httpServletRequest.getSession().getAttribute("admin");
+        if(isAdmin) {
+            httpServletRequest.getRequestDispatcher("addProductForm.jsp").forward(httpServletRequest, httpServletResponse);
+        }else {
+            System.out.println("Not allowed for non admin users");
+            httpServletResponse.sendRedirect("/");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        ProductService.productService().persistProduct(request);
+        boolean isAdmin = (boolean)request.getSession().getAttribute("admin");
+        if(isAdmin) {
+            ProductService.productService().persistProduct(request);
+        } else {
+            System.out.println("Not allowed for non admin users");
+        }
         response.sendRedirect("/");
     }
 }
