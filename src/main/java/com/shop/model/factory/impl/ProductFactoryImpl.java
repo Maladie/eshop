@@ -2,14 +2,8 @@ package com.shop.model.factory.impl;
 
 import com.shop.model.factory.ProductFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
 
 public class ProductFactoryImpl implements ProductFactory {
 
@@ -30,12 +24,12 @@ public class ProductFactoryImpl implements ProductFactory {
         String title = request.getParameter("title");
         BigDecimal value = setValueIfNotEmpty(request);
         String currency = request.getParameter("currency");
-        // ? Todo.. bierzemy pierwszego czy wszystkich ?
         Author authors = getAuthors(request);
 
+        String isbn10 = request.getParameter("isbn10");
         String isbn13 = request.getParameter("isbn13");
         String description = request.getParameter("description");
-        int productAmount = Integer.valueOf(request.getParameter("amount"));
+        int productAmount = Integer.parseInt(request.getParameter("amount"));
         ProductCategory category = ProductCategory.parseCategory(request.getParameter("category"));
         String imagePath = buildImagePath(filepath);
 
@@ -45,6 +39,7 @@ public class ProductFactoryImpl implements ProductFactory {
         product.setValue(value);
         product.setCurrency(currency);
         product.setDescription(description);
+        product.setISBN10(isbn10);
         product.setISBN13(isbn13);
         product.setProductAmount(productAmount);
         product.setCategory(category);
@@ -64,7 +59,7 @@ public class ProductFactoryImpl implements ProductFactory {
         return "http://java2kat.webpros.pl" + filePath;
     }
 
-    private Author getAuthors(HttpServletRequest request){
+    private Author getAuthors(HttpServletRequest request) {
         String authorName = request.getParameter("authorName");
         String authorSurname = request.getParameter("authorSurname");
         return new Author(authorName, authorSurname);
