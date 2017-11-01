@@ -25,12 +25,20 @@ public class EditProductController extends HttpServlet {
                 .getProductDtoById(id);
         request.setAttribute("id", id);
         request.setAttribute("product", product);
-        request.getRequestDispatcher("edit.jsp").forward(request, response);
+        boolean isAdmin = (boolean)request.getSession().getAttribute("admin");
+        if(isAdmin) {
+            request.getRequestDispatcher("edit.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("/");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductService.productService().editProduct(request);
+        boolean isAdmin = (boolean)request.getSession().getAttribute("admin");
+        if(isAdmin) {
+            ProductService.productService().editProduct(request);
+        }
         response.sendRedirect("/");
     }
 }
