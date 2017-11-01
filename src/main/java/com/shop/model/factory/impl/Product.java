@@ -2,8 +2,6 @@ package com.shop.model.factory.impl;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Product {
@@ -19,6 +17,7 @@ public class Product {
     private String description;
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
+    private String ISBN10;
     private String ISBN13;
     private int productAmount;
     private String imagePath;
@@ -28,20 +27,12 @@ public class Product {
         productAmount = 0;
     }
 
-    public Product(String title,
-                   Author author,
-                   Money money,
-                   String description,
-                   ProductCategory category,
-                   String ISBN,
-                   int productAmount) {
-        this.title = title;
-        this.author = author;
-        this.money = money;
-        this.description = description;
-        this.category = category;
-        this.ISBN13 = ISBN;
-        this.productAmount = productAmount;
+    public String getISBN10() {
+        return ISBN10;
+    }
+
+    public void setISBN10(String ISBN10) {
+        this.ISBN10 = ISBN10;
     }
 
     public int getProductAmount() {
@@ -120,6 +111,14 @@ public class Product {
         this.ISBN13 = ISBN;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -130,13 +129,5 @@ public class Product {
                 ", category=" + category +
                 ", productAmount=" + productAmount +
                 '}';
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public String getImagePath() {
-        return imagePath;
     }
 }
