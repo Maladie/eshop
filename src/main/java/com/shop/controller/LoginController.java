@@ -23,6 +23,7 @@ public class LoginController extends HttpServlet{
         String logout = request.getParameter("logout");
         if(logout != null &&logout.equals("true")){
             request.getSession().setAttribute("userName", null);
+            request.getSession().setAttribute("admin", null);
             request.getRequestDispatcher("logout.jsp").forward(request,response);
         } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -38,6 +39,7 @@ public class LoginController extends HttpServlet{
         logger.warn("Log attempt: user[" + username + "], password [" + password + "]. Result: "+loginResult);
         if(loginResult.equals(LoginResult.ALL_OK)){
             req.getSession().setAttribute("userName",username);
+            req.getSession().setAttribute("admin", LoginUserService.loginService().isAdmin(username));
         }
         res.setContentType("text/plain");
         res.setCharacterEncoding("UTF-8");
