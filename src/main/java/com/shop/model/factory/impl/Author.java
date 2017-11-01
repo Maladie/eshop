@@ -3,7 +3,7 @@ package com.shop.model.factory.impl;
 import javax.persistence.*;
 
 @Embeddable
-class Author {
+public class Author {
 
     private String name;
     private String surname;
