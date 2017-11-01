@@ -83,9 +83,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
+                <c:if test="${sessionScope.get('admin')==true}">
                 <li class="nav-item">
                     <a class="nav-link" style="margin-right: 5px" href="/persistProduct"> + Add product</a>
                 </li>
+                </c:if>
             </ul>
             <div style="width: 50px">
                 <a href="/basket"><img src="http://java2kat.webpros.pl/eshop/gotowe/cart.png"
