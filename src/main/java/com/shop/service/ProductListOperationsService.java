@@ -8,6 +8,7 @@ import com.shop.repository.ProductRepository;
 import com.shop.repository.impl.HibernateProductRepositoryImpl;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ public class ProductListOperationsService {
     private ProductRepository repository;
 
     public static ProductListOperationsService productService() {
-        if(productService != null)
+        if (productService != null)
             return productService;
         productService = new ProductListOperationsService(HibernateProductRepositoryImpl.aProductRepository());
         return productService;
@@ -46,7 +47,7 @@ public class ProductListOperationsService {
         return product;
     }
 
-    public ProductDto getProductDtoById (int id) {
+    public ProductDto getProductDtoById(int id) {
         return ProductToProductDtoTransformer.transform(getProductById(id));
     }
 
@@ -68,16 +69,16 @@ public class ProductListOperationsService {
         List<ProductDto> sortedList = filteredList;
         switch (sortCriteria) {
             case "plh":
-                sortedList = sortedList.stream().sorted((o1, o2) -> o1.getValue().compareTo(o2.getValue())).collect(Collectors.toList());
+                sortedList = sortedList.stream().sorted(Comparator.comparing(ProductDto::getValue)).collect(Collectors.toList());
                 return sortedList;
             case "phl":
-                sortedList = sortedList.stream().sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue())).collect(Collectors.toList());
+                sortedList = sortedList.stream().sorted(Comparator.comparing(ProductDto::getValue).reversed()).collect(Collectors.toList());
                 return sortedList;
             case "alp":
-                sortedList = sortedList.stream().sorted((o1, o2) -> o1.getTitle().compareTo(o2.getTitle())).collect(Collectors.toList());
+                sortedList = sortedList.stream().sorted(Comparator.comparing(ProductDto::getTitle)).collect(Collectors.toList());
                 return sortedList;
             case "id":
-                sortedList = sortedList.stream().sorted((o1, o2) -> o2.getId() - o1.getId()).collect(Collectors.toList());
+                sortedList = sortedList.stream().sorted(Comparator.comparingInt(ProductDto::getId)).collect(Collectors.toList());
                 return sortedList;
             default:
                 return sortedList;
@@ -85,7 +86,7 @@ public class ProductListOperationsService {
     }
 
     public List<ProductDto> filterProductsByCategory(List<ProductDto> productDtoList, String category) {
-        if(!category.equals("")){
+        if (!category.equals("")) {
             productDtoList.removeIf(productDto -> productDto.getParametersMap().get("category") != ProductCategory.valueOf(category));
         }
         return productDtoList;
@@ -95,5 +96,13 @@ public class ProductListOperationsService {
 
         ProductCategory productCategory = ProductCategory.valueOf(category.toUpperCase());
         return repository.getAllProducts().stream().filter(p -> p.getCategory().equals(productCategory)).map(ProductToProductDtoTransformer::transform).collect(Collectors.toList());
+    }
+
+    public Product getProductByISBN10(String isbn10) {
+        return repository.getProductByISBN10(isbn10);
+    }
+
+    public Product getProductByISBN13(String isbn13) {
+        return repository.getProductByISBN13(isbn13);
     }
 }
