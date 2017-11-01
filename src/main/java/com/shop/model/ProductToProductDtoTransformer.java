@@ -17,6 +17,7 @@ public class ProductToProductDtoTransformer {
 
         Map<String, Object> parametersMap = productDto.getParametersMap();
         parametersMap.put("author", product.getAuthor());
+        parametersMap.put("isbn10", product.getISBN10());
         parametersMap.put("isbn13",product.getISBN13());
         parametersMap.put("category", product.getCategory());
 
