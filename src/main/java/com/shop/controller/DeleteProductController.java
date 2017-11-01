@@ -17,17 +17,25 @@ public class DeleteProductController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        ProductDto product = ProductListOperationsService.productService().getProductDtoById(id);
-        request.setAttribute("product", product);
-        request.getRequestDispatcher("delete.jsp").forward(request, response);
+        boolean isAdmin = (boolean)request.getSession().getAttribute("admin");
+        if(isAdmin) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            ProductDto product = ProductListOperationsService.productService().getProductDtoById(id);
+            request.setAttribute("product", product);
+            request.getRequestDispatcher("delete.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("/");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            ProductService.productService().deleteProductById(id);
+            boolean isAdmin = (boolean)request.getSession().getAttribute("admin");
+            if(isAdmin) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                ProductService.productService().deleteProductById(id);
+            }
             response.sendRedirect("/");
         }catch (NoSuchElementException e){
             response.sendRedirect("/");
