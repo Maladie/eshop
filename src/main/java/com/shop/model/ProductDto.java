@@ -46,36 +46,36 @@ public class ProductDto {
         return id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
+    public String getCurrency() {
+        return currency;
+    }
+
     public void setCurrency(String currency) {
         this.currency = currency;
     }
 
+    public BigDecimal getValue() {
+        return value;
+    }
+
     public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
