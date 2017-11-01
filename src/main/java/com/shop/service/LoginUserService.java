@@ -54,4 +54,11 @@ public class LoginUserService {
         String userPassSalt = user.getSalt();
         return PasswordUtils.verifyPassword(password, userPassHash, userPassSalt);
     }
+
+    public boolean isAdmin(String login){
+        if(login != null && !login.equals("")){
+            return userRepository.isAdmin(login);
+        }
+        return false;
+    }
 }
