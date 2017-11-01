@@ -61,7 +61,7 @@ public class ProductService {
 
     public void decreaseQuantityOfSoldProducts(HttpSession session) {
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
-        basket.productItemList().stream().forEach(productItem -> {
+        basket.productItemList().forEach(productItem -> {
             Product product = productItem.getProduct();
             int newProductAmount = calculateNewProductAmount(productItem);
             product.setProductAmount(newProductAmount);

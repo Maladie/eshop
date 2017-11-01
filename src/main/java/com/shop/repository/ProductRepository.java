@@ -14,6 +14,8 @@ public interface ProductRepository {
     List<Product> getProductsByCategory(ProductCategory category);
 
     Product getProductById(int id);
+    Product getProductByISBN13(String ISBN13);
+    Product getProductByISBN10(String ISBN10);
 
     void persistProduct(Product product);
 
