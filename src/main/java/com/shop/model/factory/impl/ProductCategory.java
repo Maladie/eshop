@@ -9,7 +9,12 @@ public enum ProductCategory {
     THRILLER_SUSPENSE("Thriller, suspense"),
     ROMANCE("Romance"),
     SCIENCE_FICTION_FANTASY("Science fiction, fantasy"),
-    OTHER("Other");
+    FANTASY("Fantasy"),
+    OTHER("Other"),
+    TEEN_AND_YOUNG_ADULT("Teen and Young adults"),
+    WAR("War stories"),
+    DRAMA("Drama");
+
 
     private String category;
 
