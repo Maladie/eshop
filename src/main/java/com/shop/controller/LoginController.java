@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet{
         String logout = request.getParameter("logout");
         if(logout != null &&logout.equals("true")){
             request.getSession().setAttribute("userName", null);
-            request.getSession().setAttribute("admin", null);
+            request.getSession().setAttribute("admin", false);
             request.getRequestDispatcher("logout.jsp").forward(request,response);
         } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
