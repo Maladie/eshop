@@ -10,6 +10,7 @@ public class SessionListener implements HttpSessionListener {
 
     public void sessionCreated(HttpSessionEvent event) {
         System.out.println("A new session is created");
+        event.getSession().setAttribute("admin", false);
         BasketDto basketDto = BasketService.basketService().getBasketDto(event.getSession());
     }
 
