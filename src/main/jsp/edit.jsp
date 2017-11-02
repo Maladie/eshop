@@ -4,8 +4,9 @@
 <jsp:include page="banner.jsp"></jsp:include>
 <script type="text/javascript" src="scripts/validateProductForm.js"></script>
 
-<div class="container-fliud justify-content-center">
-    <form action="/edit" method="post" class="text-center" id="productform" style="min-height: 80vh; margin-top: 15vh" novalidate>
+<div class="container justify-content-center" style="margin-top: 10vh; margin-bottom: 150px">
+    <h1>Edit book information:</h1><br/>
+    <form action="/edit" method="post" id="productform" style="min-height: 80vh;" novalidate>
         <jsp:include page="productformcontent.jsp"/>
     </form>
 </div><br>

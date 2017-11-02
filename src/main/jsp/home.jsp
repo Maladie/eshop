@@ -10,11 +10,11 @@
     </div>
     <div class="col-sm-10">
         <c:if test="${viewedProductList.size() != 0}">
-            <h5>Last Viewed Products</h5>
+            <h4>Last Viewed Products:</h4>
         </c:if>
         <div class="row">
             <c:forEach items="${viewedProductList}" var="product">
-                <div class="col-sm-4 p-5">
+                <div class="col-sm-3 p-5">
                     <a href="/productDescription?product=${product.id}" class="productLink">
                         <img width="250px" src=${product.imagePath}
                                 class="img-responsive" alt="Image">
@@ -35,14 +35,13 @@
                 </div>
             </c:forEach>
         </div>
-        <h5>Product catalog</h5>
+        <h4>Product catalog</h4>
         <div class="row">
 
             <c:forEach items="${productList}" var="product">
                 <div class="col-sm-4 p-5">
                     <a href="/productDescription?product=${product.id}" class="productLink">
-                        <img width="250px" src=${product.imagePath}
-                                class="img-responsive" alt="Image">
+                        <img width="250px" src='${product.imagePath}' class="img-responsive" alt="Image">
                         <p>${product.title}</p>
                         <p>${product.value} ${product.currency}</p>
                     </a>

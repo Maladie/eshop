@@ -58,7 +58,7 @@
         }
 
         .nav-link {
-            margin-left: 20px; margin-right: 5px;
+            margin-left: 10px; margin-right: 5px;
             color: #ffffff !important;
         }
 
