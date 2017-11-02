@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-10">
     <nav class="nav nav-pills flex-column flex-sm-row">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by</a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #ed6702 !important;">Sort by</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=plh">Price: Low to High</a>
             <a class="dropdown-item" href="/filter?searchParam=${searchParam}&category=${category}&filterParam=${filterParam}&sortType=phl">Price: High to Low</a>
@@ -53,7 +53,7 @@
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <div class="text-center">
+                        <div class="text-center" style="margin-left: 20px">
                         <h2>Niestety nie posiadamy takiego produktu :(</h2>
                         </div>
                     </c:otherwise>
