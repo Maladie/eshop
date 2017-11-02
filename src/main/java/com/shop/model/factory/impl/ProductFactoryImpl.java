@@ -2,52 +2,48 @@ package com.shop.model.factory.impl;
 
 import com.shop.model.factory.ProductFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Paths;
 
 public class ProductFactoryImpl implements ProductFactory {
 
     @Override
-    public Product getProductUpdateTemplate(HttpServletRequest request) {
+    public Product getProductUpdateTemplate(HttpServletRequest request, String filepath) {
         int id = Integer.valueOf(request.getParameter("id"));
 
-        Product product = newProduct(request);
+        Product product = newProduct(request, filepath);
         product.setId(id);
         return product;
     }
 
     @Override
-    public Product newProduct(HttpServletRequest request) {
+    public Product newProduct(HttpServletRequest request, String filepath) {
         Product product = new Product();
 
         //Get parameters from HttpServletRequest
-        String name = request.getParameter("name");
+        String title = request.getParameter("title");
         BigDecimal value = setValueIfNotEmpty(request);
         String currency = request.getParameter("currency");
+        Author authors = getAuthors(request);
+
+        String isbn10 = request.getParameter("isbn10");
+        String isbn13 = request.getParameter("isbn13");
         String description = request.getParameter("description");
-        int productAmount = Integer.valueOf(request.getParameter("amount"));
-        String brand = request.getParameter("brand");
-        Float weight = setWeightIfNotEmpty(request);
-        Unit weightUnit = Unit.parseUnit(request.getParameter("weightunit"));
-        EnergyConsumptionClass eclass = EnergyConsumptionClass.parseEClass(request.getParameter("eclass"));
+        int productAmount = Integer.parseInt(request.getParameter("amount"));
         ProductCategory category = ProductCategory.parseCategory(request.getParameter("category"));
-        String imagePath = buildImagePath(request);
+        String imagePath = buildImagePath(filepath);
 
         //Set parameters to product
-        product.setName(name);
+        product.setTitle(title);
+        product.setAuthor(authors);
         product.setValue(value);
         product.setCurrency(currency);
         product.setDescription(description);
+        product.setISBN10(isbn10);
+        product.setISBN13(isbn13);
         product.setProductAmount(productAmount);
-        product.setBrand(brand);
-        product.setWeightValue(weight);
-        product.setWeightUnit(weightUnit);
-        product.setEClass(eclass);
         product.setCategory(category);
+        product.setImagePath(imagePath);
 
         return product;
     }
@@ -59,22 +55,13 @@ public class ProductFactoryImpl implements ProductFactory {
         return new BigDecimal(0);
     }
 
-    private Float setWeightIfNotEmpty(HttpServletRequest request) {
-        if (!request.getParameter("weight").equals("")) {
-            return Float.parseFloat(request.getParameter("weight"));
-        }
-        return 0f;
+    private String buildImagePath(String filePath) {
+        return "http://java2kat.webpros.pl" + filePath;
     }
 
-    private String buildImagePath(HttpServletRequest request) {
-        Part filePart = null;
-        String fileName = null;
-        try {
-            filePart = request.getPart("image");
-        } catch (IOException | ServletException e) {
-            e.printStackTrace();
-            fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        }
-        return "http://java2kat.webpros.pl" + fileName;
+    private Author getAuthors(HttpServletRequest request) {
+        String authorName = request.getParameter("authorName");
+        String authorSurname = request.getParameter("authorSurname");
+        return new Author(authorName, authorSurname);
     }
 }

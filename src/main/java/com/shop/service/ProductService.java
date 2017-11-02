@@ -42,8 +42,8 @@ public class ProductService {
     public void persistProduct(HttpServletRequest request) {
         ProductFactory productFactory = new ProductFactoryImpl();
         FtpConnector ftpConnector = WebProsFtpConnector.getFtpConnector();
-        ftpConnector.uploadFile(request);
-        Product product = productFactory.newProduct(request);
+        String filePath = ftpConnector.uploadFile(request);
+        Product product = productFactory.newProduct(request, filePath);
         repository.persistProduct(product);
     }
 
@@ -53,13 +53,15 @@ public class ProductService {
 
     public void editProduct(HttpServletRequest request){
         ProductFactory productFactory = new ProductFactoryImpl();
-        Product updatedProduct = productFactory.getProductUpdateTemplate(request);
+        FtpConnector ftpConnector = WebProsFtpConnector.getFtpConnector();
+        String filePath = ftpConnector.uploadFile(request);
+        Product updatedProduct = productFactory.getProductUpdateTemplate(request, filePath);
         repository.editProduct(updatedProduct);
     }
 
     public void decreaseQuantityOfSoldProducts(HttpSession session) {
         Basket basket = SessionShoppingBasketHandler.retrieveBasket(session);
-        basket.productItemList().stream().forEach(productItem -> {
+        basket.productItemList().forEach(productItem -> {
             Product product = productItem.getProduct();
             int newProductAmount = calculateNewProductAmount(productItem);
             product.setProductAmount(newProductAmount);

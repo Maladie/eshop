@@ -2,14 +2,19 @@ package com.shop.model.factory.impl;
 
 public enum ProductCategory {
 
-    DISHWASHER("DISHWASHER"),
-    FREEZER("FREEZER"),
-    KETTLE("KETTLE"),
-    MICROWAVE_OVEN("MICROWAVE_OVEN"),
-    OVEN("OVEN"),
-    REFRIGERATOR("REFRIGERATOR"),
-    WASHING_MACHINE("WASHING_MACHINE"),
-    OTHER("OTHER");
+    BIOGRAPHIES_MEMOIRS("Biographies, memoirs"),
+    HISTORY("History"),
+    LITERATURE_FICTION("Literature fiction"),
+    MYSTERY("Mystery"),
+    THRILLER_SUSPENSE("Thriller, suspense"),
+    ROMANCE("Romance"),
+    SCIENCE_FICTION_FANTASY("Science fiction, fantasy"),
+    FANTASY("Fantasy"),
+    OTHER("Other"),
+    TEEN_AND_YOUNG_ADULT("Teen and Young adults"),
+    WAR("War stories"),
+    DRAMA("Drama");
+
 
     private String category;
 
@@ -19,9 +24,12 @@ public enum ProductCategory {
 
     public static ProductCategory parseCategory(String category) {
         ProductCategory productCategory = ProductCategory.OTHER;
-        if(category != null){
+        if (category != null) {
             productCategory = ProductCategory.valueOf(category);
         }
         return productCategory;
+    }
+    public String getCategory(){
+        return category;
     }
 }

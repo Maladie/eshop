@@ -31,19 +31,21 @@ public class LoginFilter implements Filter {
 
 //TODO lock access to register and login page after successfully logged in
         if (doesThisURLNeedsLogin(request.getRequestURI()) && (session.getAttribute("userName") == null)) {
+            System.out.println("redirected to login page");
             response.sendRedirect(loginURL);
         } else {
             chain.doFilter(request, response);
         }
-
     }
 
     //basic validation of pages that do not require authentication
     private boolean doesThisURLNeedsLogin(String url) {
-        String[] URLsThatDoesntRequireLogin = {"/login", "/", "/register","/scripts",".js"};
-
+        String[] URLsThatDoesntRequireLogin = {"/login", "/register","/scripts","/styles", "/productDescription", "/category", "/search"};
+        if(url.equals("/") || url.equals("")){
+            return false;
+        }
         for (String validUrl : URLsThatDoesntRequireLogin) {
-            if (url.endsWith(validUrl)) {
+            if (url.startsWith(validUrl)) {
                 return false;
             }
         }

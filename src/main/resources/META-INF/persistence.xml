@@ -4,7 +4,6 @@
 
         <class>com.shop.model.factory.impl.Product</class>
         <class>com.shop.model.factory.impl.Money</class>
-        <class>com.shop.model.factory.impl.Weight</class>
         <class>com.shop.model.userfactory.impl.User</class>
         <class>com.shop.model.Basket</class>
         <class>com.shop.model.ProductItem</class>
@@ -35,7 +34,6 @@
 
         <class>com.shop.model.factory.impl.Product</class>
         <class>com.shop.model.factory.impl.Money</class>
-        <class>com.shop.model.factory.impl.Weight</class>
         <class>com.shop.model.userfactory.impl.User</class>
 
         <properties>

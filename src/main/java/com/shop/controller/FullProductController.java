@@ -1,9 +1,9 @@
 package com.shop.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.model.ProductDto;
 import com.shop.model.ViewedProductsList;
 import com.shop.service.ProductListOperationsService;
-import com.shop.service.ProductService;
 import com.shop.service.SessionLastProductViewedHandler;
 
 import javax.servlet.ServletException;
@@ -35,8 +35,15 @@ public class FullProductController extends HttpServlet {
             //set error attribute
             httpServletRequest.setAttribute("productremovederror","Product not exist");
         }
-
+        boolean hasRestParam = httpServletRequest.getParameter("REST") != null;
+        if(hasRestParam && httpServletRequest.getParameter("REST").equals("true")){
+            httpServletResponse.setHeader("Content-type", "application/json");
+            ObjectMapper mapper = new ObjectMapper();
+            String productString = mapper.writeValueAsString(product);
+            httpServletResponse.getWriter().write(productString);
+        } else {
         httpServletRequest.setAttribute("product", product);
         httpServletRequest.getRequestDispatcher("productDescription.jsp").forward(httpServletRequest, httpServletResponse);
+        }
     }
 }

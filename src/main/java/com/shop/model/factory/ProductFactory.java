@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public interface ProductFactory {
 
-    Product getProductUpdateTemplate(HttpServletRequest request);
+    Product getProductUpdateTemplate(HttpServletRequest request, String filePath);
 
-    Product newProduct(HttpServletRequest request);
+    Product newProduct(HttpServletRequest request, String filePath);
 }

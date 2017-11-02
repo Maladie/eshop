@@ -33,7 +33,7 @@ public class WebProsFtpConnector implements FtpConnector {
     }
 
     @Override
-    public void uploadFile(HttpServletRequest request) {
+    public String uploadFile(HttpServletRequest request) {
         FTPClient client = new FTPClient();
         InputStream fileContent = null;
         String filePath = null;
@@ -53,6 +53,7 @@ public class WebProsFtpConnector implements FtpConnector {
         } finally {
             closeConnection(client, fileContent);
         }
+        return filePath;
     }
 
     private String buildFilePath(String fileName) {

@@ -3,7 +3,8 @@
 <%@include file="header.jsp" %>
 <script type="text/javascript" src="scripts/validateProductForm.js"></script>
 
-<div class="container  justify-content-center" style="margin-top: 100px; margin-bottom: 150px">
+<div class="container  justify-content-center" style="margin-top: 10vh; margin-bottom: 150px">
+    <h1>Add new book:</h1> <br/>
     <form action="/persistProduct" method="post" id="productform" novalidate enctype="multipart/form-data">
     <jsp:include page="productformcontent.jsp"/>
     </form>

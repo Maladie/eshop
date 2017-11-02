@@ -35,7 +35,7 @@ public class HibernateProductRepositoryImpl implements ProductRepository {
 
     @Override
     public List<Product> getProductsBySearchCritieria(String searchCriteria) {
-        return entityManager.createQuery("SELECT p from Product p WHERE p.name LIKE :search", Product.class).setParameter("search", searchCriteria +"%").getResultList();
+        return entityManager.createQuery("SELECT p from Product p WHERE p.title LIKE :search", Product.class).setParameter("search", searchCriteria +"%").getResultList();
     }
 
     @Override
@@ -46,6 +46,16 @@ public class HibernateProductRepositoryImpl implements ProductRepository {
     @Override
     public Product getProductById(int id) {
         return productList.stream().filter(product -> product.getId() == id).findFirst().orElse(null);
+    }
+
+    @Override
+    public Product getProductByISBN13(String ISBN13) {
+        return entityManager.createQuery("select p from Product p WHERE p.ISBN13 = :isbn", Product.class).setParameter("isbn", ISBN13).getSingleResult();
+    }
+
+    @Override
+    public Product getProductByISBN10(String ISBN10) {
+        return entityManager.createQuery("select p from Product p where p.ISBN10 = :isbn", Product.class).setParameter("isbn", ISBN10).getSingleResult();
     }
 
     @Override
@@ -71,7 +81,14 @@ public class HibernateProductRepositoryImpl implements ProductRepository {
     @Override
     public void editProduct(Product updatedProduct) {
         Product product = getProductById(updatedProduct.getId());
-        product.setName(updatedProduct.getName());
+        product.setTitle(updatedProduct.getTitle());
+        product.setDescription(updatedProduct.getDescription());
+        //skip if lower than 0
+        product.setProductAmount(updatedProduct.getProductAmount()>=0 ?updatedProduct.getProductAmount(): product.getProductAmount());
+        product.setISBN10(updatedProduct.getISBN10());
+        product.setISBN13(updatedProduct.getISBN13());
+        product.setAuthor(updatedProduct.getAuthor());
+        product.setCategory(updatedProduct.getCategory());
         BigDecimal value = product.getValue();
         BigDecimal newValue = updatedProduct.getValue();
         if(newValue != null){

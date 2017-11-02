@@ -72,4 +72,10 @@ public class HibernateUserRepositoryImpl implements UserRepository {
         entityManager.getTransaction().commit();
         return user;
     }
+
+    @Override
+    public boolean isAdmin(String login) {
+        User user = entityManager.createQuery("select u from User u where LOWER(u.username) = :username", User.class).setParameter("username", login.toLowerCase()).getSingleResult();
+        return user != null && user.isAdmin();
+    }
 }

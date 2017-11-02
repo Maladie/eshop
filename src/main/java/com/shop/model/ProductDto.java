@@ -7,13 +7,14 @@ import java.util.Map;
 public class ProductDto {
 
     private int id;
-    private String name;
+    private String title;
     private String currency;
     private BigDecimal value;
     private int quantity;
     private String description;
     private Map<String, Object> parametersMap;
     private int productAmount;
+    private String imagePath;
 
     {
         quantity = 1;
@@ -22,11 +23,12 @@ public class ProductDto {
 
     public ProductDto(ProductItem productItem) {
         this.id = productItem.getProduct().getId();
-        this.name = productItem.getProduct().getName();
+        this.title = productItem.getProduct().getTitle();
         this.currency = productItem.getProduct().getCurrency();
         this.value = productItem.value();
         this.quantity = productItem.getQuantity();
         this.productAmount = productItem.getProduct().getProductAmount();
+        this.imagePath = productItem.getProduct().getImagePath();
     }
 
     public ProductDto() {
@@ -44,36 +46,36 @@ public class ProductDto {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getCurrency() {
         return currency;
     }
 
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setCurrency(String currency) {
         this.currency = currency;
     }
 
+    public BigDecimal getValue() {
+        return value;
+    }
+
     public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
@@ -94,5 +96,13 @@ public class ProductDto {
 
     public void setParametersMap(Map<String, Object> parametersMap) {
         this.parametersMap = parametersMap;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
