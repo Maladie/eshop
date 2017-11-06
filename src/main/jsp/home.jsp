@@ -18,8 +18,8 @@
                     <a href="/productDescription?product=${product.id}" class="productLink">
                         <img width="250px" src=${product.imagePath}
                                 class="img-responsive" alt="Image">
-                        <p>${product.title}</p>
-                        <p>${product.value} ${product.currency}</p>
+                        <p class="product_title">${product.title}</p>
+                        <p class="product_value" >${product.value} ${product.currency}</p>
                     </a>
                     <c:choose>
                         <c:when test="${product.productAmount == 0}">
@@ -42,8 +42,8 @@
                 <div class="col-sm-4 p-5">
                     <a href="/productDescription?product=${product.id}" class="productLink">
                         <img width="250px" src='${product.imagePath}' class="img-responsive" alt="Image">
-                        <p>${product.title}</p>
-                        <p>${product.value} ${product.currency}</p>
+                        <p class="product_title">${product.title}</p>
+                        <p class="product_value">${product.value} ${product.currency}</p>
                     </a>
                     <c:choose>
                         <c:when test="${product.productAmount == 0}">

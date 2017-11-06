@@ -64,9 +64,9 @@
                                     <h4>Author:</h4>
                                     <p> ${product.parametersMap["author"].name} ${product.parametersMap["author"].surname}</p>
                                     <br/>
-                                    <h5>Isbn10:</h5>
+                                    <h5>ISBN10:</h5>
                                     <p>${product.parametersMap["isbn10"]}</p><br/>
-                                    <h5>Isbn13:</h5>
+                                    <h5>ISBN13:</h5>
                                     <p>${product.parametersMap["isbn13"]}</p>
                                 </div>
                             </div>

@@ -35,8 +35,8 @@
                             <div class="col-sm-3 p-5">
                                 <a href="/productDescription?product=${product.id}" class="productLink">
                                     <img width="250px" src=${product.imagePath}  class="img-responsive" alt="Image">
-                                    <p>${product.title}</p>
-                                    <p>${product.value} ${product.currency}</p>
+                                    <p class="product_title">${product.title}</p>
+                                    <p class="product_value">${product.value} ${product.currency}</p>
                                 </a>
                                 <c:choose>
                                     <c:when test="${product.productAmount == 0}">
@@ -54,7 +54,7 @@
                     </c:when>
                     <c:otherwise>
                         <div class="text-center" style="margin-left: 20px">
-                        <h2>Niestety nie posiadamy takiego produktu :(</h2>
+                        <h2>Sorry, we couldn't find anything :(</h2>
                         </div>
                     </c:otherwise>
                 </c:choose>

@@ -4,6 +4,6 @@
 <link rel="stylesheet" href="styles/styles.css">
 <nav class="d-block nav_item bg-nav-dark" id="nav_bar">
     <c:forEach var="entry" items="${ProductCategoryValues}">
-        <a class="nav-link nav_item bg-nav-dark" href="/category?category=${entry}">${entry.category}</a>
+        <a class="nav-link nav_item bg-nav-dark" id="nav_item" href="/category?category=${entry}">${entry.category}</a>
     </c:forEach>
 </nav>

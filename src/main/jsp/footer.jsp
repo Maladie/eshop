@@ -1,27 +1,21 @@
 <%@page pageEncoding="UTF-8" language="java" contentType="text/html;charset=UTF-8" %>
-<footer class="footer-bs">
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span8">
-                <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBCWGFM4piYQheAyOzu4qI2fssn2K8XgxY
-    &q=Moniuszki+7,Katowice+POLAND"></iframe>
-            </div>
 
-            <div class="span4">
-                <h2>e-Shop</h2>
-                <address>
-                    <strong>Everything you need in one place !</strong><br>
-                    ul. Moniuszki 7<br>
-                    Katowice<br>
-                    Śląsk<br>
-                    Poland<br>
-                    00-120<br>
-                    <abbr title="Phone">P:</abbr> 0-700-770-770
-                </address>
-            </div>
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="width: 300px; margin-left: 400px;">
+            <p class="footer_title">Verne Books</p>
+            <p class="footer_slogan">Everything you need in one place!</p>
         </div>
     </div>
-</footer>
+
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="width: 300px; margin-left: 500px;">
+            <p class="footer_slogan">Moniuszki 7, Katowice</p>
+            <p class="footer_slogan">Tel: +12 456 789 012</p>
+            <a class="footer_slogan" href="mailto:julius@verne.com">Mail: julius@verne.com</a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

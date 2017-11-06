@@ -66,6 +66,32 @@
             color: #e36702 !important;
         }
 
+        #nav_item {
+            text-align: left !important;
+        }
+
+        .product_value {
+            font-weight: bold !important;
+            color: #e36702 !important;
+        }
+
+        .product_title {
+            text-align: center !important;
+            text-wrap: normal;
+        }
+
+        .footer_title {
+            color: #e36702 !important;
+            font-weight: bold !important;
+            font-size: 40px;
+        }
+
+        .footer_slogan {
+            color: #e36702 !important;
+            font-weight: bold !important;
+            font-size: large;
+        }
+
     </style>
 </head>
 <body>
@@ -75,13 +101,16 @@
         <div style="width: 150px">
             <a href="/">
                 <img src="http://java2kat.webpros.pl/eshop/gotowe/bookslogo.png"
-                     alt="Generic placeholder image">
+                     alt="Verne Books Logo">
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
                 </li>
                 <c:if test="${sessionScope.get('admin')==true}">
                 <li class="nav-item">
